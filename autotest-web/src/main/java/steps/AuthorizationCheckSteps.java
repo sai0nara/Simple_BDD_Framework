@@ -2,7 +2,7 @@ package steps;
 
 import actions.Checks;
 import com.codeborne.selenide.SelenideElement;
-import io.cucumber.java.ru.Пусть;
+import io.cucumber.java.ru.Если;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -16,7 +16,7 @@ public class AuthorizationCheckSteps {
         this.pageManager = pageManager;
     }
 
-    @Пусть("чекбокс {string} отображается и не выбран")
+    @Если("чекбокс {string} отображается и не выбран")
     public void checkAppearCheckbox(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
@@ -25,29 +25,14 @@ public class AuthorizationCheckSteps {
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
-    @Пусть("поле ввода {string} отображается")
-    public void checkAppearField(String elementName) {
+    @Если("поле ввода {string} отображается")
+    @Если("поле {string} отображается")
+    @Если("кнопка {string} отображается")
+    public void checkAppearElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisible(element);
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
-    @Пусть("{string} отображается")
-    public void checkAppearButton(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisible(element);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
-//TODO
-    public void checkErrorMessageText() {
-    }
-
-//TODO
-    public void checkPopUpErrorMessageText() {
     }
 }

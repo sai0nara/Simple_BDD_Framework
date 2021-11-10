@@ -25,10 +25,10 @@ import static com.codeborne.selenide.Selenide.$x;
         @Name("Я здесь впервые")
         private SelenideElement haveTokenCheckbox = $(By.id("id_i_have_no_token"));
 
-        @Name("кнопка войти")
+        @Name("войти")
         private SelenideElement signinButton = $x("//input[@value='Войти']");
 
-        @Name("кнопка выслать инструкцию на почту")
+        @Name("выслать инструкцию на почту")
         private SelenideElement sendByEmailButton = $x("//input[@value='Выслать инструкцию на почту']");
     }
 
