@@ -54,4 +54,12 @@ public class AuthorizationSteps {
         element.click();
         LOGGER.info("клик на элемент по тексту '{}'", elementName);
     }
+
+    @Тогда("ввести {string} для пользователя {string} с паролем {string}")
+    public void fillFieldToken(String elementName, String login, String password) {
+        ApiSteps.getToken(login, password);
+        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        element.setValue(ApiSteps.getCurentToken());
+        LOGGER.info("в поле '{}' введено значение '{}'", elementName, ApiSteps.getCurentToken());
+    }
 }

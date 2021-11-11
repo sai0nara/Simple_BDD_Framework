@@ -1,8 +1,5 @@
-package api;
+package steps;
 
-import com.codeborne.selenide.SelenideElement;
-import io.cucumber.java.ru.И;
-import io.cucumber.java.ru.Тогда;
 import io.restassured.path.json.JsonPath;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
@@ -22,7 +19,11 @@ public class ApiSteps {
         this.pageManager = pageManager;
     }
 
-    public static void getToken(String username,String password) {
+    public static String getCurentToken() {
+        return token;
+    }
+
+    public static void getToken(String username, String password) {
         JSONObject innerBody = new JSONObject();
         innerBody.put("username", username);
         innerBody.put("password", password);
@@ -39,19 +40,5 @@ public class ApiSteps {
         ContextHolder.put("TOTP", tokenJson.get("otp_token").toString());
         token = ContextHolder.getValue("TOTP").toString();
         LOGGER.info("Токен для авторизации - {}", ContextHolder.getValue("TOTP").toString());
-    }
-
-    @Тогда("ввести {string} для пользователя {string} с паролем {string}")
-    public void fillFieldToken(String elementName, String login, String password) {
-        getToken(login, password);
-        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
-        element.setValue(token);
-        LOGGER.info("в поле '{}' введено значение '{}'", elementName, token);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(token);
-        getToken("admin", "asdf");
-        System.out.println(token);
     }
 }
