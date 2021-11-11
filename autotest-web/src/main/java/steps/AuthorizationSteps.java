@@ -14,7 +14,7 @@ import ru.lanit.at.web.pagecontext.PageManager;
 public class AuthorizationSteps {
 
     private PageManager pageManager;
-    private final Logger LOGGER = LoggerFactory.getLogger(AuthorizationSteps.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(WindowSteps.class);
 
     public AuthorizationSteps(PageManager pageManager) {
         this.pageManager = pageManager;
@@ -45,7 +45,10 @@ public class AuthorizationSteps {
         LOGGER.info("в поле '{}' введено значение '{}'", elementName, value);
     }
 
-    @Тогда("нажать на кнопку {string}")
+    public void getToken(String username, String password) {
+    }
+
+    @Тогда("нажать на {string}")
     public void clickSignInButton(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.click();
