@@ -14,7 +14,7 @@ import ru.lanit.at.web.pagecontext.PageManager;
 public class AuthorizationSteps {
 
     private PageManager pageManager;
-    private final Logger LOGGER = LoggerFactory.getLogger(WindowSteps.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(AuthorizationSteps.class);
 
     public AuthorizationSteps(PageManager pageManager) {
         this.pageManager = pageManager;
