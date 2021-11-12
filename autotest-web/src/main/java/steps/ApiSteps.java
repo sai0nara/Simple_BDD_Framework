@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.ru.И;
 import io.restassured.path.json.JsonPath;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ public class ApiSteps {
 
     private static String token = "";
     private PageManager pageManager;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ApiSteps.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ApiSteps.class);
 
     public ApiSteps(PageManager pageManager) {
         this.pageManager = pageManager;
@@ -23,6 +24,7 @@ public class ApiSteps {
         return token;
     }
 
+    @И("получить Token для юзера {string} с паролем {string}")
     public static void getToken(String username, String password) {
         JSONObject innerBody = new JSONObject();
         innerBody.put("username", username);
@@ -39,6 +41,6 @@ public class ApiSteps {
                 .jsonPath();
         ContextHolder.put("TOTP", tokenJson.get("otp_token").toString());
         token = ContextHolder.getValue("TOTP").toString();
-        LOGGER.info("Токен для авторизации - {}", ContextHolder.getValue("TOTP").toString());
+        LOG.info("Токен для авторизации - {}", ContextHolder.getValue("TOTP").toString());
     }
 }

@@ -8,8 +8,8 @@ import ru.lanit.at.web.pagecontext.WebPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-    @Name(value = "DjangoSiteAdmin")
-    public class DjangoSiteAdmin extends WebPage {
+    @Name(value = "DjangoAuthorization")
+    public class DjangoAuthorization extends WebPage {
         @Name("логин")
         private SelenideElement usernameField = $(By.id("id_username"));
 
