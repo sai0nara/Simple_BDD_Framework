@@ -2,7 +2,6 @@ package steps;
 
 import actions.Checks;
 import com.codeborne.selenide.SelenideElement;
-import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -20,7 +20,7 @@ public class ApiSteps {
         this.pageManager = pageManager;
     }
 
-    public static String getCurentToken() {
+    public static String getCurrentToken() {
         return token;
     }
 
