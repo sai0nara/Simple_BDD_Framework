@@ -1,19 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import ru.lanit.at.web.annotations.Name;
 import ru.lanit.at.web.pagecontext.WebPage;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 @Name(value = "DjangoAdministration")
 public class DjangoAdministrationPage extends WebPage {
-    @Name("Заголовок таблицы")
-    private SelenideElement tableHeader = $x("//*[@id='content']/h1");
-    @Name("Имя пользователя")
-    private SelenideElement userName = $x("//*[@id='user-tools']/strong");
 
     //MAIN
     @Name("Сотрудники")
@@ -85,13 +79,4 @@ public class DjangoAdministrationPage extends WebPage {
     private SelenideElement addEmployee = $x("//a[text()='Сотрудники']/following::td[1]/a");
     @Name("Изменить поле Сотрудники")
     private SelenideElement changeEmployee = $x("//a[text()='Сотрудники']/following::td[2]/a");
-
-    @Name("Выйти")
-    private SelenideElement logout = $x("//*[@id='user-tools']//strong//following::a[3]");
-    @Name("Изменить пароль")
-    private SelenideElement changePassword = $x("//a[@href='/admin/password_change/']");
-    @Name("Показать сайт")
-    private SelenideElement viewSite = $x("//*[@id='user-tools']//strong//following::a[1]");
-    @Name("username")
-    private SelenideElement userTools = $x("//div[@id='user-tools']/strong");
 }
