@@ -18,14 +18,6 @@ public class EmployeeCheckSteps {
     }
 
     @Если("на текущей странице {string} с текстом {string} присутствует")
-    public void matchInfoblockText(String elementName, String text) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementTextEqualsExpectedText(element, text);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
     @И("поле {string} инфоблок с текстом {string} присутствует")
     public void matchText(String elementName, String text) {
         SelenideElement element = pageManager
