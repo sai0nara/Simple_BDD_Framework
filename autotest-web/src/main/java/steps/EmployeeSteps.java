@@ -1,6 +1,7 @@
 package steps;
 
 import actions.WebActions;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Затем;
@@ -58,15 +59,15 @@ public class EmployeeSteps {
         SelenideElement emailField = pageManager
                 .getCurrentPage()
                 .getElement(email);
-        surnameField.clear();
-        nameField.clear();
-        patronymicField.clear();
-        genderDropdown.selectOption(0);
-        joiningDateField.clear();
-        birthdayField.clear();
-        phoneField.clear();
-        citizenshipDropdown.selectOption(0);
-        emailField.clear();
+        surnameField.shouldBe(Condition.visible).clear();
+        nameField.shouldBe(Condition.visible).clear();
+        patronymicField.shouldBe(Condition.visible).clear();
+        genderDropdown.shouldBe(Condition.visible).selectOption(0);
+        joiningDateField.shouldBe(Condition.visible).clear();
+        birthdayField.shouldBe(Condition.visible).clear();
+        phoneField.shouldBe(Condition.visible).clear();
+        citizenshipDropdown.shouldBe(Condition.visible).selectOption(0);
+        emailField.shouldBe(Condition.visible).clear();
         LOGGER.info("на странице '{}' имеются элементы '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}'", pageManager.getCurrentPage().name(), surname, name, patronymic, gender, joiningDate, birthday, phone, citizenship, email);
     }
 
