@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.И;
+import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -28,7 +29,7 @@ public class EmployeeSteps {
     }
 
     @Затем("на текущей странице в блоке Общая информация очистить все поля: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
-    public void clearFieldsEmployee(String surname, String name, String patronymic, String gender, String joiningDate, String birthday, String phone, String citizenship, String email) throws InterruptedException {
+    public void clearFieldsEmployee(String surname, String name, String patronymic, String gender, String joiningDate, String birthday, String phone, String citizenship, String email) {
 
         SelenideElement surnameField = pageManager
                 .getCurrentPage()
@@ -60,14 +61,19 @@ public class EmployeeSteps {
         surnameField.clear();
         nameField.clear();
         patronymicField.clear();
-        genderDropdown.clear();
+        genderDropdown.selectOption(0);
         joiningDateField.clear();
         birthdayField.clear();
         phoneField.clear();
-        citizenshipDropdown.clear();
+        citizenshipDropdown.selectOption(0);
         emailField.clear();
-
-        Thread.sleep(10000L);
         LOGGER.info("на странице '{}' имеются элементы '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}'", pageManager.getCurrentPage().name(), surname, name, patronymic, gender, joiningDate, birthday, phone, citizenship, email);
+    }
+
+    @Тогда("нажать на кнопку {string}")
+    public void clickOnButton(String elementName) {
+        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        element.click();
+        LOGGER.info("клик на кнопку '{}'", elementName);
     }
 }

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Name(value = "DjangoEmployeeChange")
 public class DjangoEmployeeChangePage extends DjangoPagesHeader {
+
     @Name("Имя")
     private SelenideElement firstName = $("#id_name");
     @Name("Фамилия")
@@ -29,6 +30,8 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Email")
     private SelenideElement email = $("#id_internal_email");
 
+    @Name("Сообщение об ошибке в заголовке")
+    private SelenideElement headerError = $(".errornote");
     @Name("Сообщение об ошибке Имя")
     private SelenideElement errorFirstName = $x("//div[contains(@class, 'field-name')]/ul/li");
     @Name("Сообщение об ошибке Фамилия")
