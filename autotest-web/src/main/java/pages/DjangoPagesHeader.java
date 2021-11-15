@@ -14,15 +14,15 @@ public class DjangoPagesHeader extends WebPage {
     private SelenideElement tableHeader = $x("//div[@id='content']/h1");
 
     @Name("Имя пользователя")
-    private SelenideElement userName = $x("//*[@id='user-tools']/strong");
+    private SelenideElement userName = $x("//div[@id='user-tools']/strong");
     @Name("username")
     private SelenideElement userTools = $x("//div[@id='user-tools']/strong");
     @Name("Выйти")
-    private SelenideElement logout = $x("//*[@id='user-tools']//strong//following::a[3]");
+    private SelenideElement logout = $x("//div[@id='user-tools']/a[@href='/admin/logout/']");
     @Name("Изменить пароль")
     private SelenideElement changePassword = $x("//a[@href='/admin/password_change/']");
     @Name("Показать сайт")
-    private SelenideElement viewSite = $x("//*[@id='user-tools']//strong//following::a[1]");
+    private SelenideElement viewSite = $x("//div[@id='user-tools']/a[@href='/']");
     @Name("Сообщение")
     private SelenideElement messageList = $x("//ul[@class='messagelist']/li");
     @Name("Сообщение об ошибке")
