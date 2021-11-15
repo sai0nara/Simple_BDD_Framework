@@ -64,4 +64,8 @@ public class WebActions {
             Sleep.pauseSec(0.2);
         }
     }
+
+    public static int getRandom(int range) {
+        return (int)(Math.random() * range);
+    }
 }
