@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.lanit.at.web.annotations.Name;
 
