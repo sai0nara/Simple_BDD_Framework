@@ -43,7 +43,7 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Сообщение об ошибке Телефон")
     private SelenideElement errorPhone = $x("//div[contains(@class, 'field-phone')]/ul/li");
     @Name("Сообщение об ошибке Email")
-    private SelenideElement errorEmail = $x("//div[contains(@class, 'field-internal_email')]/ul/li')]/ul/li");
+    private SelenideElement errorEmail = $x("//div[contains(@class, 'field-internal_email')]/ul/li");
 
     @Name("История")
     private SelenideElement history = $x("//a[@class='historylink' and text()='История']");
