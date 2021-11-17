@@ -30,6 +30,8 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     private SelenideElement executeButton = $(".button");
     @Name("Действие")
     private ElementsCollection dropDownAction = $$x("//select[@name='action']/option");
+    @Name("Действие меню")
+    private SelenideElement action = $x("//select[@name='action']");
 
     @Name("Количество найденных записей")
     private SelenideElement numberRecords = $(".paginator");
@@ -39,4 +41,6 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
 
     @Name("Таблица чек-бокс")
     private ElementsCollection tableCheckboxes = $$(".action-select");
+
 }
+
