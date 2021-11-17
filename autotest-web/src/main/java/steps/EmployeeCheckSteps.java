@@ -1,11 +1,13 @@
 package steps;
 
 import actions.Checks;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import ru.lanit.at.web.pagecontext.PageManager;
 
 public class EmployeeCheckSteps {
@@ -25,5 +27,14 @@ public class EmployeeCheckSteps {
                 .getElement(elementName);
         Checks.elementTextEqualsExpectedText(element, text);
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    @Если("в блоке {string} количество записей равно {int}")
+    public void matchRecordsNumber(String elementName, int number) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        Assert.assertEquals(elements.size(), number);
+        LOGGER.info("на странице '{}' в блоке '{}' количество записей '{}'", pageManager.getCurrentPage().name(), elementName, number);
     }
 }

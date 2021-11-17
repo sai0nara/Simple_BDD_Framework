@@ -37,7 +37,7 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     @Name("Предупреждение в заголовке")
     private SelenideElement headerWarning = $(".warning");
 
-    @Name("Действие")
+    @Name("Таблица чек-бокс")
     private ElementsCollection tableCheckboxes = $$(".action-select");
 
 }
