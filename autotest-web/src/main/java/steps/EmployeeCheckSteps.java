@@ -37,4 +37,26 @@ public class EmployeeCheckSteps {
         Assert.assertEquals(elements.size(), number);
         LOGGER.info("на странице '{}' в блоке '{}' количество записей '{}'", pageManager.getCurrentPage().name(), elementName, number);
     }
+
+    private String getElementText(String elementName, int index) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        return elements.get(index).getText();
+    }
+
+    @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент не изменился")
+    public void matchFirstElement(String buttonName, String elementName, int index) {
+        String firstResult = getElementText(elementName, index);
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(buttonName);
+        element.click();
+        String secondResult = getElementText(elementName, index);
+
+        Assert.assertEquals(firstResult, secondResult);
+        System.out.println(firstResult);
+        System.out.println(secondResult);
+        LOGGER.info("на странице '{}' в блоке '{}' количество записей '{}'", pageManager.getCurrentPage().name(), elementName, index);
+    }
 }
