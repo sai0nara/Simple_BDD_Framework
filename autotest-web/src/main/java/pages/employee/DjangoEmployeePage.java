@@ -24,7 +24,7 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     @Name("Поиск")
     private SelenideElement search = $("#searchbar");
     @Name("Найти")
-    private SelenideElement searchButton = $x("//input[@type='submit']");
+    private SelenideElement searchButton = $("#searchbar ~ input[type='submit']");
 
     @Name("Выполнить")
     private SelenideElement executeButton = $(".button");
