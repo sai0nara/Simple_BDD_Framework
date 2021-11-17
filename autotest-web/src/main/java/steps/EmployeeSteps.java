@@ -77,4 +77,11 @@ public class EmployeeSteps {
         element.click();
         LOGGER.info("клик на кнопку '{}'", elementName);
     }
+
+    @Тогда("выбрать элемент {string} с текстом {string}")
+    public void selectElementWithText(String elementName, String text) {
+        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        element.selectOption(text);
+        LOGGER.info("клик на кнопку '{}'", elementName);
+    }
 }
