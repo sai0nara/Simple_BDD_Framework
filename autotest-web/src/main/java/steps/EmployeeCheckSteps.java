@@ -55,8 +55,6 @@ public class EmployeeCheckSteps {
         String secondResult = getElementText(elementName, index);
 
         Assert.assertEquals(firstResult, secondResult);
-        System.out.println(firstResult);
-        System.out.println(secondResult);
-        LOGGER.info("на странице '{}' в блоке '{}' количество записей '{}'", pageManager.getCurrentPage().name(), elementName, index);
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
     }
 }
