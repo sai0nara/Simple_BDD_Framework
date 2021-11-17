@@ -40,10 +40,5 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     @Name("Действие")
     private ElementsCollection tableCheckboxes = $$(".action-select");
 
-
-
-
-
-
 }
 
