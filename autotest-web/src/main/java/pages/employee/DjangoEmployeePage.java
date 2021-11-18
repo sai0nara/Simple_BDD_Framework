@@ -51,5 +51,10 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     @Name("Пагинация текущая страница")
     private SelenideElement currentPaginator = $(".paginator span.this-page");
 
+    @Name("Фильтр")
+    private ElementsCollection filters = $$("#changelist-filter li");
+
+    @Name("Текущий город")
+    private ElementsCollection currentCity = $$(".field-current_city");
 }
 

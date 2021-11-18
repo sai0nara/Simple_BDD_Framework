@@ -30,8 +30,6 @@ public class WebCheckSteps {
         LOGGER.info("на странице '{}' имеется текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
-
-
     /**
      * проверка отсутствия текста на странице
      *

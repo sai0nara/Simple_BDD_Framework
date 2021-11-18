@@ -49,7 +49,7 @@ public class EmployeeCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в поле имеется элемент '{}'", elementName);
+        LOGGER.info("в поле имеется элемент22 '{}'", elementName);
     }
 
     @Если("на странице в блоке {string} выбрать элемент {string}")
@@ -117,5 +117,21 @@ public class EmployeeCheckSteps {
                 .getElement(elementName);
         Checks.elementTextEqualsExpectedText(element, number);
         LOGGER.info("на странице '{}' в блоке '{}' текущий номер '{}'", pageManager.getCurrentPage().name(), elementName, number);
+    }
+
+    @Если("в блоке 'Таблица' в столбце {string} все записи = {string}")
+    public void checkCurrenNumberCity(String elementName, String city) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        boolean result = true;
+        for (SelenideElement element : elements) {
+            if (!element.getText().equals(city)) {
+                result = false;
+                break;
+            }
+        }
+        Assert.assertTrue(result);
+        LOGGER.info("на странице '{}' в блоке '{}' текущий город '{}': '{}'", pageManager.getCurrentPage().name(), elementName, city, result);
     }
 }

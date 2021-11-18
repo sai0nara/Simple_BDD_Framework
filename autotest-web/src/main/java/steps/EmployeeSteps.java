@@ -26,7 +26,7 @@ public class EmployeeSteps {
                 .getCurrentPage()
                 .getElementsCollection(elementName);
         elements.get(WebActions.getRandom(elements.size())).click();
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
     @Затем("на текущей странице в блоке Общая информация очистить все поля: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
@@ -108,5 +108,14 @@ public class EmployeeSteps {
                 .getElement(listOfCities);
         element.selectOptionContainingText(city);
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), element);
+    }
+
+    @Затем("в блоке {string} нажать на ссылку с текстом {string}")
+    public void selectFilter(String elementName, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        elements.findBy(Condition.exactText(text)).click();
+        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), text);
     }
 }
