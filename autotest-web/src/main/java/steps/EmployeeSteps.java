@@ -89,7 +89,6 @@ public class EmployeeSteps {
     public void clickOnElementWithText(String elementName, String text) {
         ElementsCollection elements = pageManager.getCurrentPage().getElementsCollection(elementName);
         elements.findBy(Condition.exactText(text)).click();
-//        elements.get(number - 1).click();
         LOGGER.info("клик на элемент '{}' с номером '{}'", elementName, text);
     }
 

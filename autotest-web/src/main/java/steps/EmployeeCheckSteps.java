@@ -10,10 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import ru.lanit.at.web.pagecontext.PageManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployeeCheckSteps {
 
     private PageManager pageManager;
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCheckSteps.class);
+    List<String> result = new ArrayList<>();
 
     public EmployeeCheckSteps(PageManager pageManager) {
         this.pageManager = pageManager;
@@ -28,6 +32,7 @@ public class EmployeeCheckSteps {
         Checks.elementTextEqualsExpectedText(element, text);
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
+
     @Если("в полях The Сотрудник “ и ” was changed successfully. You may edit it again below. присутствует элемент {string}")
     public void curFieldsContainsThatElement(String elementName) {
         SelenideElement element = pageManager
@@ -67,37 +72,45 @@ public class EmployeeCheckSteps {
         LOGGER.info("на странице '{}' в блоке '{}' количество записей '{}'", pageManager.getCurrentPage().name(), elementName, number);
     }
 
-    private String getElementText(String elementName, int index) {
+    @И("в текущем блоке {string} взять {int} элемент")
+    public void getElementText(String elementName, int index) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        return elements.get(index).getText();
+        result.add(elements.get(index - 1).getText());
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, result.get(0));
     }
 
     @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент не изменился")
-    public void matchFirstElementEquals(String buttonName, String elementName, int index) {
-        String firstResult = getElementText(elementName, index);
-        SelenideElement element = pageManager
+    public void checkElementEquals(String buttonName, String elementName, int index) {
+        SelenideElement button = pageManager
                 .getCurrentPage()
                 .getElement(buttonName);
-        element.click();
-        String secondResult = getElementText(elementName, index);
+        button.click();
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        result.add(elements.get(index - 1).getText());
 
-        Assert.assertEquals(firstResult, secondResult);
-        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
+        Assert.assertEquals(result.get(0), result.get(1));
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, result.get(0), result.get(1));
+        result.clear();
     }
 
     @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент изменился")
-    public void matchFirstElementNoEquals(String buttonName, String elementName, int index) {
-        String firstResult = getElementText(elementName, index);
-        SelenideElement element = pageManager
+    public void checkElementNoEquals(String buttonName, String elementName, int index) {
+        SelenideElement button = pageManager
                 .getCurrentPage()
                 .getElement(buttonName);
-        element.click();
-        String secondResult = getElementText(elementName, index);
+        button.click();
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        result.add(elements.get(index - 1).getText());
 
-        Assert.assertEquals(firstResult, secondResult);
-        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' изменился на '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
+        Assert.assertNotEquals(result.get(0), result.get(1));
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' изменился на '{}'", pageManager.getCurrentPage().name(), elementName, result.get(0), result.get(1));
+        result.clear();
     }
 
     @Если("в {string} активный номер {string}")
