@@ -31,7 +31,7 @@ public class EmployeeCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementTextEqualsExpectedText(element, text);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+        LOGGER.info("на странице '{}' имеется элемент '{}', с текстом '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
 
     @Если("в полях The Сотрудник “ и ” was changed successfully. You may edit it again below. присутствует элемент {string}")

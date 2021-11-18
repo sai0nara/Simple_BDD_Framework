@@ -56,5 +56,8 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
 
     @Name("Текущий город")
     private ElementsCollection currentCity = $$(".field-current_city");
+
+    @Name("Инфоблок")
+    private SelenideElement tableHeader = $x("//div[@id='content']/h1");
 }
 
