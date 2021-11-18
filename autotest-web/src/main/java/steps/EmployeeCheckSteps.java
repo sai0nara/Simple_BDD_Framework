@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
+import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -97,12 +98,8 @@ public class EmployeeCheckSteps {
         result.clear();
     }
 
-    @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент изменился")
-    public void checkElementNoEquals(String buttonName, String elementName, int index) {
-        SelenideElement button = pageManager
-                .getCurrentPage()
-                .getElement(buttonName);
-        button.click();
+    @Тогда("{int} запись в блоке {string} изменилась")
+    public void checkElementNoEquals(int index, String elementName) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
