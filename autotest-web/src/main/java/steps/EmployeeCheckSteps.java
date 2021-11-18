@@ -75,7 +75,7 @@ public class EmployeeCheckSteps {
     }
 
     @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент не изменился")
-    public void matchFirstElement(String buttonName, String elementName, int index) {
+    public void matchFirstElementEquals(String buttonName, String elementName, int index) {
         String firstResult = getElementText(elementName, index);
         SelenideElement element = pageManager
                 .getCurrentPage()
@@ -85,6 +85,19 @@ public class EmployeeCheckSteps {
 
         Assert.assertEquals(firstResult, secondResult);
         LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
+    }
+
+    @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент изменился")
+    public void matchFirstElementNoEquals(String buttonName, String elementName, int index) {
+        String firstResult = getElementText(elementName, index);
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(buttonName);
+        element.click();
+        String secondResult = getElementText(elementName, index);
+
+        Assert.assertEquals(firstResult, secondResult);
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' изменился на '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
     }
 
     @Если("в {string} активный номер {string}")

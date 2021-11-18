@@ -85,11 +85,12 @@ public class EmployeeSteps {
         LOGGER.info("выбран элемент '{}'", elementName);
     }
 
-    @И("нажать на элемент {string} с текстом {int}")
-    public void clickOnElementWithText(String elementName, int number) {
+    @И("нажать на элемент {string} с текстом {string}")
+    public void clickOnElementWithText(String elementName, String text) {
         ElementsCollection elements = pageManager.getCurrentPage().getElementsCollection(elementName);
-        elements.get(number - 1).click();
-        LOGGER.info("клик на элемент '{}' с номером '{}'", elementName, number);
+        elements.findBy(Condition.exactText(text)).click();
+//        elements.get(number - 1).click();
+        LOGGER.info("клик на элемент '{}' с номером '{}'", elementName, text);
     }
 
     @И("нажать на предпоследнюю запись из {string}")
