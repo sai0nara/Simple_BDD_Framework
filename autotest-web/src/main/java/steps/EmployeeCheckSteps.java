@@ -1,6 +1,7 @@
 package steps;
 
 import actions.Checks;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Если;
@@ -134,4 +135,31 @@ public class EmployeeCheckSteps {
         Assert.assertTrue(result);
         LOGGER.info("на странице '{}' в блоке '{}' текущий город '{}': '{}'", pageManager.getCurrentPage().name(), elementName, city, result);
     }
+
+    @И("поле {string} присутствует на странице")
+    @И("кнопка {string} присутствует на странице")
+    public void checkElementVisibility(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementVisible(element);
+        LOGGER.info("элемент '{}' отображается", elementName);
+    }
+
+    @И("на странице присутствует {string} {string}")
+    public void checkElementVisibleCollection(String elementName, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        boolean result = false;
+        for (SelenideElement element : elements) {
+            if (element.getText().equals(text)) {
+                result = true;
+                break;
+            }
+        }
+        Assert.assertTrue(result);
+        LOGGER.info("на странице '{}' в блоке '{}' есть '{}'", pageManager.getCurrentPage().name(), elementName, text);
+    }
+
 }
