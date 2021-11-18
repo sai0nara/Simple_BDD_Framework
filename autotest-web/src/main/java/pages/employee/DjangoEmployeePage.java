@@ -42,5 +42,11 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     @Name("Таблица чек-бокс")
     private ElementsCollection tableCheckboxes = $$(".action-select");
 
+    @Name("Пагинация")
+    private ElementsCollection paginator = $$(".paginator a");
+
+    @Name("Пагинация текущая страница")
+    private SelenideElement currentPaginator = $(".paginator span.this-page");
+
 }
 

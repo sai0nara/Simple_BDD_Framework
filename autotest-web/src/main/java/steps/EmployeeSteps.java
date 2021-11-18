@@ -82,6 +82,13 @@ public class EmployeeSteps {
     public void selectElementWithText(String elementName, String text) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.selectOption(text);
-        LOGGER.info("клик на кнопку '{}'", elementName);
+        LOGGER.info("выбран элемент '{}'", elementName);
+    }
+
+    @И("нажать на элемент {string} с текстом {int}")
+    public void clickOnElementWithText(String elementName, int number) {
+        ElementsCollection elements = pageManager.getCurrentPage().getElementsCollection(elementName);
+        elements.get(number - 1).click();
+        LOGGER.info("клик на элемент '{}' с номером '{}'", elementName, number);
     }
 }

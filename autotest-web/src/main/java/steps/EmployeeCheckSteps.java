@@ -57,4 +57,13 @@ public class EmployeeCheckSteps {
         Assert.assertEquals(firstResult, secondResult);
         LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, firstResult, secondResult);
     }
+
+    @Если("в {string} активный номер {string}")
+    public void checkCurrentNumber(String elementName, String number) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementTextEqualsExpectedText(element, number);
+        LOGGER.info("на странице '{}' в блоке '{}' текущий номер '{}'", pageManager.getCurrentPage().name(), elementName, number);
+    }
 }
