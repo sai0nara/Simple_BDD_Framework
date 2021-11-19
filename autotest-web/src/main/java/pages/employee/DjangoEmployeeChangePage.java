@@ -73,14 +73,14 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     private ElementsCollection todayCity = $$x("//span[@class='datetimeshortcuts']/a[text()='Сегодня']");
 
     @Name("Фактические отпуска")
-    private SelenideElement actualVacations = $("#employeeactualvacation_set-group fieldset h2  a");
+    private SelenideElement actualVacations = $("#employeeactualvacation_set-group fieldset h2 a");
     @Name("Заметка")
     private SelenideElement addActualVacations = $x("//h2[contains(text(), 'Фактические отпуска')]/following-sibling::table//tbody");
     @Name("Скрыть отпуска")
     private SelenideElement hideActualVacations = $x("//h2[contains(text(), 'Фактические отпуска')]/a");
 
     @Name("Больничные")
-    private SelenideElement sickLeave = $("#employeesickleaveofficial_set-group fieldset h2  a");
+    private SelenideElement sickLeave = $("#employeesickleaveofficial_set-group fieldset h2 a");
     @Name("Добавить больничный")
     private SelenideElement addSickLeave = $("#employeesickleaveofficial_set-empty ~ tr td a");
     @Name("Номер больничного листа")
@@ -88,6 +88,13 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Скрыть больничный")
     private SelenideElement hideSickLeave = $x("//h2[contains(text(), 'Больничные')]/a");
 
-
+    @Name("Бюллетени без больничного листа")
+    private SelenideElement bulletinWithoutLeave = $("#employeesickleaveunofficial_set-group fieldset h2 a");
+    @Name("Добавить бюллетень")
+    private SelenideElement addBulletinWithoutLeave = $("#employeesickleaveunofficial_set-empty ~ tr td a");
+    @Name("Дата бюллетеня")
+    private SelenideElement dateBulletinWithoutLeave = $(".empty-form .field-notes_number");
+    @Name("Скрыть бюллетень")
+    private SelenideElement hideBulletinWithoutLeave = $x("//h2[contains(text(), 'Бюллютени без больничного листа')]/a");
 }
 
