@@ -74,6 +74,20 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
 
     @Name("Фактические отпуска")
     private SelenideElement actualVacations = $("#employeeactualvacation_set-group fieldset h2  a");
+    @Name("Заметка")
+    private SelenideElement addActualVacations = $x("//h2[contains(text(), 'Фактические отпуска')]/following-sibling::table//tbody");
+    @Name("Скрыть отпуска")
+    private SelenideElement hideActualVacations = $x("//h2[contains(text(), 'Фактические отпуска')]/a");
+
+    @Name("Больничные")
+    private SelenideElement sickLeave = $("#employeesickleaveofficial_set-group fieldset h2  a");
+    @Name("Добавить больничный")
+    private SelenideElement addSickLeave = $("#employeesickleaveofficial_set-empty ~ tr td a");
+    @Name("Номер больничного листа")
+    private SelenideElement numberSickLeave = $(".empty-form .field-notes_number");
+    @Name("Скрыть больничный")
+    private SelenideElement hideSickLeave = $x("//h2[contains(text(), 'Больничные')]/a");
+
 
 }
 

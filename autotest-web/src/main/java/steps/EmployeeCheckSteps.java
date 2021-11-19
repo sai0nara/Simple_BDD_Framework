@@ -178,4 +178,13 @@ public class EmployeeCheckSteps {
         Checks.elementNotVisible(element);
         LOGGER.info("элемент '{}' не отображается на странице", elementName);
     }
+
+    @Если("в текущем поле {string} отсутствует текст")
+    public void checkEmptyField(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.emptyElement(element);
+        LOGGER.info("элемент '{}' не содержит текст", elementName);
+    }
 }
