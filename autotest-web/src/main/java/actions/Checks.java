@@ -14,6 +14,10 @@ public class Checks {
         element.shouldBe(Condition.visible);
     }
 
+        public static void elementNotVisible(SelenideElement element) {
+            element.shouldHave(Condition.exactText(""));
+        }
+
     public static void elementVisibleAndNoSelected(SelenideElement element) {
         element.shouldBe(Condition.visible);
         element.shouldNotBe(Condition.selected);
@@ -39,7 +43,7 @@ public class Checks {
         element.shouldBe(Condition.visible, Duration.ofSeconds(timeout));
     }
 
-    public static void elementIsReadOnly(SelenideElement element, String text){
-        element.shouldBe(Condition.cssClass(text));
+    public static void emptyElement(SelenideElement element) {
+        element.shouldHave(Condition.empty);
     }
 }
