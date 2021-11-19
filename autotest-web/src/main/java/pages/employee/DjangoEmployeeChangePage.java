@@ -72,5 +72,8 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Сегодня")
     private ElementsCollection todayCity = $$x("//span[@class='datetimeshortcuts']/a[text()='Сегодня']");
 
+    @Name("Фактические отпуска")
+    private SelenideElement actualVacations = $("#employeeactualvacation_set-group fieldset h2  a");
+
 }
 

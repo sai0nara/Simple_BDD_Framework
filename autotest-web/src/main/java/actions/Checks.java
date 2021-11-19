@@ -38,4 +38,8 @@ public class Checks {
         int timeout = getTimeoutSeconds(timeoutSeconds);
         element.shouldBe(Condition.visible, Duration.ofSeconds(timeout));
     }
+
+    public static void elementIsReadOnly(SelenideElement element, String text){
+        element.shouldBe(Condition.cssClass(text));
+    }
 }
