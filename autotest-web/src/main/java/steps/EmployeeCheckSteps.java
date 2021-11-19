@@ -50,7 +50,7 @@ public class EmployeeCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в поле имеется элемент22 '{}'", elementName);
+        LOGGER.info("в поле имеется элемент '{}'", element.getText());
     }
 
     @Если("на странице в блоке {string} выбрать элемент {string}")
@@ -161,5 +161,4 @@ public class EmployeeCheckSteps {
         Assert.assertTrue(result);
         LOGGER.info("на странице '{}' в блоке '{}' есть '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
-
 }
