@@ -10,6 +10,7 @@ import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.PageManager;
 
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ public class EmployeeCheckSteps {
 
     private PageManager pageManager;
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCheckSteps.class);
-    List<String> result = new ArrayList<>();
 
     public EmployeeCheckSteps(PageManager pageManager) {
         this.pageManager = pageManager;
@@ -79,8 +79,8 @@ public class EmployeeCheckSteps {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        result.add(elements.get(index - 1).getText());
-        LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, result.get(0));
+        ContextHolder.put("fio1", elements.get(index - 1).getText());
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString());
     }
 
     @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент не изменился")
@@ -92,11 +92,10 @@ public class EmployeeCheckSteps {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        result.add(elements.get(index - 1).getText());
+        ContextHolder.put("fio2", elements.get(index - 1).getText());
 
-        Assert.assertEquals(result.get(0), result.get(1));
-        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, result.get(0), result.get(1));
-        result.clear();
+        Assert.assertEquals(ContextHolder.getValue("fio1").toString(), ContextHolder.getValue("fio2").toString());
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' осталась '{}'", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString(), ContextHolder.getValue("fio2").toString());
     }
 
     @Тогда("{int} запись в блоке {string} изменилась")
@@ -104,11 +103,10 @@ public class EmployeeCheckSteps {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        result.add(elements.get(index - 1).getText());
+        ContextHolder.put("fio2", elements.get(index - 1).getText());
 
-        Assert.assertNotEquals(result.get(0), result.get(1));
-        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' изменился на '{}'", pageManager.getCurrentPage().name(), elementName, result.get(0), result.get(1));
-        result.clear();
+        Assert.assertNotEquals(ContextHolder.getValue("fio1").toString(), ContextHolder.getValue("fio2").toString());
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}' изменился на '{}'", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString(), ContextHolder.getValue("fio2").toString());
     }
 
     @Если("в {string} активный номер {string}")
