@@ -4,6 +4,7 @@ import actions.WebActions;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
@@ -117,5 +118,14 @@ public class EmployeeSteps {
                 .getElementsCollection(elementName);
         elements.findBy(Condition.exactText(text)).click();
         LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), text);
+    }
+
+    @Если("в выпадающем списке поле {string} не выбрано")
+    public void emptyDropDown(String elementName) {
+        SelenideElement elements = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        elements.shouldBe(Condition.visible).selectOption(0);
+        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 }
