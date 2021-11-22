@@ -15,9 +15,16 @@ import ru.lanit.at.web.pagecontext.Environment;
 import ru.lanit.at.web.pagecontext.PageManager;
 import ru.lanit.at.web.pagecontext.WebPage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class AuthorizationSteps {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthorizationSteps.class);
+    private static Properties properties = new Properties();
     private static String currentToken = "";
     private final PageManager pageManager;
 
@@ -25,9 +32,22 @@ public class AuthorizationSteps {
         this.pageManager = pageManager;
     }
 
+    @Deprecated
     @Дано("открыть {string}")
     public void openUrl(String url) {
         Selenide.open(url);
+        WebDriver driver = Environment.getDriver();
+        if (driver == null) {
+            WebDriver currentThreadWebDriver = WebDriverRunner.getWebDriver();
+            Environment.setThreadDriver(currentThreadWebDriver);
+        }
+        LOG.info("init webdriver for thread: {}", Thread.currentThread().getId());
+    }
+
+    @Дано("открыть сайт")
+    public void openUrl() {
+        loadProperties();
+        Selenide.open(properties.getProperty("base.url"));
         WebDriver driver = Environment.getDriver();
         if (driver == null) {
             WebDriver currentThreadWebDriver = WebDriverRunner.getWebDriver();
@@ -101,5 +121,15 @@ public class AuthorizationSteps {
             }
         }
         LOG.info("авторизация под логином: '{}'", login);
+    }
+
+    public static void loadProperties() {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("src/main/resources/application.properties");
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
