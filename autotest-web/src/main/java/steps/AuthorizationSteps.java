@@ -85,13 +85,19 @@ public class AuthorizationSteps {
 
         for (AuthValues el : auth.getAuthValues()) {
             if (el.getLogin().equals(login) && el.isToken().equals(true)) {
-                ApiSteps.getToken(el.getLogin(), el.getPassword());
-
+                clickOnCheckbox("Я желаю войти с админскими правами");
+                fillField("логин", el.getLogin());
+                fillField("пароль", el.getPassword());
+                fillFieldToken("токен", el.getLogin(), el.getPassword());
+                clickSignInButton("войти");
 
             } else if (el.getLogin().equals(login) && el.isToken().equals(false)) {
-
-            } else {
-
+                fillField("логин", el.getLogin());
+                fillField("пароль", el.getPassword());
+                clickSignInButton("войти");
+//TODO
+//            } else {
+//
             }
         }
         LOG.info("авторизация под логином: '{}'", login);
