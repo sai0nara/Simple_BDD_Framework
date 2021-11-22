@@ -129,4 +129,21 @@ public class EmployeeSteps {
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), element);
     }
 
+    @И("в блоке {string} выбрать {string}")
+    public void setAnything(String listOfValues, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(listOfValues);
+        elements.get(1).click();
+        LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), text);
+    }
+
+    @И("в блоке {string} выбрать значение {string}")
+    public void setAnyField(String listOfValues, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(listOfValues);
+        elements.get(2).click();
+        LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), text);
+    }
 }
