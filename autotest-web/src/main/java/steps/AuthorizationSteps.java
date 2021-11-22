@@ -1,5 +1,8 @@
 package steps;
 
+import authorization.AuthValues;
+import authorization.Authorization;
+import authorization.YamlDeserializer;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -73,5 +76,24 @@ public class AuthorizationSteps {
             currentToken = token;
             LOG.info("в поле '{}' введено значение '{}'", elementName, token);
         }
+    }
+
+    @Если("авторизироваться логином {string}")
+    public void authWithLogin(String login) {
+        YamlDeserializer yamlDeserializer = new YamlDeserializer();
+        Authorization auth = yamlDeserializer.deserialize();
+
+        for (AuthValues el : auth.getAuthValues()) {
+            if (el.getLogin().equals(login) && el.isToken().equals(true)) {
+                ApiSteps.getToken(el.getLogin(), el.getPassword());
+
+
+            } else if (el.getLogin().equals(login) && el.isToken().equals(false)) {
+
+            } else {
+
+            }
+        }
+        LOG.info("авторизация под логином: '{}'", login);
     }
 }
