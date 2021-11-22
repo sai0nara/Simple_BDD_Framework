@@ -7,6 +7,7 @@ import io.cucumber.java.ru.*;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.Environment;
 import ru.lanit.at.web.pagecontext.PageManager;
 import ru.lanit.at.web.pagecontext.WebPage;
@@ -63,7 +64,7 @@ public class AuthorizationSteps {
     @Тогда("ввести {string} для пользователя {string} с паролем {string}")
     public void fillFieldToken(String elementName, String login, String password) {
         ApiSteps.getToken(login, password);
-        String token = ApiSteps.getCurrentToken();
+        String token = ContextHolder.getValue("TOTP").toString();
         if (token.equals(currentToken)) {
             fillFieldToken(elementName, login, password);
         } else {
