@@ -16,7 +16,6 @@ import ru.lanit.at.web.pagecontext.PageManager;
 import ru.lanit.at.web.pagecontext.WebPage;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -98,7 +97,7 @@ public class AuthorizationSteps {
         }
     }
 
-    @Если("авторизироваться логином {string}")
+    @Если("авторизоваться логином {string}")
     public void authWithLogin(String login) {
         YamlDeserializer yamlDeserializer = new YamlDeserializer();
         Authorization auth = yamlDeserializer.deserialize();
@@ -123,7 +122,7 @@ public class AuthorizationSteps {
         LOG.info("авторизация под логином: '{}'", login);
     }
 
-    public static void loadProperties() {
+    private static void loadProperties() {
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream("src/main/resources/application.properties");
