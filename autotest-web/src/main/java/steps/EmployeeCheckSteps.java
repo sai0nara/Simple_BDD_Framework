@@ -182,7 +182,7 @@ public class EmployeeCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        Checks.elementNotVisible(element);
+        Checks.elementVisibleOnPage(element, null);
         LOGGER.info("элемент '{}' не отображается на странице", elementName);
     }
 

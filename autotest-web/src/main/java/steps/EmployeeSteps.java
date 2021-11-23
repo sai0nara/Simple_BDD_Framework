@@ -139,33 +139,6 @@ public class EmployeeSteps {
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), element);
     }
 
-    @Если("в текущем блоке поле {string} заблокировано")
-    public void checkBlockedField(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.emptyElement(element);
-        LOGGER.info("элемент '{}' заблокирован", elementName);
-    }
-
-    @Если("в текущем блоке поле {string} отсутствует")
-    public void checkElementNotVisible(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementNotVisible(element);
-        LOGGER.info("элемент '{}' не отображается на странице", elementName);
-    }
-
-    @Если("в текущем поле {string} отсутствует текст")
-    public void checkEmptyField(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.emptyElement(element);
-        LOGGER.info("элемент '{}' не содержит текст", elementName);
-    }
-
     @Затем("в блоке {string} нажать на ссылку с текстом {string}")
     public void selectFilter(String elementName, String text) {
         ElementsCollection elements = pageManager
