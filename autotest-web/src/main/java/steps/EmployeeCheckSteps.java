@@ -65,6 +65,17 @@ public class EmployeeCheckSteps {
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
+    @Если("в таблице все элементы {string} содержат текст {string}")
+    public void elementContainsText(String element, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(element);
+        for (SelenideElement selenideElement : elements) {
+            selenideElement.shouldBe(Condition.matchText(text));
+        }
+        LOGGER.info("на текущей странице в элементах '{}' присутствует текст '{}'", pageManager.getCurrentPage().name(), text);
+    }
+
     @Если("в блоке {string} количество записей равно {int}")
     public void matchRecordsNumber(String elementName, int number) {
         ElementsCollection elements = pageManager
