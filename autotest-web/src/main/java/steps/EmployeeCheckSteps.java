@@ -1,7 +1,6 @@
 package steps;
 
 import actions.Checks;
-import actions.WebChecks;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -13,9 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.PageManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EmployeeCheckSteps {
 
@@ -64,6 +60,17 @@ public class EmployeeCheckSteps {
                 .getElementsCollection(elementName);
         elements.get(25).click();
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    @Если("в таблице все элементы {string} содержат текст {string}")
+    public void elementContainsText(String element, String text) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(element);
+        for (SelenideElement selenideElement : elements) {
+            selenideElement.shouldBe(Condition.matchText(text));
+        }
+        LOGGER.info("на текущей странице в элементах '{}' присутствует текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
     @Если("в блоке {string} количество записей равно {int}")

@@ -59,5 +59,12 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
 
     @Name("Инфоблок")
     private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+
+    @Name("Выбрано 1 из 100")
+    private SelenideElement howMuchSearch = $x("//span[@class='action-counter']");
+    @Name("Договор")
+    private SelenideElement contractCheckbox = $x("//input[@value='contract']");
+    @Name("Формат")
+    private SelenideElement formatField = $x("//select[@name='file_format']");
 }
 
