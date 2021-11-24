@@ -2,7 +2,7 @@ package steps;
 
 import authorization.AuthValues;
 import authorization.Authorization;
-import authorization.YamlDeserializer;
+import utils.Deserializer;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -99,8 +99,8 @@ public class AuthorizationSteps {
 
     @Если("авторизоваться логином {string}")
     public void authWithLogin(String login) {
-        YamlDeserializer yamlDeserializer = new YamlDeserializer();
-        Authorization auth = yamlDeserializer.deserialize();
+        Deserializer deserializer = new Deserializer();
+        Authorization auth = deserializer.yamlDeserialize(properties.getProperty("auth.yaml"));
 
         for (AuthValues el : auth.getAuthValues()) {
             if (el.getLogin().equals(login) && el.isToken().equals(true)) {
