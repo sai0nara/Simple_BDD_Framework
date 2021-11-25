@@ -33,9 +33,13 @@ public class EmployeeSteps {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        for(int i = 0; i < n ;i ++){
-            elements.get(WebActions.getRandom(elements.size())).click();
-            LOGGER.info("В блоке '{}'было выбранно '{}' элементов", elementName, n);
+        int i = 0;
+        while (i < n){
+            int rnd = WebActions.getRandom(1,elements.size() - 1);
+            if(!elements.get(rnd).is(Condition.checked)){
+                elements.get(rnd).click();
+                i++;
+            }
         }
     }
     @И("на текущей странице в блоке {string} отжать любую кнопку {int} раз")
