@@ -55,10 +55,10 @@ public class EmployeeCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementN);
-        ElementsCollection elements = pageManager
+        SelenideElement elementTwo = pageManager
                 .getCurrentPage()
-                .getElementsCollection(elementName);
-        elements.get(25).click();
+                .getElement(elementName);
+        elementTwo.click();
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
@@ -187,11 +187,20 @@ public class EmployeeCheckSteps {
     }
 
     @Если("в текущем поле {string} отсутствует текст")
+          public void checkFieldWithoutText(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+              Checks.emptyElement(element);
+        LOGGER.info("элемент '{}' не содержит текст", elementName);
+    }
+
+    @Если("поле {string} отображается и пусто")
     public void checkEmptyField(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        Checks.emptyElement(element);
-        LOGGER.info("элемент '{}' не содержит текст", elementName);
+        Checks.fieldVisibleAndNoSelected(element);
+        LOGGER.info("в блоке есть пустое поле '{}'", elementName);
     }
 }
