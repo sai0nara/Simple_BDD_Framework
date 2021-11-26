@@ -13,9 +13,6 @@ import org.testng.Assert;
 import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.PageManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EmployeeCheckSteps {
 
     private PageManager pageManager;
@@ -35,29 +32,21 @@ public class EmployeeCheckSteps {
         LOGGER.info("на странице '{}' имеется элемент '{}', с текстом '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
 
+    @И("поле {string} присутствует на странице")
+    @И("кнопка {string} присутствует на странице")
+    @Если("в поле The Сотрудник “ и ” was changed successfully. присутствует элемент {string}")
     @Если("в полях The Сотрудник “ и ” was changed successfully. You may edit it again below. присутствует элемент {string}")
     public void curFieldsContainsThatElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в полях имеется элемент '{}'", elementName);
-    }
-
-    @Если("в поле The Сотрудник “ и ” was changed successfully. присутствует элемент {string}")
-    public void curFieldContainsThatElement(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в поле имеется элемент '{}'", element.getText());
+        LOGGER.info("в поле имеется элемент '{}'", elementName);
     }
 
     @Если("на странице в блоке {string} выбрать элемент {string}")
     public void elementIsOnPage(String elementN, String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementN);
+        pageManager.getCurrentPage().getElement(elementN);
         SelenideElement elementTwo = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
@@ -143,16 +132,6 @@ public class EmployeeCheckSteps {
         }
         Assert.assertTrue(result);
         LOGGER.info("на странице '{}' в блоке '{}' текущий город '{}': '{}'", pageManager.getCurrentPage().name(), elementName, city, result);
-    }
-
-    @И("поле {string} присутствует на странице")
-    @И("кнопка {string} присутствует на странице")
-    public void checkElementVisibility(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisible(element);
-        LOGGER.info("элемент '{}' отображается", elementName);
     }
 
     @И("на странице присутствует {string} {string}")

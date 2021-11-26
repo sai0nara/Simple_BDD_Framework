@@ -1,7 +1,6 @@
 package steps;
 
 import actions.Checks;
-import actions.WebChecks;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Если;
@@ -27,7 +26,7 @@ public class WebCheckSteps {
      */
     @Когда("на странице присутствует текст {string}")
     public void textAppearOnThePage(String text) {
-        WebChecks.textVisibleOnPage(text, null);
+        Checks.textVisibleOnPage(text, null);
         LOGGER.info("на странице '{}' имеется текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
@@ -42,7 +41,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementIsReadOnly(element,"readonly", null);
+        Checks.elementIsReadOnly(element,"readonly", null);
         LOGGER.info("элемент {} заблокирован", elementName);
     }
 
@@ -60,7 +59,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.checkAttribute(element, attrName, value, sec);
+        Checks.checkAttribute(element, attrName, value, sec);
         LOGGER.info("у элемента '{}' имеется атрибут '{}' со значением '{}' ", elementName, attrName, value);
     }
 
@@ -72,7 +71,7 @@ public class WebCheckSteps {
      */
     @Когда("подождать появления текста {string} в течение {int} секунд")
     public void waitUntilTextAppearOnPage(String text, int timeoutSeconds) {
-        WebChecks.textVisibleOnPage(text, timeoutSeconds);
+        Checks.textVisibleOnPage(text, timeoutSeconds);
         LOGGER.info("на странице '{}' имеется текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
@@ -84,7 +83,7 @@ public class WebCheckSteps {
      */
     @Когда("подождать исчезновения текста {string} в течение {int} секунд")
     public void waitUntilTextAbsentOnPage(String text, int timeoutSeconds) {
-        WebChecks.textAbsentOnPage(text, timeoutSeconds);
+        Checks.textAbsentOnPage(text, timeoutSeconds);
         LOGGER.info("на странице '{}' отсутствует текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
@@ -99,7 +98,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementVisibleOnPage(element, timeoutSeconds);
+        Checks.elementVisibleOnPage(element, timeoutSeconds);
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
@@ -113,7 +112,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementAbsentOnPage(element, null);
+        Checks.elementAbsentOnPage(element, null);
         LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
@@ -123,10 +122,10 @@ public class WebCheckSteps {
      *
      * @param url часть или полный url (также может содержать переменные)
      */
-    @Тогда("проверить что текущий url соответствует {string}")
-    public void currentUrlEqualsExpected(String url) {
-        WebChecks.urlEquals(url);
-    }
+//    @Тогда("проверить что текущий url соответствует {string}")
+//    public void currentUrlEqualsExpected(String url) {
+//        WebChecks.urlEquals(url);
+//    }
 
     /**
      * проверка текущего url
@@ -134,10 +133,10 @@ public class WebCheckSteps {
      *
      * @param url часть url (также может содержать переменные)
      */
-    @Тогда("проверить что текущий url содержит текст {string}")
-    public void currentUrlContainsExpected(String url) {
-        WebChecks.urlContains(url);
-    }
+//    @Тогда("проверить что текущий url содержит текст {string}")
+//    public void currentUrlContainsExpected(String url) {
+//        WebChecks.urlContains(url);
+//    }
 
     /**
      * проверка, что поле заполнено текстом
@@ -149,7 +148,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementValueEqualsExpectedText(element, text, 0);
+        Checks.elementValueEqualsExpectedText(element, text, 0);
         LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
     @Если("в выпадющем списке {string} выбран элемент со значением {string}")
@@ -157,7 +156,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementTextContainsExpectedText(element,text,null);
+        Checks.elementTextContainsExpectedText(element,text,null);
         LOGGER.info("в выпадющем списке {} выбран элемент со значением {}", elementName, text);
     }
 
@@ -166,7 +165,7 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementIsNotOnPage(element, text);
+        Checks.elementIsNotOnPage(element, text);
         LOGGER.info("элемент {} не активен из-за отсутствия параметра {}", elementName, text);
     }
 
@@ -175,8 +174,16 @@ public class WebCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebChecks.elementIsOnPage(element, text);
+        Checks.elementIsOnPage(element, text);
         LOGGER.info("элемент {} не активен из-за присутствия параметра {}", elementName, text);
     }
 
+    @Тогда("проверить поле {string}, что текст в поле {string}")
+    public void matchText(String elementName, String text) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementTextEqualsExpectedText(element, text);
+        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
 }

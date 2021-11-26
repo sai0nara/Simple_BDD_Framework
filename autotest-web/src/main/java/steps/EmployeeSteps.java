@@ -1,15 +1,17 @@
 package steps;
 
-import actions.WebActions;
+import actions.Actions;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
-import io.cucumber.java.ru.Затем;
-import io.cucumber.java.ru.И;
-import io.cucumber.java.ru.Тогда;
+import io.cucumber.java.ru.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.lanit.at.utils.Sleep;
 import ru.lanit.at.web.pagecontext.PageManager;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class EmployeeSteps {
 
@@ -25,16 +27,17 @@ public class EmployeeSteps {
          ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        elements.get(WebActions.getRandom(elements.size())).click();
+        elements.get(Actions.getRandom(elements.size())).click();
         LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
+
     @И("на текущей странице в блоке {string} нажать на любую кнопку {int} раз")
     public void clickRandomN(String elementName,int n) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
         for(int i = 0; i < n ;i ++){
-            elements.get(WebActions.getRandom(elements.size())).click();
+            elements.get(Actions.getRandom(elements.size())).click();
             LOGGER.info("В блоке '{}'было выбранно '{}' элементов", elementName, n);
         }
     }
@@ -45,7 +48,7 @@ public class EmployeeSteps {
                 .getElementsCollection(elementName);
         int i = 0;
         while (i < n){
-            int rnd = WebActions.getRandom(1,elements.size() - 1);
+            int rnd = Actions.getRandom(1,elements.size() - 1);
             if(elements.get(rnd).is(Condition.checked)){
                 elements.get(rnd).click();
                 i++;
@@ -168,6 +171,40 @@ public class EmployeeSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        WebActions.fillFieldRandInt(element, start, finish);
+        Actions.fillFieldRandInt(element, start, finish);
     }
+
+    @Когда("кликнуть на элемент по тексту {string}")
+    public void clickElementWithText(String text) {
+        $(Selectors.byText(text))
+                .shouldBe(Condition.visible)
+                .click();
+        LOGGER.info("клик на элемент по тексту '{}'", text);
+    }
+
+//    @Если("кликнуть на элемент {string}")
+//    public void clickOnElement(String elementName) {
+//        SelenideElement element = pageManager
+//                .getCurrentPage()
+//                .getElement(elementName);
+//        element
+//                .shouldBe(Condition.visible)
+//                .click();
+//        LOGGER.info("клик на элемент '{}'", elementName);
+//    }
+
+    @Когда("проскроллить страницу до элемента {string}")
+    public void scrollToElement(String elementName) {
+        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        element.shouldBe(Condition.visible)
+                .scrollIntoView("{block: 'center'}");
+        LOGGER.info("скролл страницы до элемента '{}'", elementName);
+    }
+
+    @И("подождать {int} сек")
+    public void waitSeconds(int timeout) {
+        Sleep.pauseSec(timeout);
+    }
+
+
 }

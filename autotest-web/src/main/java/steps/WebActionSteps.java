@@ -1,32 +1,22 @@
 package steps;
 
-import actions.WebActions;
-import actions.WebChecks;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
-import io.restassured.path.json.JsonPath;
-import net.minidev.json.JSONObject;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.utils.DataGenerator;
 import ru.lanit.at.web.pagecontext.PageManager;
 import ru.lanit.at.utils.Sleep;
 
-import java.util.Random;
-
 import static com.codeborne.selenide.Selenide.$;
-import static io.restassured.RestAssured.given;
-
 
 public class WebActionSteps {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WebActionSteps.class);
     private PageManager pageManager;
     private static final Logger LOGGER = LoggerFactory.getLogger(WebActionSteps.class);
 
@@ -39,7 +29,7 @@ public class WebActionSteps {
      *
      * @param text текст элемента
      */
-    @Когда("кликнуть на элемент по тексту {string}")
+//    @Когда("кликнуть на элемент по тексту {string}")
     public void clickElementWithText(String text) {
         $(Selectors.byText(text))
                 .shouldBe(Condition.visible)
@@ -47,7 +37,7 @@ public class WebActionSteps {
         LOGGER.info("клик на элемент по тексту '{}'", text);
     }
 
-    @Если("кликнуть на элемент {string}")
+//    @Если("кликнуть на элемент {string}")
     public void clickOnElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
@@ -63,7 +53,7 @@ public class WebActionSteps {
      *
      * @param elementName наименование элемента
      */
-    @Когда("проскроллить страницу до элемента {string}")
+//    @Когда("проскроллить страницу до элемента {string}")
     public void scrollToElement(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.shouldBe(Condition.visible)
@@ -76,7 +66,7 @@ public class WebActionSteps {
      *
      * @param text текст
      */
-    @Когда("проскроллить страницу до текста {string}")
+//    @Когда("проскроллить страницу до текста {string}")
     public void scrollToText(String text) {
         SelenideElement element = $(Selectors.byText(text));
         element.shouldBe(Condition.visible)
