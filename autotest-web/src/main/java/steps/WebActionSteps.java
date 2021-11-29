@@ -84,6 +84,17 @@ public class WebActionSteps {
         LOGGER.info("клик на элемент '{}'", elementName);
     }
 
+    @Когда("ввести в поле {string} значение {string}")
+    public void fillTheField(String field, String value) {
+        SelenideElement fieldElement = pageManager
+                .getCurrentPage()
+                .getElement(field);
+        fieldElement
+                .shouldBe(Condition.visible)
+                .setValue(value);
+        LOGGER.info("в поле '{}' введено значение '{}'", field, value);
+    }
+
     @Если("закрыть страницу")
     public void closeDriver() {
         WebDriverRunner.getWebDriver().close();
