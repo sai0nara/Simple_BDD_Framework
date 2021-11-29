@@ -1,6 +1,5 @@
 package steps;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -36,17 +35,6 @@ public class AuthorizationSteps {
             Environment.setThreadDriver(currentThreadWebDriver);
         }
         LOGGER.info("инициализация webdriver для потока: {}", Thread.currentThread().getId());
-    }
-
-    @Если("кликнуть на элемент {string}")
-    @Тогда("нажать на {string}")
-    @Тогда("нажать на чекбокс {string}")
-    public void clickOnElement(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        element.shouldBe(Condition.visible).click();
-        LOGGER.info("клик на элемент '{}'", elementName);
     }
 
     @Тогда("заполнить поле {string} значением {string}")

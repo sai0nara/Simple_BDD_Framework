@@ -42,7 +42,7 @@ public class AuthorizationCheckSteps {
         LOGGER.info("на странице '{}' отсутствует текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
-    @Если("на странице в поле Добро пожаловать, имеется элемент {string}")
+
     @Если("на странице имеется элемент {string}")
     @Пусть("{string} отображается")
     @Если("поле {string} отображается")
@@ -53,6 +53,12 @@ public class AuthorizationCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleOnPage(element, null);
+        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    @Если("на странице в поле Добро пожаловать, имеется элемент {string}")
+    public void elementIsHere(String elementName) {
+        Checks.textVisibleOnPage(elementName, null);
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 

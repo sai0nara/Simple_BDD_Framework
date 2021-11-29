@@ -3,15 +3,12 @@ package steps;
 import actions.Actions;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.utils.Sleep;
 import ru.lanit.at.web.pagecontext.PageManager;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class EmployeeSteps {
 
@@ -24,7 +21,7 @@ public class EmployeeSteps {
 
     @И("на текущей странице в блоке {string} нажать на любую ссылку")
     public void clickRandom(String elementName) {
-         ElementsCollection elements = pageManager
+        ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
         elements.get(Actions.getRandom(elements.size())).click();
@@ -32,31 +29,31 @@ public class EmployeeSteps {
     }
 
     @И("на текущей странице в блоке {string} нажать на любую кнопку {int} раз")
-    public void clickRandomN(String elementName,int n) {
+    public void clickRandomN(String elementName, int n) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        for(int i = 0; i < n ;i ++){
+        for (int i = 0; i < n; i++) {
             elements.get(Actions.getRandom(elements.size())).click();
             LOGGER.info("В блоке '{}'было выбранно '{}' элементов", elementName, n);
         }
     }
+
     @И("на текущей странице в блоке {string} отжать любую кнопку {int} раз")
-    public void unClickRandomN(String elementName,int n) {
+    public void unClickRandomN(String elementName, int n) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
         int i = 0;
-        while (i < n){
-            int rnd = Actions.getRandom(1,elements.size() - 1);
-            if(elements.get(rnd).is(Condition.checked)){
+        while (i < n) {
+            int rnd = Actions.getRandom(1, elements.size() - 1);
+            if (elements.get(rnd).is(Condition.checked)) {
                 elements.get(rnd).click();
                 i++;
             }
         }
-            LOGGER.info("В блоке '{}'было отжато '{}' элементов", elementName, n);
+        LOGGER.info("В блоке '{}'было отжато '{}' элементов", elementName, n);
     }
-
 
     @Затем("на текущей странице в блоке Общая информация очистить все поля: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
     public void clearFieldsEmployee(String surname, String name, String patronymic, String gender, String joiningDate, String birthday, String phone, String citizenship, String email) {
@@ -100,23 +97,18 @@ public class EmployeeSteps {
         LOGGER.info("на странице '{}' имеются элементы '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}'", pageManager.getCurrentPage().name(), surname, name, patronymic, gender, joiningDate, birthday, phone, citizenship, email);
     }
 
-    @Тогда("нажать на кнопку {string}")
-    public void clickOnButton(String elementName) {
-        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
-        element.click();
-        LOGGER.info("клик на кнопку '{}'", elementName);
-    }
-
     @Тогда("выбрать элемент {string} с текстом {string}")
     public void selectElementWithText(String elementName, String text) {
-        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
-        element.selectOption(text);
+        pageManager.getCurrentPage().getElement(elementName).selectOption(text);
         LOGGER.info("выбран элемент '{}'", elementName);
     }
 
+    @Затем("в блоке {string} нажать на ссылку с текстом {string}")
     @И("нажать на элемент {string} с текстом {string}")
     public void clickOnElementWithText(String elementName, String text) {
-        ElementsCollection elements = pageManager.getCurrentPage().getElementsCollection(elementName);
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
         elements.findBy(Condition.exactText(text)).click();
         LOGGER.info("клик на элемент '{}' с номером '{}'", elementName, text);
     }
@@ -126,43 +118,26 @@ public class EmployeeSteps {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
-        elements.get(elements.size()-2).click();
+        elements.get(elements.size() - 2).click();
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
     @И("в выпадающем списке {string} выбрать {string}")
-    public void setCity(String listOfCities, String city) {
+    public void setInDropDown(String listElements, String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
-                .getElement(listOfCities);
-        element.selectOptionContainingText(city);
+                .getElement(listElements);
+        element.selectOptionContainingText(elementName);
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), element);
     }
 
-    @Затем("в блоке {string} нажать на ссылку с текстом {string}")
-    public void selectFilter(String elementName, String text) {
-        ElementsCollection elements = pageManager
-                .getCurrentPage()
-                .getElementsCollection(elementName);
-        elements.findBy(Condition.exactText(text)).click();
-        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), text);
-    }
-
-    @И("в блоке {string} выбрать {string}")
-    public void setAnything(String listOfValues, String text) {
+    @И("в блоке {string} выбрать {int} {string}")
+    @И("в блоке {string} выбрать значение {int} {string}")
+    public void setAnything(String listOfValues, int index, String text) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(listOfValues);
-        elements.get(1).click();
-        LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), text);
-    }
-
-    @И("в блоке {string} выбрать значение {string}")
-    public void setAnyField(String listOfValues, String text) {
-        ElementsCollection elements = pageManager
-                .getCurrentPage()
-                .getElementsCollection(listOfValues);
-        elements.get(2).click();
+        elements.get(index).click();
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), text);
     }
 
@@ -172,26 +147,14 @@ public class EmployeeSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Actions.fillFieldRandInt(element, start, finish);
+        LOGGER.info("на текущей странице в блоке '{}' введено значение в диапазоне от '{}' до '{}'", pageManager.getCurrentPage().name(), start, finish);
     }
 
     @Когда("кликнуть на элемент по тексту {string}")
     public void clickElementWithText(String text) {
-        $(Selectors.byText(text))
-                .shouldBe(Condition.visible)
-                .click();
+        pageManager.getCurrentPage().getElement(text).click();
         LOGGER.info("клик на элемент по тексту '{}'", text);
     }
-
-//    @Если("кликнуть на элемент {string}")
-//    public void clickOnElement(String elementName) {
-//        SelenideElement element = pageManager
-//                .getCurrentPage()
-//                .getElement(elementName);
-//        element
-//                .shouldBe(Condition.visible)
-//                .click();
-//        LOGGER.info("клик на элемент '{}'", elementName);
-//    }
 
     @Когда("проскроллить страницу до элемента {string}")
     public void scrollToElement(String elementName) {
@@ -205,6 +168,4 @@ public class EmployeeSteps {
     public void waitSeconds(int timeout) {
         Sleep.pauseSec(timeout);
     }
-
-
 }

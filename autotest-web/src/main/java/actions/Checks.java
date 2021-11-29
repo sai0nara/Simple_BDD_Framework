@@ -136,4 +136,8 @@ public class Checks {
         element.shouldBe(Condition.visible);
         element.shouldBe(Condition.empty);
     }
+
+    public static void elementIsOn(SelenideElement element) {
+        element.isEnabled();
+    }
 }
