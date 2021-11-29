@@ -71,3 +71,4 @@ public class DjangoEmployeePage extends WebPage {
     @Name("Формат")
     private SelenideElement formatField = $x("//select[@name='file_format']");
 }
+
