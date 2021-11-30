@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import org.aeonbits.owner.ConfigFactory;
+import org.testng.Assert;
 import ru.lanit.at.web.properties.WebConfigurations;
 
 import java.time.Duration;
@@ -42,6 +43,14 @@ public class Checks {
     }
 
     /**
+     * Проверяет, что на странице не отображается элемент
+     */
+    public static void elementNotVisibleOnPage(SelenideElement element, Integer timeoutSeconds) {
+        int timeout = getTimeoutSecondsFirst(timeoutSeconds);
+        element.shouldBe(Condition.not(Condition.visible), Duration.ofSeconds(timeout));
+    }
+
+    /**
      * Проверяет, что на странице имеется текст
      */
     public static void textVisibleOnPage(String text, Integer timeoutSeconds) {
@@ -72,7 +81,7 @@ public class Checks {
      * @param expectedText   текст
      * @param timeoutSeconds количество секунд
      */
-    public static void elementValueEqualsExpectedText(SelenideElement element, String expectedText, Integer timeoutSeconds){
+    public static void elementValueEqualsExpectedText(SelenideElement element, String expectedText, Integer timeoutSeconds) {
         int timeout = getTimeoutSecondsFirst(timeoutSeconds);
         element.shouldBe(Condition.value(expectedText), Duration.ofSeconds(timeout));
     }
@@ -83,7 +92,7 @@ public class Checks {
      * @param element        элемент
      * @param timeoutSeconds количество секунд
      */
-    public static void elementIsReadOnly(SelenideElement element, String text, Integer timeoutSeconds){
+    public static void elementIsReadOnly(SelenideElement element, String text, Integer timeoutSeconds) {
         int timeout = getTimeoutSecondsFirst(timeoutSeconds);
         element.shouldBe(Condition.cssClass(text), Duration.ofSeconds(timeout));
     }
@@ -114,10 +123,6 @@ public class Checks {
         element.shouldNotHave(Condition.href(text));
     }
 
-    public static void elementVisible(SelenideElement element) {
-        element.shouldBe(Condition.visible);
-    }
-
     public static void elementVisibleAndNoSelected(SelenideElement element) {
         element.shouldBe(Condition.visible);
         element.shouldNotBe(Condition.selected);
@@ -139,11 +144,6 @@ public class Checks {
         return timeout == null ? cfg.webDriverTimeoutSeconds() : timeout;
     }
 
-    public static void elementVisibleOnPage(SelenideElement element, Integer timeoutSeconds) {
-        int timeout = getTimeoutSeconds(timeoutSeconds);
-        element.shouldBe(Condition.visible, Duration.ofSeconds(timeout));
-    }
-
     public static void fieldVisibleAndNoSelected(SelenideElement element) {
         element.shouldBe(Condition.visible);
         element.shouldBe(Condition.empty);
@@ -151,5 +151,11 @@ public class Checks {
 
     public static void elementIsOn(SelenideElement element) {
         element.isEnabled();
+    }
+
+    public static void emptyElement(SelenideElement element) {
+        System.out.println(element.getText() + "1asdf");
+        Assert.assertEquals(element.getText(), "");
+
     }
 }

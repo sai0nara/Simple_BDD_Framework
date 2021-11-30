@@ -11,9 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.utils.DataGenerator;
 import ru.lanit.at.web.pagecontext.PageManager;
-import ru.lanit.at.utils.Sleep;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class WebActionSteps {
 

@@ -164,7 +164,7 @@ public class EmployeeCheckSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        Checks.elementVisibleOnPage(element, null);
+        Checks.elementNotVisibleOnPage(element, null);
         LOGGER.info("элемент '{}' не отображается на странице", elementName);
     }
 
@@ -184,5 +184,14 @@ public class EmployeeCheckSteps {
                 .getElement(elementName);
         Checks.fieldVisibleAndNoSelected(element);
         LOGGER.info("в блоке есть пустое поле '{}'", elementName);
+    }
+
+    @Если("в выпадающем списке поле {string} не выбрано")
+    public void emptyDropDown(String elementName) {
+        SelenideElement elements = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        elements.shouldBe(Condition.visible).selectOption(0);
+        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 }

@@ -19,7 +19,7 @@ public class DjangoAdministrationPage extends WebPage {
 
     //MAIN
     @Name("Сотрудники")
-    private SelenideElement employee = $(".model-employee th a");
+    private SelenideElement employee = $x("//tr[@class='model-employee']/th/a");
 
     @Name("Запросы на отпуск")
     private SelenideElement employeeVacationRequest = $x("//a[text()='Запросы на отпуск']");

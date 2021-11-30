@@ -2,13 +2,12 @@ package pages.employee;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import pages.DjangoPagesHeader;
 import ru.lanit.at.web.annotations.Name;
 import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
-@Name(value = "DjangoExportEmployee")
+@Name(value = "DjangoExportEmploee")
 public class DjangoExportEmployeePage extends WebPage {
 
     @Name("Инфоблок")
