@@ -10,6 +10,8 @@ import io.cucumber.java.ru.*;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+
 import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.Environment;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -19,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.UUID;
 
 public class AuthorizationSteps {
 
@@ -67,6 +70,24 @@ public class AuthorizationSteps {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.setValue(value);
         LOG.info("в поле '{}' введено значение '{}'", elementName, value);
+    }
+
+    @И("заполнить поле {string} случайной строкой")
+    public void fillFieldRandomString(String field) {
+        String randomString = "EXAMPLE_" + UUID.randomUUID().toString();
+        fillField(field,randomString );
+        ContextHolder.put(field, randomString);
+    }
+
+    @И("сравнить значение поля {string} и содержимое ContextHolder")
+    public void checkField(String fieldName) {
+        String expectedValue = ContextHolder.getValue(fieldName).toString();
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(fieldName);
+        String actualValue = element.getValue();
+        Assert.assertEquals(actualValue, expectedValue);
+       LOG.info("Содержимое поля - {}", actualValue);
     }
 
     @Тогда("нажать на {string}")
