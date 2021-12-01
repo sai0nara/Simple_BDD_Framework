@@ -141,7 +141,9 @@ public class AuthorizationSteps {
 
     @Тогда("нажать на {string}")
     public void clickSignInButton(String elementName) {
-        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
         element.click();
         LOGGER.info("клик на элемент по тексту '{}'", elementName);
     }
