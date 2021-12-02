@@ -1,5 +1,5 @@
 #language:ru
-@Test
+@Test @UI @regress
 
 Функционал: Негативная авторизация
 

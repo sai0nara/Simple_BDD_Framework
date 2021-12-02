@@ -141,15 +141,6 @@ public class EmployeeSteps {
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), element);
     }
 
-    @Затем("в блоке {string} нажать на ссылку с текстом {string}")
-    public void selectFilter(String elementName, String text) {
-        ElementsCollection elements = pageManager
-                .getCurrentPage()
-                .getElementsCollection(elementName);
-        elements.findBy(Condition.exactText(text)).click();
-        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), text);
-    }
-
     @И("в блоке {string} выбрать {int} {string}")
     @И("в блоке {string} выбрать значение {int} {string}")
     public void setAnything(String listOfValues, int index, String text) {
