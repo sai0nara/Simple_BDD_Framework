@@ -71,8 +71,9 @@ public class WebActionSteps {
         LOGGER.info("в выпадющем списке {} выбран элемент со случайным значением", elementName);
     }
 
+//    @Тогда("нажать на {string}")
+//    @Тогда("нажать на чекбокс {string}")
     @Тогда("нажать на {string}")
-    @Тогда("нажать на чекбокс {string}")
     @Если("кликнуть на элемент {string}")
     @Тогда("нажать на кнопку {string}")
     public void clickOnButton(String elementName) {
