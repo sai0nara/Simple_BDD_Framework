@@ -131,9 +131,6 @@ public class AuthorizationSteps {
                 fillField("логин", el.getLogin());
                 fillField("пароль", el.getPassword());
                 clickSignInButton("войти");
-//TODO
-//            } else {
-//
             }
         }
         LOGGER.info("авторизация под логином: '{}'", login);

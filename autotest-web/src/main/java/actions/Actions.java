@@ -13,7 +13,7 @@ public class Actions {
     }
 
     /**
-     * Заполнение поля рандомным значением
+     * Заполнение поля рандомным числовым значением в определенном диапазоне
      *  @param element - элемент
      */
     public static void fillFieldRandInt(SelenideElement element, int start, int finish) {
