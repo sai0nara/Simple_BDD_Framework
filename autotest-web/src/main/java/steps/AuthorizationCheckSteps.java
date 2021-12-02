@@ -4,7 +4,6 @@ import actions.Checks;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.Пусть;
-import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -24,48 +23,32 @@ public class AuthorizationCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleAndNoSelected(element);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+        LOGGER.info("на странице '{}' имеется и не выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
+
     @Пусть("чекбокс {string} отображается и выбран")
     public void checkSelectedCheckbox(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleAndSelected(element);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+        LOGGER.info("на странице '{}' имеется и выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
-     @Если("поле {string} отображается")
-     @Если("кнопка {string} отображается")
-     @Пусть("поле ввода {string} отображается")
-     public void checkAppearElement(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisible(element);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
-    @Пусть("{string} отображается")
-    public void checkAppearButton(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisible(element);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
+    @Если("на странице отсутствует поле под названием {string}")
     @Если("на странице отсутствует текст {string}")
-    public void currentTextIsNotExist(String errorText) {
-        AuthorizationCheckSteps.textAbsentOnPage(errorText);
-        LOGGER.info("на странице '{}' отсутствует текст '{}'", pageManager.getCurrentPage().name(), errorText);
+    public void currentTextIsNotExist(String text) {
+        Checks.textAbsentOnPage(text, null);
+        LOGGER.info("на странице '{}' отсутствует текст '{}'", pageManager.getCurrentPage().name(), text);
     }
 
-    private static void textAbsentOnPage(String errorText) {
-    }
 
     @Если("на странице имеется элемент {string}")
-    public void elementAppearsOnThePage(String elementName) {
+    @Пусть("{string} отображается")
+    @Если("поле {string} отображается")
+    @Если("кнопка {string} отображается")
+    @Пусть("поле ввода {string} отображается")
+    public void checkAppearElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
@@ -73,10 +56,10 @@ public class AuthorizationCheckSteps {
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
-    @Если("в поле Добро пожаловать, присутствует текст {string}")
-    public void currentTextIsExist(String curText) {
-        AuthorizationCheckSteps.textAbsentOnPage(curText);
-        LOGGER.info("на странице '{}' отсутствует текст '{}'", pageManager.getCurrentPage().name(), curText);
+    @Если("на странице в поле Добро пожаловать, имеется элемент {string}")
+    public void elementIsHere(String elementName) {
+        Checks.textVisibleOnPage(elementName, null);
+        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
     @Если("поле {string} содержит значение {string}")
@@ -85,6 +68,6 @@ public class AuthorizationCheckSteps {
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementTextEqualsExpectedText(element, text);
-        LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+        LOGGER.info("на странице '{}' имеется элемент '{}' со значением '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
 }

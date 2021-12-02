@@ -13,9 +13,6 @@ import org.testng.Assert;
 import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.PageManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EmployeeCheckSteps {
 
     private PageManager pageManager;
@@ -35,33 +32,25 @@ public class EmployeeCheckSteps {
         LOGGER.info("на странице '{}' имеется элемент '{}', с текстом '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
 
+    @И("поле {string} присутствует на странице")
+    @И("кнопка {string} присутствует на странице")
+    @Если("в поле The Сотрудник “ и ” was changed successfully. присутствует элемент {string}")
     @Если("в полях The Сотрудник “ и ” was changed successfully. You may edit it again below. присутствует элемент {string}")
     public void curFieldsContainsThatElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
         Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в полях имеется элемент '{}'", elementName);
-    }
-
-    @Если("в поле The Сотрудник “ и ” was changed successfully. присутствует элемент {string}")
-    public void curFieldContainsThatElement(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisibleOnPage(element, null);
-        LOGGER.info("в поле имеется элемент '{}'", element.getText());
+        LOGGER.info("в поле имеется элемент '{}'", elementName);
     }
 
     @Если("на странице в блоке {string} выбрать элемент {string}")
     public void elementIsOnPage(String elementN, String elementName) {
-        SelenideElement element = pageManager
+        pageManager.getCurrentPage().getElement(elementN);
+        SelenideElement elementTwo = pageManager
                 .getCurrentPage()
-                .getElement(elementN);
-        ElementsCollection elements = pageManager
-                .getCurrentPage()
-                .getElementsCollection(elementName);
-        elements.get(25).click();
+                .getElement(elementName);
+        elementTwo.click();
         LOGGER.info("на текущей странице в блоке '{}' нажимается элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
@@ -145,16 +134,6 @@ public class EmployeeCheckSteps {
         LOGGER.info("на странице '{}' в блоке '{}' текущий город '{}': '{}'", pageManager.getCurrentPage().name(), elementName, city, result);
     }
 
-    @И("поле {string} присутствует на странице")
-    @И("кнопка {string} присутствует на странице")
-    public void checkElementVisibility(String elementName) {
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(elementName);
-        Checks.elementVisible(element);
-        LOGGER.info("элемент '{}' отображается", elementName);
-    }
-
     @И("на странице присутствует {string} {string}")
     public void checkElementVisibleCollection(String elementName, String text) {
         ElementsCollection elements = pageManager
@@ -169,5 +148,50 @@ public class EmployeeCheckSteps {
         }
         Assert.assertTrue(result);
         LOGGER.info("на странице '{}' в блоке '{}' есть '{}'", pageManager.getCurrentPage().name(), elementName, text);
+    }
+
+    @Если("в текущем блоке поле {string} заблокировано")
+    public void checkBlockedField(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.emptyElement(element);
+        LOGGER.info("элемент '{}' заблокирован", elementName);
+    }
+
+    @Если("в текущем блоке поле {string} отсутствует")
+    public void checkElementNotVisible(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementNotVisibleOnPage(element, null);
+        LOGGER.info("элемент '{}' не отображается на странице", elementName);
+    }
+
+    @Если("в текущем поле {string} отсутствует текст")
+          public void checkFieldWithoutText(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+              Checks.emptyElement(element);
+        LOGGER.info("элемент '{}' не содержит текст", elementName);
+    }
+
+    @Если("поле {string} отображается и пусто")
+    public void checkEmptyField(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.fieldVisibleAndNoSelected(element);
+        LOGGER.info("в блоке есть пустое поле '{}'", elementName);
+    }
+
+    @Если("в выпадающем списке поле {string} не выбрано")
+    public void emptyDropDown(String elementName) {
+        SelenideElement elements = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        elements.shouldBe(Condition.visible).selectOption(0);
+        LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 }
