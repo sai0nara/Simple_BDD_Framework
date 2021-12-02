@@ -1,5 +1,8 @@
 package steps;
 
+import authorization.AuthValues;
+import authorization.Authorization;
+import utils.Deserializer;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -8,16 +11,23 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+
 import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.Environment;
 import ru.lanit.at.web.pagecontext.PageManager;
 import ru.lanit.at.web.pagecontext.WebPage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.UUID;
 
 public class AuthorizationSteps {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationSteps.class);
+
+    private static Properties properties = new Properties();
     private static String currentToken = "";
     private final PageManager pageManager;
 
@@ -25,6 +35,7 @@ public class AuthorizationSteps {
         this.pageManager = pageManager;
     }
 
+    @Deprecated
     @Если("открыть url {string}")
     @Дано("открыть {string}")
     public void openUrl(String url) {
@@ -35,6 +46,24 @@ public class AuthorizationSteps {
             Environment.setThreadDriver(currentThreadWebDriver);
         }
         LOGGER.info("инициализация webdriver для потока: {}", Thread.currentThread().getId());
+
+    @Дано("открыть сайт")
+    public void openUrl() {
+        loadProperties();
+        Selenide.open(properties.getProperty("base.url"));
+        WebDriver driver = Environment.getDriver();
+        if (driver == null) {
+            WebDriver currentThreadWebDriver = WebDriverRunner.getWebDriver();
+            Environment.setThreadDriver(currentThreadWebDriver);
+        }
+        LOGGER.info("init webdriver for thread: {}", Thread.currentThread().getId());
+    }
+
+    @Тогда("нажать на чекбокс {string}")
+    public void clickOnCheckbox(String elementName) {
+        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
+        element.click();
+        LOGGER.info("клик на элемент по тексту '{}'", elementName);
     }
 
     @Тогда("заполнить поле {string} значением {string}")
@@ -74,7 +103,7 @@ public class AuthorizationSteps {
     @Тогда("ввести {string} для пользователя {string} с паролем {string}")
     public void fillTokenField(String elementName, String login, String password) {
         ApiSteps.getToken(login, password);
-        String token = ApiSteps.getCurrentToken();
+        String token = ContextHolder.getValue("TOTP").toString();
         if (token.equals(currentToken)) {
             fillTokenField(elementName, login, password);
         } else {
@@ -82,6 +111,38 @@ public class AuthorizationSteps {
             element.setValue(token);
             currentToken = token;
             LOGGER.info("в поле '{}' введено значение '{}'", elementName, token);
+        }
+    }
+
+    @Если("авторизоваться логином {string}")
+    public void authWithLogin(String login) {
+        Deserializer deserializer = new Deserializer();
+        Authorization auth = deserializer.yamlDeserialize(properties.getProperty("auth.yaml"));
+
+        for (AuthValues el : auth.getAuthValues()) {
+            if (el.getLogin().equals(login) && el.isToken().equals(true)) {
+                clickOnCheckbox("Я желаю войти с админскими правами");
+                fillField("логин", el.getLogin());
+                fillField("пароль", el.getPassword());
+                fillFieldToken("токен", el.getLogin(), el.getPassword());
+                clickSignInButton("войти");
+
+            } else if (el.getLogin().equals(login) && el.isToken().equals(false)) {
+                fillField("логин", el.getLogin());
+                fillField("пароль", el.getPassword());
+                clickSignInButton("войти");
+            }
+        }
+        LOGGER.info("авторизация под логином: '{}'", login);
+    }
+
+    private static void loadProperties() {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("src/main/resources/application.properties");
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
