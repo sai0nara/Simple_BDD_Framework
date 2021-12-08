@@ -75,8 +75,9 @@ public class WebActionSteps {
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
-        element.selectOption( 1 + (int) (Math.random() * element.findAll(By.cssSelector("option")).size() - 1));
-        LOGGER.info("в выпадющем списке {} выбран элемент со случайным значением", elementName);
+        element.selectOption( 1 + (int) (Math.random() * element.findAll(By.cssSelector("option")).size()-1));
+        String selectedText = element.getSelectedText();
+        LOGGER.info("в выпадющем списке '{}' выбран элемент со случайным значением - '{}'", elementName, selectedText);
     }
 
     @Тогда("нажать на {string}")
