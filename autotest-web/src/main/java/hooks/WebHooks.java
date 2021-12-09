@@ -8,6 +8,8 @@ import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import ru.lanit.at.utils.ErrorMessage;
 import ru.lanit.at.web.pagecontext.Environment;
 import ru.lanit.at.web.properties.WebConfigurations;
@@ -16,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WebHooks {
 
+    @BeforeTest
     @Before
     public void setup() {
         WebConfigurations cfg = ConfigFactory.create(WebConfigurations.class,
@@ -55,6 +58,7 @@ public class WebHooks {
         Environment.initPages(cfg.pagesPackage());
     }
 
+    @AfterTest
     @After
     public void close() {
         WebDriverRunner.closeWebDriver();

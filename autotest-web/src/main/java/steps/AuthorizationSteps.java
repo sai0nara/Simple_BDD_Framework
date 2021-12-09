@@ -124,7 +124,7 @@ public class AuthorizationSteps {
         LOGGER.info("Содержимое поля - {}", actualValue);
     }
 
-    private void clickSignInButton(String elementName) {
+    public void clickSignInButton(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.click();
         LOGGER.info("клик на элемент по тексту '{}'", elementName);
