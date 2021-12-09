@@ -1,4 +1,4 @@
-package tk4;
+package ts4;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
@@ -9,7 +9,7 @@ import steps.AuthorizationSteps;
 import steps.WebActionSteps;
 import steps.WebCheckSteps;
 
-public class EmployeeHrTest extends WebHooks {
+public class EmployeeInfoblockTest extends WebHooks {
 
     private PageManager pageManager = new PageManager();
 
@@ -23,7 +23,7 @@ public class EmployeeHrTest extends WebHooks {
     }
 
     @Test(dataProvider = "data")
-    @Description("Проверка текста в инфоблоке, после нажатия на кнопку 'Сотрудники'. Роль Hr")
+    @Description("4.1-4.3 Проверка текста в инфоблоке, после нажатия на кнопку 'Сотрудники'. Роль Hr")
     public void employeeHrPublicInfoblockTest(String login, String link, String header, String text) {
         AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
         WebActionSteps webActionSteps = new WebActionSteps(pageManager);
