@@ -11,6 +11,8 @@ import static com.codeborne.selenide.Selenide.*;
 @Name(value = "DjangoEmployeeChange")
 public class DjangoEmployeeChangePage extends WebPage {
 
+    @Name("ФИО")
+    private ElementsCollection fioList = $$x("//th[@class='field-full_name']/a");
     @Name("Имя")
     private SelenideElement firstName = $x("//input[@id='id_name']");
     @Name("Фамилия")
@@ -351,6 +353,24 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement duties = $x("//textarea[@name='employeeproject_set-0-responsibilities']");
     @Name("Чекбокс Стажер")
     private SelenideElement checkBoxJun = $x("//input[@name='employeeproject_set-0-is_trainee']");
+
+    @Name("Пагинация")
+    private ElementsCollection paginator = $$x("//p[@class='paginator']/a");
+    @Name("Пагинация текущая страница")
+    private SelenideElement currentPaginator = $x("//span[@class='this-page']");
+    @Name("Категории фильтров")
+    private ElementsCollection filtersCategory = $$x("//div[@id='changelist-filter']/h3");
+    @Name("Фильтр")
+    private ElementsCollection filters = $$x("//div[@id='changelist-filter']/ul/li");
+    @Name("Текущий город")
+    private ElementsCollection currentCity = $$x("//td[@class='field-current_city nowrap']");
+
+    @Name("Импорт")
+    private SelenideElement importLink = $x("//a[@class='import_link']");
+    @Name("Экспорт")
+    private SelenideElement exportLink = $x("//a[@class='export_link']");
+    @Name("Добавить сотрудник")
+    private SelenideElement addEmployeeLink = $x("//a[@class='addlink']");
 
     @Name("Фамилия Public")
     private SelenideElement surnamePublic = $x("//div[@class='fieldBox field-surname']/label/following-sibling::div");
