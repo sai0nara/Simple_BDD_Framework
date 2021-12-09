@@ -10,6 +10,7 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     private final PageManager pageManager = new PageManager();
 
     private final AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
+    private final AuthorizationCheckSteps authorizationCheckSteps = new AuthorizationCheckSteps(pageManager);
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
     private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
     private final EmployeeSteps employeeSteps = new EmployeeSteps(pageManager);
@@ -18,13 +19,11 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     @Test(priority = 1)
     @Description("8.1. Проверка редактирования ключевых полей." +
             " Django Administration Роль just_employee")
-    public void checkEditingUniqueFields() {
+    public void checkEditingUniqueFieldsPositiveTest() {
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
+        authorizationCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         webCheckSteps.checkFieldText("Фамилия", "Бородкин");
@@ -44,20 +43,24 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webCheckSteps.checkFieldText("Фамилия", "Бородкина");
         webCheckSteps.checkFieldText("Имя", "Анастасия");
         webCheckSteps.listCheckedElement("Пол", "Female");
-        webActionSteps.closeDriver();
+
+//        Возврат к первоначальному состоянию
+        webActionSteps.fillTheField("Фамилия", "Бородкин");
+        webActionSteps.fillTheField("Имя", "Битард");
+        employeeSteps.setInDropDown("Пол", "Male");
+        webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
     }
 
     @Test(priority = 2)
     @Description("8.2. Проверка редактирования второстепенных полей." +
             " Django Administration Роль just_employee")
-    public void checkEditingSecondFields() {
+    public void checkEditingSecondFieldsPositiveTest() {
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps.clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
+        authorizationCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
         authorizationSteps.setPage("DjangoEmployeeChange");
+
         webActionSteps.fillTheField("Отчество","Валентиновна");
         webActionSteps.fillTheField("Дата приема на работу","20.08.2020");
         webActionSteps.fillTheField("Телефон","+79883456789");
@@ -65,20 +68,16 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps.listSelectRandElement("Гражданство");
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully. You may edit it again below.");
-        webActionSteps.closeDriver();
+                "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
     }
 
     @Test(priority = 3)
     @Description("8.3. Проверка добавления фотографии." +
             " Django Administration Роль just_employee")
-    public void checkAddingPhoto(){
+    public void checkAddingPhotoPositiveTest(){
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         webActionSteps.uploadFiles("Выберите фото", "test.jpg");
@@ -88,19 +87,15 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         employeeCheckSteps.curFieldsContainsThatElement("Загруженное фото");
         webActionSteps.clickOnButton("Очистить фото");
         webActionSteps.clickOnButton("Сохранить");
-        webActionSteps.closeDriver();
     }
 
     @Test(priority = 4)
     @Description("8.4. Проверка замены загруженной фотографии." +
             " Django Administration Роль just_employee")
-    public void checkChangingUploadPhoto(){
+    public void checkChangingUploadPhotoPositiveTest(){
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         webActionSteps.uploadFiles("Выберите фото", "test.jpg");
@@ -113,19 +108,15 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         employeeCheckSteps.curFieldsContainsThatElement("Name");
         webActionSteps.clickOnButton("Очистить фото");
         webActionSteps.clickOnButton("Сохранить");
-        webActionSteps.closeDriver();
     }
 
     @Test(priority = 5)
     @Description("8.5. Проверка удаления загруженной фотографии." +
             " Django Administration Роль just_employee")
-    public void checkRemovingUploadedPhoto(){
+    public void checkRemovingUploadedPhotoPositiveTest(){
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         webActionSteps.uploadFiles("Выберите фото", "test.jpg");
@@ -141,13 +132,10 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     @Test(priority = 6)
     @Description("8.6. Блок \"Квалификация\", проверка редактирования." +
             " Django Administration Роль just_employee")
-    public void checkEditingQualityBlock(){
+    public void checkEditingQualityBlockPositiveTest(){
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         employeeSteps.scrollToElement("Квалификация");
@@ -158,14 +146,14 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully.");
+                "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
         webActionSteps.closeDriver();
     }
 
     @Test(priority = 7)
     @Description("8.7. Блок \"Навыки\", проверка редактирования." +
             " Django Administration Роль just_employee")
-    public void checkEditingSkillsBlock(){
+    public void checkEditingSkillsBlockPositiveTest(){
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
         authorizationSteps.fillField("логин", "just_employee");
@@ -181,14 +169,14 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully.");
+                "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
         webActionSteps.closeDriver();
     }
 
     @Test(priority = 8)
     @Description("8.8. Блок \"Сертификаты\", проверка редактирования." +
             " Django Administration Роль just_employee")
-    public void checkEditingCertificatesBlock() {
+    public void checkEditingCertificatesBlockPositiveTest() {
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
         authorizationSteps.fillField("логин", "just_employee");
@@ -204,20 +192,16 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully. You may edit it again below.");
-        webActionSteps.closeDriver();
+                "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
     }
 
     @Test(priority = 9)
     @Description("8.9. Блок \"Проекты\", проверка редактирования." +
             " Django Administration Роль just_employee")
-    public void checkEditingProjectsBlock() {
+    public void checkEditingProjectsBlockPositiveTest() {
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.fillField("логин", "just_employee");
-        authorizationSteps.fillField("пароль", "hrmhrm123");
-        webActionSteps
-                .clickOnButton("войти");
+        authorizationSteps.authWithLogin("just_employee");
         authorizationSteps.setPage("DjangoEmployeeChange");
 
         employeeSteps.scrollToElement("Проект");
@@ -241,22 +225,22 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully. You may edit it again below.");
-        webActionSteps.closeDriver();
+                "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
     }
 
     @Test(priority = 10)
     @Description("8.10. Проверка работоспособности кнопки \"СОХРАНИТЬ\"." +
             " Django Administration Роль just_employee")
-    public void checkSaveButton() {
+    public void checkSaveButtonPositiveTest() {
         authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
+        authorizationSteps.authWithLogin("just_employee");
+        authorizationSteps.setPage("DjangoEmployeeChange");
 
         webActionSteps
                 .clickOnButton("Сохранить");
 
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
-                "The Сотрудник “Бородкина Анастасия” was changed successfully.");
-        webActionSteps.closeDriver();
+                "The Сотрудник “Бородкин Битард” was changed successfully.");
     }
 }
