@@ -30,6 +30,9 @@ public class DjangoEmployeeChangePage extends WebPage {
     @Name("Очистить фото")
     private SelenideElement clearPhoto = $x("//input[@id='photo-clear_id']");
 
+    @Name("Заголовок таблицы")
+    private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+
     @Name("Дата приема на работу")
     private SelenideElement joiningDate = $x("//input[@id='id_joining_date']");
     @Name("Выберите дату")

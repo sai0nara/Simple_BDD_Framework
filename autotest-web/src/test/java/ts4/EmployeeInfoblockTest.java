@@ -12,6 +12,9 @@ import steps.WebCheckSteps;
 public class EmployeeInfoblockTest extends WebHooks {
 
     private PageManager pageManager = new PageManager();
+    private final AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
+    private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
+    private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
     @DataProvider
     public Object[][] data() {
@@ -25,13 +28,10 @@ public class EmployeeInfoblockTest extends WebHooks {
     @Test(dataProvider = "data")
     @Description("4.1-4.3 Проверка текста в инфоблоке, после нажатия на кнопку 'Сотрудники'. Роль Hr")
     public void employeeHrPublicInfoblockTest(String login, String link, String header, String text) {
-        AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
-        WebActionSteps webActionSteps = new WebActionSteps(pageManager);
-        WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
+        authorizationSteps.openUrl();
         authorizationSteps.setPage("DjangoAuthorization");
         authorizationSteps.authWithLogin(login);
-        authorizationSteps.clickSignInButton("войти");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton(link);
         authorizationSteps.setPage("DjangoEmployeeChange");
