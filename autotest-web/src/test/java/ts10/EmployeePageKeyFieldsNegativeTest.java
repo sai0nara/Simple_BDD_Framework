@@ -77,4 +77,21 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
         employeeCheckSteps.matchText(message, infoblock);
         employeeCheckSteps.matchText(messageBox, error);
     }
+
+    @Test
+    @Description("7.31 страница Сотрудники, проверка блока 'Фактические отпуска'. Роль Hr")
+    public void employeeHrSearchTest() {
+        authorizationSteps.openUrl();
+        authorizationSteps.setPage("DjangoAuthorization");
+        authorizationSteps.authWithLogin("hr");
+        authorizationSteps.setPage("DjangoAdministration");
+        webActionSteps.clickOnButton("Сотрудники");
+        authorizationSteps.setPage("DjangoEmployee");
+        webActionSteps.clickOnButton("Добавить сотрудник");
+        authorizationSteps.setPage("DjangoEmployeeChange");
+        webActionSteps.clickOnButton("Фактические отпуска");
+        employeeCheckSteps.checkBlockedField("Заметка поле");
+        webActionSteps.clickOnButton("Скрыть отпуска");
+        employeeCheckSteps.checkElementNotVisible("Заметка");
+    }
 }
