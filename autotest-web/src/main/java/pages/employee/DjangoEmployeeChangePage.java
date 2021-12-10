@@ -34,6 +34,19 @@ public class DjangoEmployeeChangePage extends WebPage {
 
     @Name("Заголовок таблицы")
     private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+    @Name("Поиск")
+    private SelenideElement search = $x("//input[@id='searchbar']");
+    @Name("Найти")
+    private SelenideElement searchButton = $x("//input[@type='submit']");
+    @Name("Выполнить")
+    private SelenideElement executeButton = $x("//button[@type='submit']");
+    @Name("Действие")
+    private ElementsCollection dropDownAction = $$x("//select[@name='action']/option");
+    @Name("Действие меню")
+    private SelenideElement action = $x("//select[@name='action']");
+
+    @Name("Предупреждение в заголовке")
+    private SelenideElement headerWarning = $x("//li[@class='warning']");
 
     @Name("Дата приема на работу")
     private SelenideElement joiningDate = $x("//input[@id='id_joining_date']");
@@ -358,6 +371,9 @@ public class DjangoEmployeeChangePage extends WebPage {
     private ElementsCollection paginator = $$x("//p[@class='paginator']/a");
     @Name("Пагинация текущая страница")
     private SelenideElement currentPaginator = $x("//span[@class='this-page']");
+    @Name("Таблица чек-бокс")
+    private ElementsCollection tableCheckboxes = $$x("//input[@class='action-select']");
+
     @Name("Категории фильтров")
     private ElementsCollection filtersCategory = $$x("//div[@id='changelist-filter']/h3");
     @Name("Фильтр")
