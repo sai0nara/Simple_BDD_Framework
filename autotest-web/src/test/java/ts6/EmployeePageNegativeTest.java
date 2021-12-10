@@ -32,7 +32,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         authorizationSteps.authWithLogin("hr");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         authorizationCheckSteps.checkAppearElement("Поиск");
         authorizationSteps.fillField("Поиск", "qweфыв!");
         webActionSteps.clickOnButton("Найти");
@@ -47,7 +47,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         authorizationSteps.authWithLogin("hr");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         employeeCheckSteps.getElementText("ФИО", 1);
         employeeCheckSteps.checkElementEquals("Выполнить", "ФИО", 1);
     }
@@ -60,7 +60,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         authorizationSteps.authWithLogin("hr");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         authorizationCheckSteps.checkAppearElement("Выполнить");
         webActionSteps.clickOnButton("Выполнить");
         employeeCheckSteps.matchText("Предупреждение в заголовке", "Чтобы произвести действия над объектами, необходимо их выбрать. Объекты не были изменены.");
@@ -74,7 +74,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         authorizationSteps.authWithLogin(login);
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton(employee);
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         employeeSteps.clickRandom(element);
         authorizationCheckSteps.checkAppearElement(action);
         webActionSteps.clickOnButton(action);
@@ -89,7 +89,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         authorizationSteps.authWithLogin("hr");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         employeeSteps.clickRandom("Таблица чек-бокс");
         employeeSteps.selectElementWithText("Действие меню", "Экспортировать выбранные Сотрудники");
         authorizationCheckSteps.checkAppearElement("Выполнить");

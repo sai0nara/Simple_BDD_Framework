@@ -23,7 +23,7 @@ public class EmployeePageTest extends WebHooks {
         authorizationSteps.authWithLogin("hr");
         authorizationSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        authorizationSteps.setPage("DjangoEmployee");
         employeeCheckSteps.getElementText("ФИО", 1);
         employeeSteps.clickOnElementWithText("Пагинация", "2");
         employeeCheckSteps.checkCurrentNumber("Пагинация текущая страница", "2");
