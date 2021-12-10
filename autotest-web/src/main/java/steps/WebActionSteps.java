@@ -53,7 +53,7 @@ public class WebActionSteps {
      * @param elementName наименование элемента
      */
     @Если("очистить поле {string}")
-    public void clearFiled(String elementName) {
+    public void clearField(String elementName) {
         pageManager
                 .getCurrentPage()
                 .getElement(elementName)

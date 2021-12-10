@@ -21,6 +21,8 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement dropdownGender = $x("//select[@id='id_gender']");
     @Name("Выберите фото")
     private SelenideElement photo = $x("//input[@id='id_photo']");
+    @Name("Проверка имени фото")
+    private SelenideElement checkedPhoto = $(By.id("id_photo"));
     @Name("Загруженное фото")
     private SelenideElement uploadedPhoto = $x("//div[contains(@class, 'field-photo_tag')]//div[@class='readonly']/img");
     @Name("Корпоративная почта")
@@ -38,6 +40,8 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement todayNextJoiningDate = $x("//a[@id='calendarlink0']/preceding-sibling::a");
     @Name("Календарь")
     private SelenideElement calendar = $x("//div[@id='calendarbox0']");
+    @Name("Случайное числа для выборки календаря")
+    private SelenideElement randomDate = $x("//td[4]/a");
     @Name("Сегодня в виджете 'Календарь'")
     private SelenideElement todayInCalendarWidget = $x("//div[@id='calendarin0']/following-sibling::div/a[text()='Сегодня']");
     @Name("День рождения")

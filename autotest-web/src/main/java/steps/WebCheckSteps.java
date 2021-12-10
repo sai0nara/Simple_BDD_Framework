@@ -181,4 +181,19 @@ public class WebCheckSteps {
         Checks.elementIsOn(element);
         LOGGER.info("элемент {} активен", elementName);
     }
+
+    /**
+     * Проверка, что фото загрузилось
+     * и мы видим его название "***.jpg"
+     * справа от кнопки "Выберите фото"
+     */
+    @И("проверить название загруженного изображения {string}")
+    public void checkNameOfUploadedImage(String elementName) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getAttribute("value");
+        String result = element.substring(12);
+        LOGGER.info("элемент {} найден", result);
+    }
 }
