@@ -77,8 +77,9 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkAddingPhotoPositiveTest(){
         initialize();
 
-        webActionSteps.uploadFiles("Выберите фото", "test.jpg");
-        webCheckSteps.checkNameOfUploadedImage("Проверка имени фото");
+        String pathOfImage = "test.jpg";
+        webActionSteps.uploadFiles("Выберите фото", pathOfImage);
+        webCheckSteps.checkNameOfUploadedImage("Проверка имени фото", pathOfImage);
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.curFieldsContainsThatElement("Name");
         employeeCheckSteps.curFieldsContainsThatElement("Загруженное фото");
@@ -92,11 +93,12 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkChangingUploadPhotoPositiveTest(){
         initialize();
 
+        String pathOfImage = "test.png";
         webActionSteps.uploadFiles("Выберите фото", "test.jpg");
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.curFieldsContainsThatElement("Загруженное фото");
         webActionSteps.uploadFiles("Выберите фото", "test.png");
-        webCheckSteps.checkNameOfUploadedImage("Проверка имени фото");
+        webCheckSteps.checkNameOfUploadedImage("Проверка имени фото", pathOfImage);
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.curFieldsContainsThatElement("Загруженное фото");
         employeeCheckSteps.curFieldsContainsThatElement("Name");

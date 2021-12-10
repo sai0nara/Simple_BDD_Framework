@@ -9,6 +9,7 @@ import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import ru.lanit.at.web.pagecontext.PageManager;
 
 public class WebCheckSteps {
@@ -185,15 +186,20 @@ public class WebCheckSteps {
     /**
      * Проверка, что фото загрузилось
      * и мы видим его название "***.jpg"
-     * справа от кнопки "Выберите фото"
+     * справа от кнопки "Выберите фото".
+     *
+     * В конце сравниваем значения в случае если
+     * было загружено 2 разных изображения последовательно.
+     * Проверяем, что Path соответсвует и нет расхождений
      */
-    @И("проверить название загруженного изображения {string}")
-    public void checkNameOfUploadedImage(String elementName) {
+    @И("проверить название загруженного изображения {string} на соответствие {string}")
+    public void checkNameOfUploadedImage(String elementName, String comperingName) {
         String element = pageManager
                 .getCurrentPage()
                 .getElement(elementName)
                 .getAttribute("value");
         String result = element.substring(12);
+        Assert.assertEquals(result, comperingName, "Имена изображений не совпадают.");
         LOGGER.info("элемент {} найден", result);
     }
 }
