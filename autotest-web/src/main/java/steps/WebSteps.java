@@ -94,12 +94,12 @@ public class WebSteps {
                 fillField("логин", el.getLogin());
                 fillField("пароль", el.getPassword());
                 fillTokenField("токен", el.getLogin(), el.getPassword());
-                clickSignInButton("войти");
+                clickOnButton("войти");
 
             } else if (el.getLogin().equals(login) && el.isToken().equals(false)) {
                 fillField("логин", el.getLogin());
                 fillField("пароль", el.getPassword());
-                clickSignInButton("войти");
+                clickOnButton("войти");
             }
         }
         LOGGER.info("авторизация под логином: '{}'", login);
@@ -247,7 +247,7 @@ public class WebSteps {
      * @param elementName - название кнопки
      */
     @Step("клик по кнопке {elementName}")
-    private void clickSignInButton(String elementName) {
+    private void clickOnButton(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.click();
         LOGGER.info("клик по кнопке '{}'", elementName);
@@ -604,13 +604,18 @@ public class WebSteps {
     }
 
     /**
-     * Закрытие страницы
+     * Взятие некоторого элемента в блоке
      *
+     * @param elementName - наименование блока
+     * @param index - номер элемента
      */
-    @Step("закрытие страницы")
-    @Если("закрыть страницу")
-    public void closeDriver() {
-        WebDriverRunner.getWebDriver().close();
+    @Step("в текущем блоке {elementName} берется {index} элемент")
+    @И("в текущем блоке {string} взять {int} элемент")
+    public void getElementText(String elementName, int index) {
+        ElementsCollection elements = pageManager
+                .getCurrentPage()
+                .getElementsCollection(elementName);
+        ContextHolder.put("fio1", elements.get(index - 1).getText());
+        LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString());
     }
-
 }
