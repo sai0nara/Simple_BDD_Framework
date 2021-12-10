@@ -90,16 +90,16 @@ public class WebSteps {
 
         for (AuthValues el : auth.getAuthValues()) {
             if (el.getLogin().equals(login) && el.isToken().equals(true)) {
-                clickOnCheckbox("Я желаю войти с админскими правами");
+                clickOnElement("Я желаю войти с админскими правами");
                 fillField("логин", el.getLogin());
                 fillField("пароль", el.getPassword());
                 fillTokenField("токен", el.getLogin(), el.getPassword());
-                clickOnButton("войти");
+                clickOnElement("войти");
 
             } else if (el.getLogin().equals(login) && el.isToken().equals(false)) {
                 fillField("логин", el.getLogin());
                 fillField("пароль", el.getPassword());
-                clickOnButton("войти");
+                clickOnElement("войти");
             }
         }
         LOGGER.info("авторизация под логином: '{}'", login);
@@ -131,19 +131,6 @@ public class WebSteps {
                 .getElementsCollection(elementName);
         elements.get(Actions.getRandom(elements.size())).click();
         LOGGER.info("на странице '{}' выбран элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
-    /**
-     * Активация чекбокса
-     *
-     * @param elementName - название чекбокса
-     */
-    @Step("нажатие на чекбокс {elementName}")
-    @Тогда("нажать на чекбокс {string}")
-    public void clickOnCheckbox(String elementName) {
-        SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
-        element.click();
-        LOGGER.info("активация чекбокса '{}'", elementName);
     }
 
     /**
@@ -208,46 +195,12 @@ public class WebSteps {
     }
 
     /**
-     * Сохранение значения выпадающего списка в ContextHolder
-     *
-     * @param fieldName - название списка
-     */
-    @Step("сравнение значения поля {fieldName} и содержимого ContextHolder")
-    @И("сравнить значение поля {string} и содержимое ContextHolder")
-    public void checkField(String fieldName) {
-        String expectedValue = ContextHolder.getValue(fieldName).toString();
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(fieldName);
-        String actualValue = element.getValue();
-        Assert.assertEquals(actualValue, expectedValue);
-        LOGGER.info("Ожидаемое значение поля: '{}', актуальное значения поля: {}", expectedValue, actualValue);
-    }
-
-    /**
-     * Сравнение текста выделенного поля и содержимого ContextHolder
-     *
-     * @param fieldName - название поля
-     */
-    @Step("сравнение текста выделенного поля {fieldName} и содержимое ContextHolder")
-    @И("сравнить текст выделенного поля {string} и содержимое ContextHolder")
-    public void checkSelectedField(String fieldName) {
-        String expectedValue = ContextHolder.getValue(fieldName).toString();
-        SelenideElement element = pageManager
-                .getCurrentPage()
-                .getElement(fieldName);
-        String actualValue = element.getSelectedText();
-        Assert.assertEquals(actualValue, expectedValue);
-        LOGGER.info("Содержимое поля - {}", actualValue);
-    }
-
-    /**
-     * Клик по кнопке
+     * Клик по элементу
      *
      * @param elementName - название кнопки
      */
-    @Step("клик по кнопке {elementName}")
-    public void clickOnButton(String elementName) {
+    @Step("клик по элементу {elementName}")
+    public void clickOnElement(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.click();
         LOGGER.info("клик по кнопке '{}'", elementName);
@@ -394,7 +347,7 @@ public class WebSteps {
      */
     @Step("выбор элемента {elementName} с текстом {text}")
     @Тогда("выбрать элемент {string} с текстом {string}")
-    public void selectElementWithText(String elementName, String text) {
+    public void selectElementInDropDown(String elementName, String text) {
         pageManager.getCurrentPage().getElement(elementName).selectOption(text);
         LOGGER.info("выбран элемент '{}'", elementName);
     }

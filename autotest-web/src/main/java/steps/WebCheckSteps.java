@@ -411,4 +411,38 @@ public class WebCheckSteps {
         Assert.assertTrue(result);
         LOGGER.info("на странице '{}' в блоке '{}' есть '{}'", pageManager.getCurrentPage().name(), elementName, text);
     }
+
+    /**
+     * Сравнение текста выделенного поля и содержимого ContextHolder
+     *
+     * @param fieldName - название поля
+     */
+    @Step("сравнение текста выделенного поля {fieldName} и содержимое ContextHolder")
+    @И("сравнить текст выделенного поля {string} и содержимое ContextHolder")
+    public void checkSelectedField(String fieldName) {
+        String expectedValue = ContextHolder.getValue(fieldName).toString();
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(fieldName);
+        String actualValue = element.getSelectedText();
+        Assert.assertEquals(actualValue, expectedValue);
+        LOGGER.info("Содержимое поля - {}", actualValue);
+    }
+
+    /**
+     * Сохранение значения выпадающего списка в ContextHolder
+     *
+     * @param fieldName - название списка
+     */
+    @Step("сравнение значения поля {fieldName} и содержимого ContextHolder")
+    @И("сравнить значение поля {string} и содержимое ContextHolder")
+    public void checkField(String fieldName) {
+        String expectedValue = ContextHolder.getValue(fieldName).toString();
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(fieldName);
+        String actualValue = element.getValue();
+        Assert.assertEquals(actualValue, expectedValue);
+        LOGGER.info("Ожидаемое значение поля: '{}', актуальное значения поля: {}", expectedValue, actualValue);
+    }
 }
