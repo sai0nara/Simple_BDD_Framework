@@ -14,7 +14,6 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
     private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
     private final EmployeeCheckSteps employeeCheckSteps = new EmployeeCheckSteps(pageManager);
     private final EmployeeSteps employeeSteps = new EmployeeSteps(pageManager);
-    private final AuthorizationCheckSteps authorizationCheckSteps = new AuthorizationCheckSteps(pageManager);
 
     @DataProvider
     public Object[][] dataErrorMessage() {
