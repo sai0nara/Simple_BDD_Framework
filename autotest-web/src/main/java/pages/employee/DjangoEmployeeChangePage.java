@@ -40,8 +40,10 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement todayNextJoiningDate = $x("//a[@id='calendarlink0']/preceding-sibling::a");
     @Name("Календарь")
     private SelenideElement calendar = $x("//div[@id='calendarbox0']");
-    @Name("Случайное числа для выборки календаря")
+    @Name("Случайное число для выборки календаря - Дата приема на работу")
     private SelenideElement randomDate = $x("//td[4]/a");
+    @Name("Случайное число для выборки календаря - День рождения")
+    private SelenideElement randomBirthdayDate = $x("//*[@id=\"calendarin1\"]//a");
     @Name("Сегодня в виджете 'Календарь'")
     private SelenideElement todayInCalendarWidget = $x("//div[@id='calendarin0']/following-sibling::div/a[text()='Сегодня']");
     @Name("День рождения")

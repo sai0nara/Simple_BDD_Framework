@@ -193,13 +193,13 @@ public class WebCheckSteps {
      * Проверяем, что Path соответсвует и нет расхождений
      */
     @И("проверить название загруженного изображения {string} на соответствие {string}")
-    public void checkNameOfUploadedImage(String elementName, String comparingXpathName) {
+    public void checkNameOfUploadedImage(String elementName, String comparingFileName) {
         String element = pageManager
                 .getCurrentPage()
                 .getElement(elementName)
                 .getAttribute("value");
         String result = element.substring(12);
-        Assert.assertEquals(result, comparingXpathName, "Имена изображений не совпадают.");
+        Assert.assertEquals(result, comparingFileName, "Имена изображений не совпадают.");
         LOGGER.info("элемент {} найден", result);
     }
 }
