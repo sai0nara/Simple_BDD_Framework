@@ -247,7 +247,7 @@ public class WebSteps {
      * @param elementName - название кнопки
      */
     @Step("клик по кнопке {elementName}")
-    private void clickOnButton(String elementName) {
+    public void clickOnButton(String elementName) {
         SelenideElement element = pageManager.getCurrentPage().getElement(elementName);
         element.click();
         LOGGER.info("клик по кнопке '{}'", elementName);
