@@ -9,10 +9,7 @@ import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import ru.lanit.at.web.pagecontext.PageManager;
-
-import java.util.Objects;
 
 public class WebCheckSteps {
 
@@ -131,36 +128,6 @@ public class WebCheckSteps {
         LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
-    /**
-     * проверка, что поле заполнено сегодняшней датой
-     * в данном случае метод создан для точечной проверки,
-     * что значение совпадает с сегодняшней датой при клике на кнопку сегодня
-     */
-    @Если("поле {string} заполнено текстом {string}")
-    public void checkFieldTextByDateToday(String elementName, String currentTodayDate) {
-        String element = pageManager
-                .getCurrentPage()
-                .getElement(elementName)
-                .getValue();
-        Assert.assertEquals(element, currentTodayDate, "Значения полей различны");
-        LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
-    }
-
-    /**
-     * проверка, что поле заполнено текстом и не является пустым
-     */
-    @Если("поле {string} заполнено текстом {string}")
-    public void checkFieldTextIsNotEmpty(String elementName) {
-        String element = pageManager
-                .getCurrentPage()
-                .getElement(elementName)
-                .shouldBe(Condition.visible)
-                .getValue();
-        if (Objects.equals(element, ""))
-            throw new AssertionError();
-        LOGGER.info("на странице '{}' в элементе '{}' - пустое значение", pageManager.getCurrentPage().name(), elementName);
-    }
-
     @Если("в выпадющем списке {string} выбран элемент со значением {string}")
     public void listCheckedElement(String elementName, String text) {
         SelenideElement element = pageManager
@@ -213,25 +180,5 @@ public class WebCheckSteps {
                 .getElement(elementName);
         Checks.elementIsOn(element);
         LOGGER.info("элемент {} активен", elementName);
-    }
-
-    /**
-     * Проверка, что фото загрузилось
-     * и мы видим его название "***.jpg"
-     * справа от кнопки "Выберите фото".
-     *
-     * В конце сравниваем значения в случае если
-     * было загружено 2 разных изображения последовательно.
-     * Проверяем, что FileName соответсвует и нет расхождений
-     */
-    @И("проверить название загруженного изображения {string} на соответствие {string}")
-    public void checkNameOfUploadedImage(String elementName, String comparingFileName) {
-        String element = pageManager
-                .getCurrentPage()
-                .getElement(elementName)
-                .getAttribute("value");
-        String result = element.substring(12);
-        Assert.assertEquals(result, comparingFileName, "Имена изображений не совпадают.");
-        LOGGER.info("элемент {} найден", result);
     }
 }
