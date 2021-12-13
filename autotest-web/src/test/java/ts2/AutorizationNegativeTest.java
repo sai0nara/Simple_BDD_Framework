@@ -65,7 +65,7 @@ public class AutorizationNegativeTest extends WebHooks {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
         webSteps.clickOnElement("войти");
-        webCheckSteps.elementAttributeValue("логин", "validationMessage", "Заполните это поле.", 0); // проверяем информационное сообщение
+        webCheckSteps.elementAttributeValue("логин", "validationMessage", "Заполните это поле.", 0);
     }
 
     @Test(dataProvider = "testDataAuthorizationNegativeWithoutFillingPassword")
@@ -75,7 +75,7 @@ public class AutorizationNegativeTest extends WebHooks {
         webSteps.setPage("DjangoAuthorization");
         webSteps.fillField("логин", login);
         webSteps.clickOnElement("войти");
-        webCheckSteps.elementAttributeValue("пароль", "validationMessage", "Заполните это поле.", 0); // проверяем информационное сообщение
+        webCheckSteps.elementAttributeValue("пароль", "validationMessage", "Заполните это поле.", 0);
     }
 
     @Test
