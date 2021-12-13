@@ -2,6 +2,7 @@ package ts5;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.*;
@@ -9,86 +10,90 @@ import steps.*;
 public class EmployeePageTest extends WebHooks {
 
     private PageManager pageManager = new PageManager();
-    private final AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
-    private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
-    private final EmployeeCheckSteps employeeCheckSteps = new EmployeeCheckSteps(pageManager);
-    private final EmployeeSteps employeeSteps = new EmployeeSteps(pageManager);
-    private final AuthorizationCheckSteps authorizationCheckSteps = new AuthorizationCheckSteps(pageManager);
+    private final WebSteps webSteps = new WebSteps(pageManager);
+    private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
-    @Test
+    @DataProvider
+    public Object[][] data() {
+        return new Object[][]{
+                {"hr", "Сотрудники"}
+        };
+    }
+
+    @Test(dataProvider = "data")
     @Description("5.6 страница Сотрудники, проверка работотоспособности кнопок пагинации. Роль Hr")
-    public void employeeHrPaginationTest() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
-        webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployee");
-        employeeCheckSteps.getElementText("ФИО", 1);
-        employeeSteps.clickOnElementWithText("Пагинация", "2");
-        employeeCheckSteps.checkCurrentNumber("Пагинация текущая страница", "2");
-        employeeCheckSteps.checkElementNoEquals(1, "ФИО");
+    public void employeeHrPaginationTest(String login, String employee) {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin(login);
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement(employee);
+        webSteps.setPage("DjangoEmployee");
+        webSteps.getElementText("ФИО", 1);
+        webSteps.clickOnElementWithText("Пагинация", "2");
+        webCheckSteps.checkCurrentNumber("Пагинация текущая страница", "2");
+        webCheckSteps.checkElementNoEquals(1, "ФИО");
     }
 
-    @Test
+    @Test(dataProvider = "data")
     @Description("5.7 страница Сотрудники, проверка работотоспособности восстановления удаленных сотрудников. Роль Hr")
-    public void employeeHrRestoreTest() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
-        webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
-        employeeCheckSteps.getElementText("ФИО", 1);
-        employeeSteps.clickOnElementWithText("Пагинация", "2");
-        employeeCheckSteps.checkCurrentNumber("Пагинация текущая страница", "2");
-        employeeCheckSteps.checkElementNoEquals(1, "ФИО");
+    public void employeeHrRestoreTest(String login, String employee) {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin(login);
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement(employee);
+        webSteps.setPage("DjangoEmployee");
+        webSteps.getElementText("ФИО", 1);
+        webSteps.clickOnElementWithText("Пагинация", "2");
+        webCheckSteps.checkCurrentNumber("Пагинация текущая страница", "2");
+        webCheckSteps.checkElementNoEquals(1, "ФИО");
     }
 
-    @Test
+    @Test(dataProvider = "data")
     @Description("5.9 страница Сотрудники, проверка работотоспособности экспорта списка сотрудников через кнопку интерфейса. Роль Hr")
-    public void employeeHrExportTest() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
-        webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
-        authorizationCheckSteps.checkAppearElement("Экспорт");
-        webActionSteps.clickOnButton("Экспорт");
-        authorizationSteps.setPage("DjangoExportEmployee");
-        employeeCheckSteps.matchText("Инфоблок", "Экспорт");
-        employeeCheckSteps.curFieldsContainsThatElement("Формат");
-        employeeCheckSteps.checkElementVisibleCollection("Чекбокс", "Договор");
-        employeeCheckSteps.curFieldsContainsThatElement("Отправить");
+    public void employeeHrExportTest(String login, String employee) {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin(login);
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement(employee);
+        webSteps.setPage("DjangoEmployeeChange");
+        webCheckSteps.checkAppearElement("Экспорт");
+        webSteps.clickOnElement("Экспорт");
+        webSteps.setPage("DjangoExportEmployee");
+        webCheckSteps.matchText("Инфоблок", "Экспорт");
+        webCheckSteps.checkAppearElement("Формат");
+        webCheckSteps.checkElementVisibleCollection("Чекбокс", "Договор");
+        webCheckSteps.checkAppearElement("Отправить");
     }
 
-    @Test
+    @Test(dataProvider = "data")
     @Description("5.10 страница Сотрудники, проверка работотоспособности кнопки добавления нового сотрудника. Роль Hr")
-    public void employeeHrAddNewEmployeeTest() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
-        webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
-        authorizationCheckSteps.checkAppearElement("Добавить сотрудник");
-        webActionSteps.clickOnButton("Добавить сотрудник");
-        authorizationSteps.setPage("DjangoExportEmployee");
-        employeeCheckSteps.matchText("Инфоблок", "Добавить Сотрудник");
+    public void employeeHrAddNewEmployeeTest(String login, String employee) {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin(login);
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement(employee);
+        webSteps.setPage("DjangoEmployeeChange");
+        webCheckSteps.checkAppearElement("Добавить сотрудник");
+        webSteps.clickOnElement("Добавить сотрудник");
+        webSteps.setPage("DjangoExportEmployee");
+        webCheckSteps.matchText("Инфоблок", "Добавить Сотрудник");
     }
 
-    @Test
+    @Test(dataProvider = "data")
     @Description("5.11 страница Сотрудники, проверка работотоспособности фильтров. Роль Hr")
-    public void employeeHrFiltersTest() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
-        webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployeeChange");
-        employeeSteps.clickOnElementWithText("Категории фильтров", "Офис");
-        employeeSteps.clickOnElementWithText("Фильтр", "Пенза");
-        employeeCheckSteps.checkCurrentNumberCity("Текущий город", "Пенза");
+    public void employeeHrFiltersTest(String login, String employee) {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin(login);
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement(employee);
+        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.clickOnElementWithText("Категории фильтров", "Офис");
+        webSteps.clickOnElementWithText("Фильтр", "Пенза");
+        webCheckSteps.checkCurrentNumberCity("Текущий город", "Пенза");
     }
 }
