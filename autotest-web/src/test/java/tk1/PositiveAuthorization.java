@@ -1,4 +1,7 @@
+package tk1;
+
 import hooks.WebHooks;
+import io.qameta.allure.Description;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -20,6 +23,7 @@ public class PositiveAuthorization extends WebHooks {
     }
 
     @Test(dataProvider = "users")
+    @Description(value = "1.1-1.4 Авторизация под ролями just_employee, admin, hr, project1_admin")
     public static void checkAuthorization(String pageOne, String user, String message,
                                       String pageTwo, String buttonOne, String buttonTwo) {
         WebSteps webSteps = new WebSteps(pageManager);
@@ -36,6 +40,7 @@ public class PositiveAuthorization extends WebHooks {
     }
 
     @Test
+    @Description(value = "1.5 Авторизация под ролью public")
     public static void publicAuthor() {
         WebSteps webSteps = new WebSteps(pageManager);
         WebCheckSteps webCheck = new WebCheckSteps(pageManager);
