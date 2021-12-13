@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import ru.lanit.at.web.pagecontext.PageManager;
 
+import java.util.Objects;
+
 public class WebCheckSteps {
 
     private PageManager pageManager;
@@ -127,6 +129,36 @@ public class WebCheckSteps {
                 .getElement(elementName);
         Checks.elementValueEqualsExpectedText(element, text, 0);
         LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    /**
+     * проверка, что поле заполнено сегодняшней датой
+     * в данном случае метод создан для точечной проверки,
+     * что значение совпадает с сегодняшней датой при клике на кнопку сегодня
+     */
+    @Если("поле {string} заполнено текстом {string}")
+    public void checkFieldTextByDateToday(String elementName, String currentTodayDate) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getValue();
+        Assert.assertEquals(element, currentTodayDate, "Значения полей различны");
+        LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    /**
+     * проверка, что поле заполнено текстом и не является пустым
+     */
+    @Если("поле {string} заполнено текстом {string}")
+    public void checkFieldTextIsNotEmpty(String elementName) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .shouldBe(Condition.visible)
+                .getValue();
+        if (Objects.equals(element, ""))
+            throw new AssertionError();
+        LOGGER.info("на странице '{}' в элементе '{}' - пустое значение", pageManager.getCurrentPage().name(), elementName);
     }
 
     @Если("в выпадющем списке {string} выбран элемент со значением {string}")
