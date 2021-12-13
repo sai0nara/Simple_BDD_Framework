@@ -17,7 +17,7 @@ import ru.lanit.at.web.properties.WebConfigurations;
 import java.util.concurrent.TimeUnit;
 
 public class WebHooks {
-
+    @Before
     @BeforeMethod
     public void setup() {
         WebConfigurations cfg = ConfigFactory.create(WebConfigurations.class,
@@ -57,6 +57,7 @@ public class WebHooks {
         Environment.initPages(cfg.pagesPackage());
     }
 
+    @After
     @AfterMethod
     public void close() {
         WebDriverRunner.closeWebDriver();
