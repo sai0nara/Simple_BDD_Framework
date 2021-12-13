@@ -154,8 +154,8 @@ public class WebCheckSteps {
     /**
      * проверка того, что поле заполнено текстом
      *
-     * @param elementName   название поля
-     * @param text текст
+     * @param elementName название поля
+     * @param text        текст
      */
     @Step("проверка того, что поле {elementName} заполнено текстом {text}")
     @Если("поле {string} заполнено текстом {string}")
@@ -170,7 +170,7 @@ public class WebCheckSteps {
     /**
      * проверка того, что поле отображается и не заполнено
      *
-     * @param elementName   название поля
+     * @param elementName название поля
      */
     @Step("проверка, что поле {elementName} отображается и не заполнено")
     @Если("поле {string} отображается и пусто")
@@ -185,8 +185,8 @@ public class WebCheckSteps {
     /**
      * проверка того, что в выпадающем списке выбран элемент со значением
      *
-     * @param elementName   название выпадающего списка
-     * @param text значение
+     * @param elementName название выпадающего списка
+     * @param text        значение
      */
     @Step("проверка того, что в выпадющем списке {elementName} выбран элемент со значением {text}")
     @Если("в выпадющем списке {string} выбран элемент со значением {string}")
@@ -201,8 +201,8 @@ public class WebCheckSteps {
     /**
      * проверка, что элемент не активен из-за отсутствия параметра
      *
-     * @param elementName   название элемента
-     * @param text параметр
+     * @param elementName название элемента
+     * @param text        параметр
      */
     @Step("проверка того, что элемент {elementName} не активен из-за отсутствия параметра {text}")
     @Когда("элемент {string} не активен из-за отсутствия параметра {string}")
@@ -216,8 +216,8 @@ public class WebCheckSteps {
 
     /**
      * проверка, что элемент активен
-     * @param elementName   название элемента
      *
+     * @param elementName название элемента
      */
     @Step("проверка того, что элемент {elementName} активен")
     @Когда("элемент {string} активен")
@@ -231,9 +231,9 @@ public class WebCheckSteps {
 
     /**
      * проверка скачивания файла с раширением после нажатия на кнопку
-     * @param elementName   название кнопки
-     * @param fileType   расширение
      *
+     * @param elementName название кнопки
+     * @param fileType    расширение
      */
     @Step("на текущей странице нажимается кнопка с текстом {elementName}, проверка скачивания файла с раширением {fileType}")
     @Затем("на текущей странице нажать на кнопку с текстом {string}, проверить, что скачивается файл с раширением {string}")
@@ -253,8 +253,8 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что в выпадающем списке не выбрано поле
-     * @param elementName   название поля
      *
+     * @param elementName название поля
      */
     @Step("проверка того, что в выпадающем списке поле {elementName} не выбрано")
     @Если("в выпадающем списке поле {string} не выбрано")
@@ -268,9 +268,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что запись в блоке изменилась
-     * @param index   номер записи
-     * @param elementName   название блока
      *
+     * @param index       номер записи
+     * @param elementName название блока
      */
     @Step("проверка того, что {index} запись в блоке {elementName} изменилась")
     @Тогда("{int} запись в блоке {string} изменилась")
@@ -286,9 +286,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что при нажатии на кнопку в блоке 'Таюлица' в столбце некий элемент не изменился
-     * @param index   номер записи
-     * @param elementName   название блока
      *
+     * @param index       номер записи
+     * @param elementName название блока
      */
     @Step("проверка того, что нажатие на кнопку {buttonName} в блоке 'Таблица' в столбце {elementName}, {index} элемент не изменился")
     @Если("при нажатии на кнопку {string} в блоке 'Таблица' в столбце {string}, {int} элемент не изменился")
@@ -308,9 +308,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что все элементы таблицы содержат текст
-     * @param element   название таблицы
-     * @param text   текст
      *
+     * @param element название таблицы
+     * @param text    текст
      */
     @Step("проверка того, что в таблице все элементы {element} содержат текст {text}")
     @Если("в таблице все элементы {string} содержат текст {string}")
@@ -326,9 +326,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что в блоке содержится некоторое количество записей
-     * @param elementName   название блока
-     * @param number   количество записей
      *
+     * @param elementName название блока
+     * @param number      количество записей
      */
     @Step("проверка того, что в блоке {elementName} количество записей равно {number}")
     @Если("в блоке {string} количество записей равно {int}")
@@ -342,9 +342,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что в блоке 'Таблица' в столбце все записи содержат город
-     * @param elementName   название столбца
-     * @param city  название города
      *
+     * @param elementName название столбца
+     * @param city        название города
      */
     @Step("проверка того, что в блоке 'Таблица' в столбце {elementName} все записи = {city}")
     @Если("в блоке 'Таблица' в столбце {string} все записи = {string}")
@@ -365,9 +365,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что в элементе активен номер
-     * @param elementName   название элемента
-     * @param number  номер
      *
+     * @param elementName название элемента
+     * @param number      номер
      */
     @Step("в {elementName} активный номер {number}")
     @Если("в {string} активный номер {string}")
@@ -381,9 +381,9 @@ public class WebCheckSteps {
 
     /**
      * проверка того, что на странице присутствует элемент с заданым текстом
-     * @param elementName   название элемента
-     * @param text  текст
      *
+     * @param elementName название элемента
+     * @param text        текст
      */
     @Step("проверка того, что на странице присутствует элемент {elementName} с текстом {text}")
     @Если("на текущей странице {string} с текстом {string} присутствует")
