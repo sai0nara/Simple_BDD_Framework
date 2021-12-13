@@ -38,14 +38,14 @@ public class ExampleTest extends WebHooks {
     @DataProvider
     public Object[][] testDataAuthorizationNegativeAdministratorInvalidToken() {
         return new Object[][]{
-                {"admin","asdf","111111"},
-                {"project1_admin","hrmhrm1234","222222"},
-                {"hr","hrmhrm12345","111111"},
-                {"public","hrmhrm123456","222222"},
-                {"admin","asdf","222222"},
-                {"project1_admin","hrmhrm1234","111111"},
-                {"hr","hrmhrm12345","222222"},
-                {"public","hrmhrm123456","111111"},
+                {"admin", "asdf", "111111"},
+                {"project1_admin", "hrmhrm1234", "222222"},
+                {"hr", "hrmhrm12345", "111111"},
+                {"public", "hrmhrm123456", "222222"},
+                {"admin", "asdf", "222222"},
+                {"project1_admin", "hrmhrm1234", "111111"},
+                {"hr", "hrmhrm12345", "222222"},
+                {"public", "hrmhrm123456", "111111"},
         };
     }
 
@@ -61,59 +61,59 @@ public class ExampleTest extends WebHooks {
 
     @Test
     @Description(value = "2.1 Авторизация без заполнения полей")
-    public void authorizationNegativeWithoutFilling(){
+    public void authorizationNegativeWithoutFilling() {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization"); // инициализируем страницу
         webSteps.clickOnElement("войти"); // нажимаем на кнопку войти
-        webCheckSteps.elementAttributeValue("логин","validationMessage","Заполните это поле.",0); // проверяем информационное сообщение
+        webCheckSteps.elementAttributeValue("логин", "validationMessage", "Заполните это поле.", 0); // проверяем информационное сообщение
     }
 
-    @Test(dataProvider = "testDataAuthorizationNegativeWithoutFillingPassword" )
+    @Test(dataProvider = "testDataAuthorizationNegativeWithoutFillingPassword")
     @Description(value = "2.2 Авторизация без заполнения поля \"Пароль\"")
-    public void authorizationNegativeWithoutFillingPassword(String login){
+    public void authorizationNegativeWithoutFillingPassword(String login) {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization");  // инициализируем страницу
-        webSteps.fillField("логин",login); // заполняем поле логин
+        webSteps.fillField("логин", login); // заполняем поле логин
         webSteps.clickOnElement("войти"); // нажимаем на кнопку войти
-        webCheckSteps.elementAttributeValue("пароль","validationMessage","Заполните это поле.",0); // проверяем информационное сообщение
+        webCheckSteps.elementAttributeValue("пароль", "validationMessage", "Заполните это поле.", 0); // проверяем информационное сообщение
     }
 
     @Test
     @Description(value = "2.3 Авторизация под ролью \"just_employee\" с невалидным заполнением поля \"Имя пользователя\"")
-    public void authorizationNegativeInvalidJustEmployee(){
+    public void authorizationNegativeInvalidJustEmployee() {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization"); // инициализируем страницу
         webCheckSteps.checkNoSelectedCheckbox("Я желаю войти с админскими правами"); // кликаем на чекбокс
-        webSteps.fillField("логин","qweфыв!"); // заполняем поле логин
-        webSteps.fillField("пароль","hrmhrm123"); // заполняем поле пароль
+        webSteps.fillField("логин", "qweфыв!"); // заполняем поле логин
+        webSteps.fillField("пароль", "hrmhrm123"); // заполняем поле пароль
         webSteps.clickOnElement("войти");  // нажимаем на кнопку войти
         webCheckSteps.textAppearOnThePage("Active Directory недоступен. Обратитесь к администратору"); // проверяем информационное сообщение
     }
 
     @Test
     @Description(value = "2.4 Авторизация под администрирующими ролями с невалидным заполнением поля \"Имя пользователя\"")
-    public void authorizationNegativeAdministratorInvalidLogin(){
+    public void authorizationNegativeAdministratorInvalidLogin() {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization"); // инициализируем страницу
         webSteps.clickOnElement("Я желаю войти с админскими правами"); // кликаем на чекбокс
         webCheckSteps.checkSelectedCheckbox("Я желаю войти с админскими правами"); // проверяем чекбокс
         webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые"); // проверяем чекбокс
-        webSteps.fillField("логин","qweфыв!"); // заполняем поле логин
-        webSteps.fillField("пароль","hrmhrm123");  // заполняем поле пароль
-        webSteps.fillField("токен","111111");  // заполняем поле токен
+        webSteps.fillField("логин", "qweфыв!"); // заполняем поле логин
+        webSteps.fillField("пароль", "hrmhrm123");  // заполняем поле пароль
+        webSteps.fillField("токен", "111111");  // заполняем поле токен
         webSteps.clickOnElement("войти"); // нажимаем на кнопку войти
         webCheckSteps.textAppearOnThePage("Active Directory недоступен. Обратитесь к администратору"); // проверяем информационное сообщение
     }
 
     @Test
     @Description(value = "2.5 Авторизация под администрирующими ролями впервые с невалидным заполнением поля \"Имя пользователя\"")
-    public void authorizationNegativeAdministratorInvalidAdministratorFirst(){
+    public void authorizationNegativeAdministratorInvalidAdministratorFirst() {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization"); // инициализируем страницу
         webSteps.clickOnElement("Я желаю войти с админскими правами"); // кликаем на чекбокс
         webSteps.clickOnElement("Я здесь впервые"); // кликаем на чекбокс
-        webSteps.fillField("логин","qweфыв!"); // заполняем поле логин
-        webSteps.fillField("пароль","hrmhrm123");  // заполняем поле пароль
+        webSteps.fillField("логин", "qweфыв!"); // заполняем поле логин
+        webSteps.fillField("пароль", "hrmhrm123");  // заполняем поле пароль
         webSteps.clickOnElement("выслать инструкцию на почту"); // кликаем на элемент "выслать инструкцию на почту"
         webSteps.clickOnElement("войти"); // нажимаем на кнопку войти
         webCheckSteps.textAppearOnThePage("Active Directory недоступен. Обратитесь к администратору"); // проверяем информационное сообщение
@@ -121,13 +121,13 @@ public class ExampleTest extends WebHooks {
 
     @Test
     @Description(value = "2.6 Авторизация под администрирующими ролями впервые с невалидным заполнением поля \"Пароль\"")
-    public void authorizationNegativeAdministratorInvalidPasswordFirst(){
+    public void authorizationNegativeAdministratorInvalidPasswordFirst() {
         webSteps.openUrl(); // открываем сайт
         webSteps.setPage("DjangoAuthorization"); // инициализируем страницу
         webSteps.clickOnElement("Я желаю войти с админскими правами"); // кликаем на чекбокс
         webSteps.clickOnElement("Я здесь впервые"); // кликаем на чекбокс
-        webSteps.fillField("логин","qweфыв!"); // заполняем поле логин
-        webSteps.fillField("пароль","hrmhrm123");  // заполняем поле пароль
+        webSteps.fillField("логин", "qweфыв!"); // заполняем поле логин
+        webSteps.fillField("пароль", "hrmhrm123");  // заполняем поле пароль
         webSteps.clickOnElement("выслать инструкцию на почту"); // кликаем на элемент "выслать инструкцию на почту"
         webSteps.clickOnElement("войти"); // нажимаем на кнопку войти
         webCheckSteps.textAppearOnThePage("Active Directory недоступен. Обратитесь к администратору"); // проверяем информационное сообщение
@@ -135,12 +135,12 @@ public class ExampleTest extends WebHooks {
 
     @Test
     @Description(value = "2.7 Авторизация под ролью \"just_employee\" с невалидным заполнением поля \"Пароль\"")
-    public void authorizationNegativeJustEmployeeInvalidPassword(){
+    public void authorizationNegativeJustEmployeeInvalidPassword() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
         webCheckSteps.checkNoSelectedCheckbox("Я желаю войти с админскими правами");
-        webSteps.fillField("логин","just_employee");
-        webSteps.fillField("пароль","qweasdzxc");
+        webSteps.fillField("логин", "just_employee");
+        webSteps.fillField("пароль", "qweasdzxc");
         webSteps.clickOnElement("войти");
         webCheckSteps.textAppearOnThePage("Данные неверные. Попробуйте ещё раз.");
     }
@@ -152,8 +152,8 @@ public class ExampleTest extends WebHooks {
         webSteps.setPage("DjangoAuthorization");
         webSteps.clickOnElement("Я желаю войти с админскими правами");
         webSteps.clickOnElement("Я здесь впервые");
-        webSteps.fillField("логин","just_employee");
-        webSteps.fillField("пароль","hrmhrm123");
+        webSteps.fillField("логин", "just_employee");
+        webSteps.fillField("пароль", "hrmhrm123");
         webSteps.clickOnElement("выслать инструкцию на почту");
         webSteps.clickOnElement("войти");
         webCheckSteps.textAppearOnThePage("У этого пользователя нет админских прав.");
@@ -167,10 +167,10 @@ public class ExampleTest extends WebHooks {
         webSteps.clickOnElement("Я желаю войти с админскими правами");
         webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
         webCheckSteps.checkAppearElement("токен");
-        webSteps.fillField("логин","just_employee");
-        webSteps.fillField("пароль","hrmhrm123");
+        webSteps.fillField("логин", "just_employee");
+        webSteps.fillField("пароль", "hrmhrm123");
         webSteps.clickOnElement("войти");
-        webCheckSteps.elementAttributeValue("токен","validationMessage","Заполните это поле.",0);
+        webCheckSteps.elementAttributeValue("токен", "validationMessage", "Заполните это поле.", 0);
     }
 
     @Test
@@ -183,7 +183,7 @@ public class ExampleTest extends WebHooks {
         webCheckSteps.checkAppearElement("токен");
         webSteps.fillField("логин", "just_employee");
         webSteps.fillField("пароль", "hrmhrm123");
-        webSteps.fillField("токен","111111");
+        webSteps.fillField("токен", "111111");
         webSteps.clickOnElement("войти");
         webCheckSteps.textAppearOnThePage("У этого пользователя нет админских прав.");
     }
@@ -195,38 +195,38 @@ public class ExampleTest extends WebHooks {
         webSteps.setPage("DjangoAuthorization");
         webSteps.clickOnElement("Я желаю войти с админскими правами");
         webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин",login);
+        webSteps.fillField("логин", login);
         webSteps.fillField("пароль", "qweasdzxc");
-        webSteps.fillField("токен","111111");
+        webSteps.fillField("токен", "111111");
         webSteps.clickOnElement("войти");
         webCheckSteps.textAppearOnThePage("Данные неверные. Попробуйте ещё раз.");
     }
 
     @Test(dataProvider = "testDataAuthorizationNegativeAdministratorInvalidToken")
     @Description(value = "2.12 Авторизация под администрирующими ролями с невалидным заполнением поля \"OTP Token (from Google Authenticator)\"")
-    public void authorizationNegativeAdministratorInvalidToken(String login, String password, String token){
+    public void authorizationNegativeAdministratorInvalidToken(String login, String password, String token) {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
         webSteps.clickOnElement("Я желаю войти с админскими правами");
         webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин",login);
+        webSteps.fillField("логин", login);
         webSteps.fillField("пароль", password);
-        webSteps.fillField("токен",token);
+        webSteps.fillField("токен", token);
         webSteps.clickOnElement("войти");
         webCheckSteps.textAppearOnThePage("Данные неверные. Попробуйте ещё раз.");
     }
 
     @Test(dataProvider = "testDataAuthorizationNegativeAdministratorWithoutFillingToken")
     @Description(value = "2.13 под администрирующими ролями без заполнения поля \"OTP Token (from Google Authenticator)\"")
-    public void authorizationNegativeAdministratorWithoutFillingToken(String login, String password){
+    public void authorizationNegativeAdministratorWithoutFillingToken(String login, String password) {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
         webSteps.clickOnElement("Я желаю войти с админскими правами");
         webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин",login);
+        webSteps.fillField("логин", login);
         webSteps.fillField("пароль", password);
         webCheckSteps.checkAppearElement("токен");
         webSteps.clickOnElement("войти");
-        webCheckSteps.elementAttributeValue("токен","validationMessage","Заполните это поле.",0);
+        webCheckSteps.elementAttributeValue("токен", "validationMessage", "Заполните это поле.", 0);
     }
 }
