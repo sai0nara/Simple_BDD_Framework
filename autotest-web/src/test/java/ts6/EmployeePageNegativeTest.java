@@ -16,26 +16,23 @@ public class EmployeePageNegativeTest extends WebHooks {
     @DataProvider
     public Object[][] dataActionField() {
         return new Object[][]{
-                {"hr", "Сотрудники", "Действие", "Выполнить", "Предупреждение в заголовке", "Чтобы произвести действия над объектами, необходимо их выбрать. Объекты не были изменены."},
-                {"hr", "Сотрудники", "Таблица чек-бокс", "Выполнить", "Предупреждение в заголовке", "Действие не выбрано."}
+                {"Действие", "Выполнить", "Предупреждение в заголовке", "Чтобы произвести действия над объектами, необходимо их выбрать. Объекты не были изменены."},
+                {"Таблица чек-бокс", "Выполнить", "Предупреждение в заголовке", "Действие не выбрано."}
         };
     }
 
-    @DataProvider
-    public Object[][] data() {
-        return new Object[][]{
-                {"hr", "Сотрудники"}
-        };
-    }
-
-    @Test(dataProvider = "data")
-    @Description("6.1 страница Сотрудники, проверить, ввод в поле 'Поиск' значения ‘<qweфыв!>’. Роль Hr")
-    public void employeeHrSearchTest(String login, String employee) {
+    private void initialize() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
+        webSteps.authWithLogin("hr");
         webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+        webSteps.clickOnElement("Сотрудники");
+    }
+
+    @Test
+    @Description("6.1 страница Сотрудники, проверить, ввод в поле 'Поиск' значения ‘<qweфыв!>’. Роль Hr")
+    public void employeeHrSearchTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Поиск");
         webSteps.fillField("Поиск", "qweфыв!");
@@ -43,27 +40,19 @@ public class EmployeePageNegativeTest extends WebHooks {
         webCheckSteps.matchRecordsNumber("ФИО", 0);
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("6.2 страница Сотрудники, проверка поведения системы при нажатии на кнопку 'Поиск' с незаполненным в полем поиска. Роль Hr")
-    public void employeeHrEmptySearchTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrEmptySearchTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.getElementText("ФИО", 1);
         webCheckSteps.checkElementEquals("Выполнить", "ФИО", 1);
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("6.3 страница Сотрудники, проверка поведения системы при нажатии на 'Выполнить' без выбора сотрудников и незаполненном поле 'Действие'. Роль Hr")
-    public void employeeHrEmptyActionEmptyFieldTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrEmptyActionEmptyFieldTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Выполнить");
         webSteps.clickOnElement("Выполнить");
@@ -72,12 +61,8 @@ public class EmployeePageNegativeTest extends WebHooks {
 
     @Test(dataProvider = "dataActionField")
     @Description("6.4-6.5 страница Сотрудники, проверка поведения системы при нажатии на кнопку 'Выполнить' без выбора сотрудников и заполненном поле 'Действие' и при нажатии на кнопку 'Выполнить' при выбранных сотрудниках и не заполненном поле 'Действие'. Роль Hr")
-    public void employeeHrEmptyActionFieldTest(String login, String employee, String element, String action, String fieldName, String text) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrEmptyActionFieldTest(String element, String action, String fieldName, String text) {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.clickRandom(element);
         webCheckSteps.checkAppearElement(action);
@@ -85,14 +70,10 @@ public class EmployeePageNegativeTest extends WebHooks {
         webCheckSteps.matchText(fieldName, text);
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("6.6 страница Сотрудники, проверка поведения системы при экспорте списка сотрудников через опцию выпадающего списка при не выбранном формате экспортируемого файла. Роль Hr")
-    public void employeeHrEmptyActionFieldExportTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrEmptyActionFieldExportTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.clickRandom("Таблица чек-бокс");
         webSteps.selectElementWithText("Действие меню", "Экспортировать выбранные Сотрудники");

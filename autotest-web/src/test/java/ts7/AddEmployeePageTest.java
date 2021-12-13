@@ -2,7 +2,6 @@ package ts7;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.*;
@@ -13,23 +12,20 @@ public class AddEmployeePageTest extends WebHooks {
     private final WebSteps webSteps = new WebSteps(pageManager);
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
-    @DataProvider
-    public Object[][] data() {
-        return new Object[][]{
-                {"hr", "Сотрудники", "Добавить сотрудник"}
-        };
-    }
-
-    @Test(dataProvider = "data")
-    @Description("7.31 страница Сотрудники, проверка блока 'Фактические отпуска'. Роль Hr")
-    public void employeeHrSearchTest(String login, String employee, String addEmployee) {
+    private void initialize() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
+        webSteps.authWithLogin("hr");
         webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+        webSteps.clickOnElement("Сотрудники");
         webSteps.setPage("DjangoEmployee");
-        webSteps.clickOnElement(addEmployee);
+        webSteps.clickOnElement("Добавить сотрудник");
+    }
+
+    @Test
+    @Description("7.31 страница Сотрудники, проверка блока 'Фактические отпуска'. Роль Hr")
+    public void employeeHrSearchTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElement("Фактические отпуска");
         webCheckSteps.checkFieldWithoutText("Заметка поле");
@@ -37,16 +33,10 @@ public class AddEmployeePageTest extends WebHooks {
         webCheckSteps.checkElementNotVisible("Заметка");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("7.32 страница Сотрудники, проверка блока 'Больничные'. Роль Hr")
-    public void employeeHrSickLeaveTest(String login, String employee, String addEmployee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
-        webSteps.clickOnElement(addEmployee);
+    public void employeeHrSickLeaveTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElement("Больничные");
         webSteps.clickOnElement("Добавить больничный");
@@ -55,16 +45,10 @@ public class AddEmployeePageTest extends WebHooks {
         webCheckSteps.checkElementNotVisible("Номер больничного листа");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("7.33 страница Сотрудники, проверка блока 'Бюллетени без больничного листа'. Роль Hr")
-    public void employeeHrBulletinWithoutLeaveTest(String login, String employee, String addEmployee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
-        webSteps.clickOnElement(addEmployee);
+    public void employeeHrBulletinWithoutLeaveTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElement("Бюллетени без больничного листа");
         webSteps.clickOnElement("Добавить бюллетень");
@@ -73,16 +57,10 @@ public class AddEmployeePageTest extends WebHooks {
         webCheckSteps.checkElementNotVisible("Дата бюллетеня");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("7.34 страница Сотрудники, проверка блока 'Семья'. Роль Hr")
-    public void employeeHrFamilyTest(String login, String employee, String addEmployee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
-        webSteps.clickOnElement(addEmployee);
+    public void employeeHrFamilyTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElement("Семья");
         webSteps.clickOnElement("Добавить семья");

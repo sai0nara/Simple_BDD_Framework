@@ -17,28 +17,25 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
     @DataProvider
     public Object[][] dataErrorMessage() {
         return new Object[][]{
-                {"hr", "Сотрудники", "Дата приема на работу", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите правильную дату.", "Сообщение об ошибке Дата приема на работу"},
-                {"hr", "Сотрудники", "Телефон", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите корректный номер телефона (пример: +79123456789).", "Сообщение об ошибке Телефон"},
-                {"hr", "Сотрудники", "Email", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите корректный адрес электронной почты.", "Сообщение об ошибке Email"}
+                {"Дата приема на работу", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите правильную дату.", "Сообщение об ошибке Дата приема на работу"},
+                {"Телефон", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите корректный номер телефона (пример: +79123456789).", "Сообщение об ошибке Телефон"},
+                {"Email", "123qweфыв!", "Сохранить и продолжить редактирование", "Сообщение об ошибке в заголовке", "Пожалуйста, исправьте ошибку ниже.", "Введите корректный адрес электронной почты.", "Сообщение об ошибке Email"}
         };
     }
 
-    @DataProvider
-    public Object[][] data() {
-        return new Object[][]{
-                {"hr", "Сотрудники"}
-        };
-    }
-
-    @Test(dataProvider = "data")
-    @Description("10.1 страница Сотрудники, проверить, как отрабатывает система при не заполнении ключевых полей. Роль Hr")
-    public void employeeHrEmptyFieldSaveTest(String login, String employee) {
+    private void initialize() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
+        webSteps.authWithLogin("hr");
         webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+        webSteps.clickOnElement("Сотрудники");
         webSteps.setPage("DjangoEmployee");
+    }
+
+    @Test
+    @Description("10.1 страница Сотрудники, проверить, как отрабатывает система при не заполнении ключевых полей. Роль Hr")
+    public void employeeHrEmptyFieldSaveTest() {
+        initialize();
         webSteps.clickRandom("ФИО");
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clearFieldsEmployee("Фамилия", "Имя", "Отчество", "Пол", "Дата приема на работу", "День рождения", "Телефон", "Гражданство", "Email");
@@ -49,15 +46,10 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
         webCheckSteps.matchText("Сообщение об ошибке Пол", "Это поле обязательно.");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("10.2 страница Сотрудники, проверка поведения системы при загрузке файла не изображения. Роль Hr")
-    public void employeeHrNoPictureFileTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
+    public void employeeHrNoPictureFileTest() {
+        initialize();
         webSteps.clickRandom("ФИО");
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.uploadFiles("Выберите фото", "test.txt");
@@ -68,13 +60,8 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
 
     @Test(dataProvider = "dataErrorMessage")
     @Description("10.3-10.5 страница Сотрудники, проверка поведения системы при загрузке файла не изображения. Роль Hr")
-    public void employeeHrNoValidFielsdDatePhoneEmailTest(String login, String employee, String field, String text, String save, String message, String infoblock, String error, String messageBox) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
+    public void employeeHrNoValidFielsdDatePhoneEmailTest(String field, String text, String save, String message, String infoblock, String error, String messageBox) {
+        initialize();
         webSteps.clickRandom("ФИО");
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.fillField(field, text);
@@ -83,15 +70,10 @@ public class EmployeePageKeyFieldsNegativeTest extends WebHooks {
         webCheckSteps.matchText(messageBox, error);
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("10.6 страница Сотрудники, проверка блока 'Фактические отпуска'. Роль Hr")
-    public void employeeHrSearchTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
-        webSteps.setPage("DjangoEmployee");
+    public void employeeHrSearchTest() {
+        initialize();
         webSteps.clickOnElement("Добавить сотрудник");
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElement("Фактические отпуска");

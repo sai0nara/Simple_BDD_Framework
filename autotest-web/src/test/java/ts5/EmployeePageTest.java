@@ -2,7 +2,6 @@ package ts5;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.*;
@@ -13,21 +12,18 @@ public class EmployeePageTest extends WebHooks {
     private final WebSteps webSteps = new WebSteps(pageManager);
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
-    @DataProvider
-    public Object[][] data() {
-        return new Object[][]{
-                {"hr", "Сотрудники"}
-        };
+    private void initialize() {
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin("hr");
+        webSteps.setPage("DjangoAdministration");
+        webSteps.clickOnElement("Сотрудники");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("5.6 страница Сотрудники, проверка работотоспособности кнопок пагинации. Роль Hr")
-    public void employeeHrPaginationTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrPaginationTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.getElementText("ФИО", 1);
         webSteps.clickOnElementWithText("Пагинация", "2");
@@ -35,14 +31,10 @@ public class EmployeePageTest extends WebHooks {
         webCheckSteps.checkElementNoEquals(1, "ФИО");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("5.7 страница Сотрудники, проверка работотоспособности восстановления удаленных сотрудников. Роль Hr")
-    public void employeeHrRestoreTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrRestoreTest() {
+        initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.getElementText("ФИО", 1);
         webSteps.clickOnElementWithText("Пагинация", "2");
@@ -50,14 +42,10 @@ public class EmployeePageTest extends WebHooks {
         webCheckSteps.checkElementNoEquals(1, "ФИО");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("5.9 страница Сотрудники, проверка работотоспособности экспорта списка сотрудников через кнопку интерфейса. Роль Hr")
-    public void employeeHrExportTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrExportTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webCheckSteps.checkAppearElement("Экспорт");
         webSteps.clickOnElement("Экспорт");
@@ -68,14 +56,10 @@ public class EmployeePageTest extends WebHooks {
         webCheckSteps.checkAppearElement("Отправить");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("5.10 страница Сотрудники, проверка работотоспособности кнопки добавления нового сотрудника. Роль Hr")
-    public void employeeHrAddNewEmployeeTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrAddNewEmployeeTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webCheckSteps.checkAppearElement("Добавить сотрудник");
         webSteps.clickOnElement("Добавить сотрудник");
@@ -83,14 +67,10 @@ public class EmployeePageTest extends WebHooks {
         webCheckSteps.matchText("Инфоблок", "Добавить Сотрудник");
     }
 
-    @Test(dataProvider = "data")
+    @Test
     @Description("5.11 страница Сотрудники, проверка работотоспособности фильтров. Роль Hr")
-    public void employeeHrFiltersTest(String login, String employee) {
-        webSteps.openUrl();
-        webSteps.setPage("DjangoAuthorization");
-        webSteps.authWithLogin(login);
-        webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement(employee);
+    public void employeeHrFiltersTest() {
+        initialize();
         webSteps.setPage("DjangoEmployeeChange");
         webSteps.clickOnElementWithText("Категории фильтров", "Офис");
         webSteps.clickOnElementWithText("Фильтр", "Пенза");
