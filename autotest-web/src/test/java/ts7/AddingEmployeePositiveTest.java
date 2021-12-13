@@ -9,21 +9,20 @@ import steps.*;
 public class AddingEmployeePositiveTest extends WebHooks {
     private final PageManager pageManager = new PageManager();
 
-    private final AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
-    private final AuthorizationCheckSteps authorizationCheckSteps = new AuthorizationCheckSteps(pageManager);
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
     private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
     private final EmployeeCheckSteps employeeCheckSteps = new EmployeeCheckSteps(pageManager);
+    private final WebSteps webSteps = new WebSteps(pageManager);
 
     private void initialize() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("hr");
-        authorizationSteps.setPage("DjangoAdministration");
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin("hr");
+        webSteps.setPage("DjangoAdministration");
         webActionSteps.clickOnButton("Сотрудники");
-        authorizationSteps.setPage("DjangoEmployee");
+        webSteps.setPage("DjangoEmployee");
         webActionSteps.clickOnButton("Добавить сотрудник");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployeeChange");
     }
 
     @Test(priority = 1)
@@ -36,7 +35,7 @@ public class AddingEmployeePositiveTest extends WebHooks {
         webActionSteps.fillTheField("Отчество", "Иванович");
         webActionSteps.listSelectElement("Пол", "Male");
         webActionSteps.clickOnButton("Сохранить");
-        authorizationSteps.setPage("DjangoEmployee");
+        webSteps.setPage("DjangoEmployee");
         employeeCheckSteps.matchText("Сообщение об успешном редактирование", "The Сотрудник “Иванов Иван” was added successfully.");
     }
 
@@ -111,7 +110,7 @@ public class AddingEmployeePositiveTest extends WebHooks {
         initialize();
 
         webActionSteps.clearField("День рождения");
-        authorizationCheckSteps.matchText("День рождения", "");
+        employeeCheckSteps.matchText("День рождения", "");
         webActionSteps.fillTheField("День рождения", "18.11.2021");
     }
 

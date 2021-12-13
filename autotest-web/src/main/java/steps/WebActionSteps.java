@@ -16,6 +16,9 @@ import ru.lanit.at.web.pagecontext.PageManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static com.codeborne.selenide.FileDownloadMode.FOLDER;
 import static com.codeborne.selenide.files.FileFilters.withExtension;
@@ -53,7 +56,7 @@ public class WebActionSteps {
      * @param elementName наименование элемента
      */
     @Если("очистить поле {string}")
-    public void clearFiled(String elementName) {
+    public void clearField(String elementName) {
         pageManager
                 .getCurrentPage()
                 .getElement(elementName)
@@ -127,6 +130,28 @@ public class WebActionSteps {
         file.delete();
 
         LOGGER.info("на странице '{}' скачано изображение '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    /**
+     * Инициализируем объект возвращающий текущую
+     * сегодняшнюю дату используется в шагах, где нужно
+     * реализовать проверку сегодняшней даты
+     *
+     * @return - на выходе мы получаем сформированную дату в формате dd.MM.yyyy
+     */
+    public String initializeTodayDate() {
+        LocalDateTime ldt = LocalDateTime.now().minusHours(3);
+        DateTimeFormatter formmat = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        String formatter = formmat.format(ldt);
+        char[] array = formatter.toCharArray();
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < formatter.length(); i++) {
+            if (array[i] == '-')
+                strBuilder.append('.');
+            else
+                strBuilder.append(array[i]);
+        }
+        return String.valueOf(strBuilder);
     }
 
     @Если("закрыть страницу")

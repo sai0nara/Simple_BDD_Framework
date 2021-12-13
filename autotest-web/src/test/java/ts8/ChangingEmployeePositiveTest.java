@@ -9,19 +9,17 @@ import steps.*;
 public class ChangingEmployeePositiveTest extends WebHooks {
     private final PageManager pageManager = new PageManager();
 
-    private final AuthorizationSteps authorizationSteps = new AuthorizationSteps(pageManager);
-    private final AuthorizationCheckSteps authorizationCheckSteps = new AuthorizationCheckSteps(pageManager);
+
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
     private final WebActionSteps webActionSteps = new WebActionSteps(pageManager);
-    private final EmployeeSteps employeeSteps = new EmployeeSteps(pageManager);
     private final EmployeeCheckSteps employeeCheckSteps = new EmployeeCheckSteps(pageManager);
+    private final WebSteps webSteps = new WebSteps(pageManager);
 
     private void initialize() {
-        authorizationSteps.openUrl();
-        authorizationSteps.setPage("DjangoAuthorization");
-        authorizationSteps.authWithLogin("just_employee");
-        authorizationCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
-        authorizationSteps.setPage("DjangoEmployeeChange");
+        webSteps.openUrl();
+        webSteps.setPage("DjangoAuthorization");
+        webSteps.authWithLogin("just_employee");
+        webSteps.setPage("DjangoEmployeeChange");
     }
 
     @Test(priority = 1)
@@ -38,7 +36,7 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps.fillTheField("Фамилия", "Бородкина");
         webActionSteps.fillTheField("Имя", "Анастасия");
 
-        employeeSteps.setInDropDown("Пол", "Female");
+        webSteps.setInDropDown("Пол", "Female");
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
 
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
@@ -51,7 +49,7 @@ public class ChangingEmployeePositiveTest extends WebHooks {
 //        Возврат к первоначальному состоянию
         webActionSteps.fillTheField("Фамилия", "Бородкин");
         webActionSteps.fillTheField("Имя", "Битард");
-        employeeSteps.setInDropDown("Пол", "Male");
+        webSteps.setInDropDown("Пол", "Male");
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
     }
 
@@ -128,11 +126,11 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkEditingQualityBlockPositiveTest(){
         initialize();
 
-        employeeSteps.scrollToElement("Квалификация");
+        webSteps.scrollToElement("Квалификация");
         webActionSteps
                 .clickOnButton("Квалификация");
-        employeeSteps.clickRandomN("Все квалификации", 5);
-        employeeSteps.unClickRandomN("Все квалификации", 3);
+        webSteps.clickRandomN("Все квалификации", 5);
+        webSteps.unClickRandomN("Все квалификации", 3);
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
@@ -146,11 +144,11 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkEditingSkillsBlockPositiveTest(){
         initialize();
 
-        employeeSteps.scrollToElement("Навыки");
+        webSteps.scrollToElement("Навыки");
         webActionSteps
                 .clickOnButton("Навыки");
-        employeeSteps.clickRandomN("Все навыки", 5);
-        employeeSteps.unClickRandomN("Все навыки", 3);
+        webSteps.clickRandomN("Все навыки", 5);
+        webSteps.unClickRandomN("Все навыки", 3);
         webActionSteps
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
@@ -164,7 +162,7 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkEditingCertificatesBlockPositiveTest() {
         initialize();
 
-        employeeSteps.scrollToElement("Сертификаты");
+        webSteps.scrollToElement("Сертификаты");
         webActionSteps.clickOnButton("Сертификаты");
         webActionSteps.generateFillTheField("Сертификаты:", "RRRRRRDDDDD");
         webActionSteps.generateFillTheField("Курсы:", "RRRRRRDDDDD");
@@ -180,10 +178,10 @@ public class ChangingEmployeePositiveTest extends WebHooks {
     public void checkEditingProjectsBlockPositiveTest() {
         initialize();
 
-        employeeSteps.scrollToElement("Проект");
+        webSteps.scrollToElement("Проект");
         webActionSteps
                 .clickOnButton("Проект");
-        employeeSteps.scrollToElement("Добавить проект");
+        webSteps.scrollToElement("Добавить проект");
         webActionSteps
                 .clickOnButton("Добавить проект");
         webActionSteps.listSelectRandElement("Выбор проекта");
