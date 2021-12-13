@@ -190,7 +190,7 @@ public class WebCheckSteps {
      *
      * В конце сравниваем значения в случае если
      * было загружено 2 разных изображения последовательно.
-     * Проверяем, что Path соответсвует и нет расхождений
+     * Проверяем, что FileName соответсвует и нет расхождений
      */
     @И("проверить название загруженного изображения {string} на соответствие {string}")
     public void checkNameOfUploadedImage(String elementName, String comparingFileName) {
