@@ -120,7 +120,7 @@ public class EmployeeCheckSteps {
     }
 
     @Если("в блоке 'Таблица' в столбце {string} все записи = {string}")
-    public void checkCurrenNumberCity(String elementName, String city) {
+    public void checkCurrentNumberCity(String elementName, String city) {
         ElementsCollection elements = pageManager
                 .getCurrentPage()
                 .getElementsCollection(elementName);
