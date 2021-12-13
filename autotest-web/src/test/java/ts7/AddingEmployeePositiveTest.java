@@ -68,6 +68,7 @@ public class AddingEmployeePositiveTest extends WebHooks {
 
         webActionSteps.clearField("Дата приема на работу");
         webActionSteps.fillTheField("Дата приема на работу", "18.11.2021");
+        webCheckSteps.matchTextByValue("Дата приема на работу", "18.11.2021");
     }
 
     @Test(priority = 5)
@@ -89,6 +90,7 @@ public class AddingEmployeePositiveTest extends WebHooks {
         initialize();
 
         webActionSteps.fillTheField("Телефон", "+79123456789");
+        webCheckSteps.matchTextByValue("Телефон", "+79123456789");
     }
 
 

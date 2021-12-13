@@ -511,7 +511,7 @@ public class WebSteps {
      */
     @Step("очистка поля {elementName}")
     @Если("очистить поле {string}")
-    public void clearFiled(String elementName) {
+    public void clearField(String elementName) {
         pageManager
                 .getCurrentPage()
                 .getElement(elementName)

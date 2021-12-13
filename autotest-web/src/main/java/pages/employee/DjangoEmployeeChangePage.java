@@ -33,7 +33,7 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement clearPhoto = $x("//input[@id='photo-clear_id']");
 
     @Name("Дата приема на работу")
-    private SelenideElement joiningDate = $x("//input[@id='id_joining_date']");
+    private SelenideElement joiningDate = $(By.id("id_joining_date"));
     @Name("Выберите дату")
     private SelenideElement calendarLink = $x("//a[@id='calendarlink0']");
     @Name("Сегодня рядом 'Дата приема на работу'")

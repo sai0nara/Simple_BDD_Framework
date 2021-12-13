@@ -117,7 +117,6 @@ public class ChangingEmployeePositiveTest extends WebHooks {
         webActionSteps.clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.curFieldsContainsThatElement("Name");
         employeeCheckSteps.matchText("Инфоблок фото", "Фотография отсутствует");
-        webActionSteps.closeDriver();
     }
 
     @Test(priority = 6)
@@ -135,7 +134,6 @@ public class ChangingEmployeePositiveTest extends WebHooks {
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
                 "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
-        webActionSteps.closeDriver();
     }
 
     @Test(priority = 7)
@@ -153,7 +151,6 @@ public class ChangingEmployeePositiveTest extends WebHooks {
                 .clickOnButton("Сохранить и продолжить редактирование");
         employeeCheckSteps.matchText("Сообщение о успешном редактировании",
                 "The Сотрудник “Бородкин Битард” was changed successfully. You may edit it again below.");
-        webActionSteps.closeDriver();
     }
 
     @Test(priority = 8)

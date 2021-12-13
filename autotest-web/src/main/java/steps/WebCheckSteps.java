@@ -206,6 +206,18 @@ public class WebCheckSteps {
         LOGGER.info("на странице '{}' имеется элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
 
+    @Тогда("проверить поле {string}, что текст в поле {string}")
+    public void matchTextByValue(String elementName, String text) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getValue();
+        System.out.println("XXX " + element);
+        Assert.assertEquals(element, text, "Значения различны");
+        LOGGER.info("на странице '{}' имеется элемент '{}' со значением {}",
+                pageManager.getCurrentPage().name(), elementName, element);
+    }
+
     @Когда("элемент {string} активен")
     public void checkElementIsRead(String elementName) {
         SelenideElement element = pageManager
