@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -411,6 +414,7 @@ public class WebSteps {
      */
     @Step("в списке {elementName} выбирается случайный элемент")
     @Если("в списке {string} выбрать случайный элемент")
+    @Если("в выпадющем списке {string} выбрать случайный элемент")
     public void listSelectRandElement(String elementName) {
         SelenideElement element = pageManager
                 .getCurrentPage()
@@ -518,7 +522,7 @@ public class WebSteps {
      */
     @Step("очистка поля {elementName}")
     @Если("очистить поле {string}")
-    public void clearFiled(String elementName) {
+    public void clearField(String elementName) {
         pageManager
                 .getCurrentPage()
                 .getElement(elementName)
@@ -577,5 +581,27 @@ public class WebSteps {
                 .getElementsCollection(elementName);
         ContextHolder.put("fio1", elements.get(index - 1).getText());
         LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString());
+    }
+
+    /**
+     * Инициализируем объект возвращающий текущую
+     * сегодняшнюю дату используется в шагах, где нужно
+     * реализовать проверку сегодняшней даты
+     *
+     * @return - на выходе мы получаем сформированную дату в формате dd.MM.yyyy
+     */
+    public String initializeTodayDate() {
+        LocalDateTime ldt = LocalDateTime.now().minusHours(3);
+        DateTimeFormatter formmat = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        String formatter = formmat.format(ldt);
+        char[] array = formatter.toCharArray();
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < formatter.length(); i++) {
+            if (array[i] == '-')
+                strBuilder.append('.');
+            else
+                strBuilder.append(array[i]);
+        }
+        return String.valueOf(strBuilder);
     }
 }
