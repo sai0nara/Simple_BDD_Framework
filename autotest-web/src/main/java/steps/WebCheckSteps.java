@@ -465,4 +465,86 @@ public class WebCheckSteps {
         Checks.elementNotVisibleOnPage(element, null);
         LOGGER.info("элемент '{}' не отображается на странице", elementName);
     }
+
+    /**
+     * Проверка, что фото загрузилось
+     * и мы видим его название "***.jpg"
+     * справа от кнопки "Выберите фото".
+     *
+     * В конце сравниваем значения в случае если
+     * было загружено 2 разных изображения последовательно.
+     * Проверяем, что FileName соответсвует и нет расхождений
+     */
+    @И("проверить название загруженного изображения {string} на соответствие {string}")
+    public void checkNameOfUploadedImage(String elementName, String comparingFileName) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getAttribute("value");
+        String result = element.substring(12);
+        Assert.assertEquals(result, comparingFileName, "Имена изображений не совпадают.");
+        LOGGER.info("элемент {} найден", result);
+    }
+
+    /**
+     * проверка, что поле заполнено текстом и не является пустым
+     */
+    @Если("поле {string} заполнено текстом {string}")
+    public void checkFieldTextIsNotEmpty(String elementName) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .shouldBe(Condition.visible)
+                .getValue();
+        Assert.assertNotEquals(element, "", "Ошибка, поле является пустым");
+        LOGGER.info("на странице '{}' в элементе '{}' - пустое значение", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    @Тогда("проверить поле {string}, что текст в поле {string}")
+    public void matchTextByValue(String elementName, String text) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getValue();
+        Assert.assertEquals(element, text, "Значения различны");
+        LOGGER.info("на странице '{}' имеется элемент '{}' со значением {}",
+                pageManager.getCurrentPage().name(), elementName, element);
+    }
+
+    /**
+     * проверка, что поле заполнено сегодняшней датой
+     * в данном случае метод создан для точечной проверки,
+     * что значение совпадает с сегодняшней датой при клике на кнопку сегодня
+     */
+    @Если("поле {string} заполнено текстом {string}")
+    public void checkFieldTextByDateToday(String elementName, String currentTodayDate) {
+        String element = pageManager
+                .getCurrentPage()
+                .getElement(elementName)
+                .getValue();
+        Assert.assertEquals(element, currentTodayDate, "Значения полей различны");
+        LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    @И("элемент {string} присутствует на странице")
+    @И("поле {string} присутствует на странице")
+    @И("кнопка {string} присутствует на странице")
+    @Если("в поле The Сотрудник “ и ” was changed successfully. присутствует элемент {string}")
+    @Если("в полях The Сотрудник “ и ” was changed successfully. You may edit it again below. присутствует элемент {string}")
+    public void curFieldsContainsThatElement(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementVisibleOnPage(element, null);
+        LOGGER.info("в поле имеется элемент '{}'", elementName);
+    }
+
+    @Когда("элемент {string} активен из-за присутствия параметра {string}")
+    public void checkElementIsNotReadOnly(String elementName, String text) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementIsOnPage(element, text);
+        LOGGER.info("элемент {} не активен из-за присутствия параметра {}", elementName, text);
+    }
 }
