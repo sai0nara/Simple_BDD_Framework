@@ -2,7 +2,6 @@ package ts4_2;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.WebCheckSteps;
@@ -37,7 +36,6 @@ public class EmployeeAdminTest extends WebHooks {
         webCheckSteps.checkAppearElement("Сотрудники с административным доступом");
         webSteps.clickOnElement("Сотрудники с административным доступом");
         webSteps.setPage("DjangoAdminAccess");
-        webCheckSteps.checkFieldText("Инфоблок", "Выберите Сотрудник с административным доступом для изменения");
-
+        webCheckSteps.matchText("Инфоблок", "Выберите Сотрудник с административным доступом для изменения");
     }
 }
