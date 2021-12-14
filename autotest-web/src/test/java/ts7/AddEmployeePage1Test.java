@@ -118,15 +118,7 @@ public class AddEmployeePage1Test extends WebHooks {
     private void hrAuthorizationAndAddEmployee() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webCheckSteps.checkNoSelectedCheckbox("Я желаю войти с админскими правами");
-        webSteps.clickOnElement("Я желаю войти с админскими правами");
-        webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин", "hr");
-        webSteps.fillField("пароль", "hrmhrm12345");
-        webCheckSteps.checkAppearElement("токен");
-        webSteps.fillTokenField("токен", "hr", "hrmhrm12345");
-        webCheckSteps.checkAppearElement("войти");
-        webSteps.clickOnElement("войти");
+        webSteps.authWithLogin("hr");
         webCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
         webSteps.setPage("DjangoAdministration");
         webCheckSteps.checkAppearElement("Сотрудники");
@@ -140,15 +132,7 @@ public class AddEmployeePage1Test extends WebHooks {
     private void hrAuthorizationAndChangeEmployee() {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webCheckSteps.checkNoSelectedCheckbox("Я желаю войти с админскими правами");
-        webSteps.clickOnElement("Я желаю войти с админскими правами");
-        webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин", "hr");
-        webSteps.fillField("пароль", "hrmhrm12345");
-        webCheckSteps.checkAppearElement("токен");
-        webSteps.fillTokenField("токен", "hr", "hrmhrm12345");
-        webCheckSteps.checkAppearElement("войти");
-        webSteps.clickOnElement("войти");
+        webSteps.authWithLogin("hr");
         webCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
         webSteps.setPage("DjangoAdministration");
         webCheckSteps.checkAppearElement("Сотрудники");
