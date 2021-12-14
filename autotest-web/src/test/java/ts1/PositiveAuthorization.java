@@ -1,4 +1,4 @@
-package tk1;
+package ts1;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
@@ -11,6 +11,8 @@ import steps.WebSteps;
 public class PositiveAuthorization extends WebHooks {
 
     private static PageManager pageManager = new PageManager();
+    private static WebSteps webSteps = new WebSteps(pageManager);
+    private static WebCheckSteps webCheck = new WebCheckSteps(pageManager);
 
     @DataProvider
     public Object[][] users() {
@@ -26,8 +28,6 @@ public class PositiveAuthorization extends WebHooks {
     @Description(value = "1.1-1.4 Авторизация под ролями just_employee, admin, hr, project1_admin")
     public static void checkAuthorization(String pageOne, String user, String message,
                                       String pageTwo, String buttonOne, String buttonTwo) {
-        WebSteps webSteps = new WebSteps(pageManager);
-        WebCheckSteps webCheck = new WebCheckSteps(pageManager);
 
         webSteps.openUrl();
         webSteps.setPage(pageOne);
@@ -42,8 +42,6 @@ public class PositiveAuthorization extends WebHooks {
     @Test
     @Description(value = "1.5 Авторизация под ролью public")
     public static void publicAuthor() {
-        WebSteps webSteps = new WebSteps(pageManager);
-        WebCheckSteps webCheck = new WebCheckSteps(pageManager);
 
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
