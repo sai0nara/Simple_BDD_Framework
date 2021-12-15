@@ -1,4 +1,4 @@
-package pages.employee;
+package pages.admin_access;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
