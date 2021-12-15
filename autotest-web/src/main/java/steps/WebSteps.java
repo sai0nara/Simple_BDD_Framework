@@ -571,4 +571,5 @@ public class WebSteps {
         ContextHolder.put("fio1", elements.get(index - 1).getText());
         LOGGER.info("на странице '{}' в блоке '{}' запись '{}", pageManager.getCurrentPage().name(), elementName, ContextHolder.getValue("fio1").toString());
     }
+
 }

@@ -126,6 +126,20 @@ public class Checks {
         element.shouldNotHave(Condition.href(text));
     }
 
+    /**
+     * Проверяет наличие элемента на странице ("ок" - если элемент существует)
+     */
+    public static void elementExists(SelenideElement element) {
+        element.should(Condition.exist);
+    }
+
+    /**
+     * Проверяет отсутствие элемента на странице ("ок" - если элемента нет)
+     */
+    public static void elementNotExists(SelenideElement element) {
+        element.shouldNot(Condition.exist);
+    }
+
     public static void elementVisibleAndNoSelected(SelenideElement element) {
         element.shouldBe(Condition.visible);
         element.shouldNotBe(Condition.selected);
