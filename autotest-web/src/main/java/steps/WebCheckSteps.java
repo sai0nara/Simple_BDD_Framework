@@ -445,4 +445,14 @@ public class WebCheckSteps {
         Assert.assertEquals(actualValue, expectedValue);
         LOGGER.info("Ожидаемое значение поля: '{}', актуальное значения поля: {}", expectedValue, actualValue);
     }
+
+    @Step("в текущем блоке поле {elementName} отсутствует текст")
+    @И("в текущем поле {string} отсутствует текст")
+    public void checkFieldWithoutText(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.emptyElement(element);
+        LOGGER.info("элемент '{}' не содержит текст", elementName);
+    }
 }

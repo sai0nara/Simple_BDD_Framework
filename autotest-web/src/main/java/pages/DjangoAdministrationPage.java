@@ -16,7 +16,8 @@ public class DjangoAdministrationPage extends WebPage {
     SelenideElement changePassword = $x("//a[@href='/admin/password_change/']");
     @Name("Выйти")
     SelenideElement logout = $x("//div[@id='user-tools']/a[@href='/admin/logout/']");
-
+    @Name("Войти снова")
+    SelenideElement loginAgain = $x("//div[@id=\"content\"]/p[2]/a");
     //MAIN
     @Name("Сотрудники")
     private SelenideElement employee = $x("//tr[@class='model-employee']/th/a");
@@ -24,7 +25,7 @@ public class DjangoAdministrationPage extends WebPage {
     @Name("Запросы на отпуск")
     private SelenideElement employeeVacationRequest = $x("//a[text()='Запросы на отпуск']");
     @Name("Фактические отпуска")
-    private SelenideElement employeeActualVacation= $x("//a[text()='Фактические отпуска']");
+    private SelenideElement employeeActualVacation = $x("//a[text()='Фактические отпуска']");
     @Name("Больничные")
     private SelenideElement employeeSickLeaveOfficial = $x("//a[text()='Больничные']");
     @Name("Бюллютени без больничного листа")
