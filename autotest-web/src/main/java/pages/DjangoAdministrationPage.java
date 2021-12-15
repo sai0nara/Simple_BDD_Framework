@@ -82,12 +82,33 @@ public class DjangoAdministrationPage extends WebPage {
 
     //ADMINISTRATIVE ACCESS
     @Name("Сотрудники с административным доступом")
-    private SelenideElement administrator = $x("//a[text()='Сотрудники с административным доступом']");
-
+    private SelenideElement administrator = $x("//tr[@class='model-administrator']/th/a");
     @Name("Добавить поле Сотрудники")
     private SelenideElement addEmployee = $x("//tr[@class='model-administrator']/td/a[@class='addlink']");
     @Name("Изменить поле Сотрудники")
     private SelenideElement changeEmployee = $x("//tr[@class='model-administrator']/td/a[@class='changelink']");
     @Name("Администрирование Django")
     private SelenideElement headerPage = $x("//a[@href='/admin/']");
+
+    //USERS AND GROUP
+    @Name("Группы")
+    private SelenideElement group = $x("//tr[@class='model-group']/th/a");
+    @Name("Добавить поле Группы")
+    private SelenideElement addGroup = $x("//tr[@class='model-group']/td/a[@class='addlink']");
+    @Name("Изменить поле Группы")
+    private SelenideElement changeGroup = $x("//tr[@class='model-group']/td/a[@class='changelink']");
+    @Name("Пользователи")
+    private SelenideElement user = $x("//tr[@class='model-user']/th/a");
+    @Name("Добавить поле Пользователи")
+    private SelenideElement addUser = $x("//tr[@class='model-user']/td/a[@class='addlink']");
+    @Name("Изменить поле Пользователи")
+    private SelenideElement changeUser = $x("//tr[@class='model-user']/td/a[@class='changelink']");
+
+    //OTP_TOTP
+    @Name("OTP_TOTP")
+    private SelenideElement otpTotp = $x("//tr[@class='model-totpdevice']/th/a");
+    @Name("Добавить поле OTP_TOTP")
+    private SelenideElement addOtpTotp = $x("//tr[@class='model-totpdevice']/td/a[@class='addlink']");
+    @Name("Изменить поле OTP_TOTP")
+    private SelenideElement changeOtpTotp = $x("//tr[@class='model-totpdevice']/td/a[@class='changelink']");
 }
