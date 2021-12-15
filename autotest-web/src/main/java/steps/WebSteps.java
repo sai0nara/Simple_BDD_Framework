@@ -4,7 +4,6 @@ import actions.Actions;
 import authorization.AuthValues;
 import authorization.Authorization;
 import com.codeborne.selenide.*;
-import io.cucumber.java.eo.Se;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.lanit.at.utils.DataGenerator;

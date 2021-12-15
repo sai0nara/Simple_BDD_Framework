@@ -8,7 +8,7 @@ import ru.lanit.at.web.pagecontext.PageManager;
 import steps.WebCheckSteps;
 import steps.WebSteps;
 
-public class PositiveAuthorization extends WebHooks {
+public class PositiveAuthorizationTest extends WebHooks {
 
     private static PageManager pageManager = new PageManager();
     private static WebSteps webSteps = new WebSteps(pageManager);
