@@ -7,6 +7,7 @@ import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -117,6 +118,33 @@ public class WebCheckSteps {
         Checks.elementAbsentOnPage(element, null);
         LOGGER.info("на странице '{}' отсутствует элемент '{}'", pageManager.getCurrentPage().name(), elementName);
     }
+
+    /**
+     * Проверка существования элемента на странице
+     *
+     * @param elementName - название элемента
+     */
+     public void checkElementIsExistsOnPage(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementIsExists(element);
+        LOGGER.info("на странице '{}' есть элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    /**
+     * Проверка отсутствия элемента на странице
+     *
+     * @param elementName - название элемента
+     */
+    public void checkElementIsNotExistsOnPage(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementIsNotExists(element);
+        LOGGER.info("на странице '{}' нет элемента '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
 
     /**
      * проверка, что поле заполнено текстом

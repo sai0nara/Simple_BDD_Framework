@@ -32,31 +32,28 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
 
         initialize();
 
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Проектные ставки_Добавить"));
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Сотрудники с административным доступом_Изменить"));
+        webCheckSteps.checkElementIsNotExistsOnPage("Проектные ставки_Добавить");
+        webCheckSteps.checkElementIsNotExistsOnPage("Сотрудники с административным доступом_Изменить");
 
         //Проверка отсутствия ссылок заменена на проверку отсутствия секций, содержащих эти ссылки
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Пользователи и группы"));
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Otp_Totp"));
+        webCheckSteps.checkElementIsNotExistsOnPage("Модели в приложении Пользователи и группы");
+        webCheckSteps.checkElementIsNotExistsOnPage("Модели в приложении Otp_Totp");
 
         //Эта проверка провалит тест поскольку указанный элемент есть на странице, нужна чтобы убедится в правильной работе предыдущих проверок
-        //Checks.elementExists(pageManager.getCurrentPage().getElement("Проектные ставки_Изменить"));
+        //webCheckSteps.checkElementIsExistsOnPage("Проектные ставки_Изменить");
     }
 
     @Test(priority = 2)
     @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Сотрудники\" под ролью 'hr'")
-    public void checkAddingNewEmployee() {
+    public void checkChangeEmployeesButton() {
         initialize();
+        webSteps.clickOnElement("Изменить поле Сотрудники");
+        webSteps.setPage("DjangoEmployee");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Сотрудник для изменения");
 
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Проектные ставки_Добавить"));
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Сотрудники с административным доступом_Изменить"));
 
-        //Проверка отсутствия ссылок заменена на проверку отсутствия секций, которые эти ссылки содержат
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Пользователи и группы"));
-        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Otp_Totp"));
 
-        //Эта проверка провалит тест поскольку указанный элемент есть на странице, нужна чтобы убедится в правильной работе предыдущих проверок
-        //Checks.elementExists(pageManager.getCurrentPage().getElement("Проектные ставки_Изменить"));
+
     }
 
 

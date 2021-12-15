@@ -7,8 +7,16 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
+//URL страницы ./admin/core/employee/
+//Предлагаю добавлять URL как однозначный идентификатор ко всем создаваемым PageObject
+
 @Name(value = "DjangoEmployee")
 public class DjangoEmployeePage extends WebPage {
+
+    //Подзаголовок страницы
+    @Name("Выберите Сотрудник для изменения")
+    private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Сотрудник для изменения']");
+
     @Name("ФИО")
     private ElementsCollection fio = $$x("//th[@class='field-full_name']/a");
 

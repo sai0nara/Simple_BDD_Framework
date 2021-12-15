@@ -129,14 +129,14 @@ public class Checks {
     /**
      * Проверяет наличие элемента на странице ("ок" - если элемент существует)
      */
-    public static void elementExists(SelenideElement element) {
+    public static void elementIsExists(SelenideElement element) {
         element.should(Condition.exist);
     }
 
     /**
      * Проверяет отсутствие элемента на странице ("ок" - если элемента нет)
      */
-    public static void elementNotExists(SelenideElement element) {
+    public static void elementIsNotExists(SelenideElement element) {
         element.shouldNot(Condition.exist);
     }
 
