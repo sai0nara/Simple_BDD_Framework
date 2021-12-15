@@ -455,4 +455,14 @@ public class WebCheckSteps {
         Checks.emptyElement(element);
         LOGGER.info("элемент '{}' не содержит текст", elementName);
     }
+
+    @Step("в текущем блоке поле {elementName} отсутствует")
+    @И("в текущем блоке поле {string} отсутствует")
+    public void checkElementNotVisible(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementNotVisibleOnPage(element, null);
+        LOGGER.info("элемент '{}' не отображается на странице", elementName);
+    }
 }

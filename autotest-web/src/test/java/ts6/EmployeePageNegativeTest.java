@@ -76,7 +76,7 @@ public class EmployeePageNegativeTest extends WebHooks {
         initialize();
         webSteps.setPage("DjangoEmployee");
         webSteps.clickRandom("Таблица чек-бокс");
-        webSteps.selectElementWithText("Действие меню", "Экспортировать выбранные Сотрудники");
+        webSteps.selectElementInDropDown("Действие меню", "Экспортировать выбранные Сотрудники");
         webCheckSteps.checkAppearElement("Выполнить");
         webSteps.clickOnElement("Выполнить");
         webCheckSteps.matchText("Предупреждение в заголовке", "Необходимо выбрать формат экспорта");
