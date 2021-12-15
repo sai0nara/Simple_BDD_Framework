@@ -19,7 +19,7 @@ public class EmployeeAdminTest extends WebHooks {
         return new Object[][]{
                 {"Сотрудники с административным доступом", "DjangoAdminAccess", "Выберите Сотрудник с административным доступом для изменения"},
                 {"Добавить поле Сотрудники", "DjangoAdminAccessAddEmployee", "Добавить Сотрудник с административным доступом"},
-//                {"public", "Сотрудники", "Заголовок таблицы", "Выберите Сотрудник для просмотра"}
+                {"Изменить поле Сотрудники", "DjangoAdminAccessChangeEmployee", "Выберите Сотрудник с административным доступом для изменения"}
         };
     }
 
@@ -31,7 +31,7 @@ public class EmployeeAdminTest extends WebHooks {
     }
 
     @Test(dataProvider = "dataAdminAccess")
-    @Description("4.1-4.2 Проверка работоспособности ссылки 'Сотрудники с административным доступом' и кнопки 'Добавить' под ролью 'admin'")
+    @Description("4.1-4.3 Проверка работоспособности ссылки 'Сотрудники с административным доступом', кнопок 'Добавить' и 'Изменить' под ролью 'admin'")
     public void adminAccessTest(String button, String page, String infotext) {
         initialize();
         webCheckSteps.checkAppearElement(button);
