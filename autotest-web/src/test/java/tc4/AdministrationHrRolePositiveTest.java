@@ -27,9 +27,24 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
     }
 
     @Test(priority = 1)
-    @Description("Проверка отсутствия кнопки 'Добавить' в подразделе 'Проектные ставки',\n" +
-            "отсутствия кнопки 'Изменить' в подразделе 'Сотрудники с административным доступом',\n" +
-            "отсутствия ссылок 'Группы', 'Пользователи', 'TOTP devices'")
+    @Description("Проверка отображения недоступного функционала под ролью hr")
+    public void checkExistsAdminFunctionalityUnderHrRole() {
+
+        initialize();
+
+        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Проектные ставки_Добавить"));
+        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Сотрудники с административным доступом_Изменить"));
+
+        //Проверка отсутствия ссылок заменена на проверку отсутствия секций, содержащих эти ссылки
+        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Пользователи и группы"));
+        Checks.elementNotExists(pageManager.getCurrentPage().getElement("Модели в приложении Otp_Totp"));
+
+        //Эта проверка провалит тест поскольку указанный элемент есть на странице, нужна чтобы убедится в правильной работе предыдущих проверок
+        //Checks.elementExists(pageManager.getCurrentPage().getElement("Проектные ставки_Изменить"));
+    }
+
+    @Test(priority = 2)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Сотрудники\" под ролью 'hr'")
     public void checkAddingNewEmployee() {
         initialize();
 
