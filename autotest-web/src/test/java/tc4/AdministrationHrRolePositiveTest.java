@@ -159,4 +159,31 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webCheckSteps.checkElementIsExistsOnPage("Выберите Больничный для изменения");
     }
 
+    @Test(priority = 15)
+    @Description("Проверка работоспособности ссылки 'Бюллетени без больничного листа' под ролью 'hr'")
+    public void checkEmployeeSickLeaveUnofficialLink() {
+        initialize();
+        webSteps.clickOnElement("Бюллютени без больничного листа");
+        webSteps.setPage("DjangoEmployeeSickLeaveUnofficialPage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Бюллютень без больничного листа для изменения");
+    }
+
+    @Test(priority = 16)
+    @Description("Проверка работоспособности кнопки \"Добавить\" подраздела \"Бюллетени без больничного листа\" под ролью 'hr'")
+    public void checkEmployeeSickLeaveUnofficialAddButton() {
+        initialize();
+        webSteps.clickOnElement("Бюллютени без больничного листа_Добавить");
+        webSteps.setPage("DjangoEmployeeSickLeaveUnofficialAddPage");
+        webCheckSteps.checkElementIsExistsOnPage("Добавить Бюллютень без больничного листа");
+    }
+
+    @Test(priority = 17)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Бюллетени без больничного листа\" под ролью 'hr'")
+    public void checkEmployeeSickLeaveUnofficialChangeButton() {
+        initialize();
+        webSteps.clickOnElement("Бюллютени без больничного листа_Изменить");
+        webSteps.setPage("DjangoEmployeeSickLeaveUnofficialChangePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Бюллютень без больничного листа для изменения");
+    }
+
 }

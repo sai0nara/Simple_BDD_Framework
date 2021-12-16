@@ -6,7 +6,7 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-//URL страницы ./admin/core/accountadmin/
+//URL страницы ./admin/core/accountadmin/change
 //Предлагаю добавлять URL как однозначный идентификатор ко всем создаваемым PageObject
 
 @Name(value = "DjangoAccountAdminChangePage")
