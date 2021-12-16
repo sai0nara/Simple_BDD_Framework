@@ -8,6 +8,7 @@ import ru.lanit.at.web.pagecontext.WebPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
+@Deprecated
 public abstract class DjangoPagesHeader extends WebPage {
 
     @Name("Изменить пароль")

@@ -2,13 +2,14 @@ package pages.employee;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import pages.DjangoPagesHeader;
+import org.openqa.selenium.By;
 import ru.lanit.at.web.annotations.Name;
+import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
 @Name(value = "DjangoEmployee")
-public class DjangoEmployeePage extends DjangoPagesHeader {
+public class DjangoEmployeePage extends WebPage {
 
     //КНОПКИ В HEADER
     @Name("Восстановить удаленный сотрудники")
@@ -19,6 +20,8 @@ public class DjangoEmployeePage extends DjangoPagesHeader {
     private SelenideElement exportLink = $x("//a[@class='export_link']");
     @Name("Добавить сотрудник")
     private SelenideElement addEmployeeLink = $x("//a[@class='addlink']");
+    @Name("Предупреждение в заголовке")
+    private SelenideElement headerWarning = $(By.className("warning"));
 
     //ПОИСК
     @Name("Поиск")
