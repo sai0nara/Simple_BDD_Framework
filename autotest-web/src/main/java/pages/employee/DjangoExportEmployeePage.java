@@ -2,16 +2,13 @@ package pages.employee;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import pages.DjangoPagesHeader;
 import ru.lanit.at.web.annotations.Name;
-import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
 @Name(value = "DjangoExportEmployee")
-public class DjangoExportEmployeePage extends WebPage {
-
-    @Name("Инфоблок")
-    private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+public class DjangoExportEmployeePage extends DjangoPagesHeader {
 
     @Name("Формат")
     private SelenideElement fieldFormat = $x("//select[@id='id_file_format']");
@@ -21,5 +18,8 @@ public class DjangoExportEmployeePage extends WebPage {
 
     @Name("Отправить")
     private SelenideElement buttonSend = $x("//input[@type='submit']");
-}
 
+// КТО ИСПОЛЬЗУЕТ ЭТОТ РО, ПЕРЕПИШИТЕ СВОЙ ТЕСТ НА КОЛЛЕКЦИЮ, ЭЛЕМЕНТ: Чекбокс
+    @Name("Договор")
+    private SelenideElement contractCheckbox = $x("//input[@value='contract']");
+}
