@@ -64,7 +64,7 @@ public class DjangoAdministrationPage extends WebPage {
     private SelenideElement employeeSickLeaveUnofficialChange = $x("//tr[@class='model-employeesickleaveunofficial']//a[@class='changelink']");
 
     @Name("Проектные ставки")
-    private SelenideElement employeeProjectSalaryRate = $x("//a[text()='Проектные ставки']");
+    private SelenideElement employeeProjectSalaryRate = $x("//tr[@class='model-employeeprojectsalaryrate']//a[text()='Проектные ставки']");
     @Name("Проектные ставки_Добавить")
     private SelenideElement employeeProjectSalaryRateAdd = $x("//tr[@class='model-employeeprojectsalaryrate']//a[@class='addlink']");
     @Name("Проектные ставки_Изменить")

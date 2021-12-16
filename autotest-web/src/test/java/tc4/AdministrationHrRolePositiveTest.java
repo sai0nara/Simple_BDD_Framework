@@ -186,4 +186,22 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webCheckSteps.checkElementIsExistsOnPage("Выберите Бюллютень без больничного листа для изменения");
     }
 
+    @Test(priority = 18)
+    @Description("Проверка работоспособности ссылки 'Проектные ставки' под ролью 'hr'")
+    public void checkEmployeeProjectSalaryRateLink() {
+        initialize();
+        webSteps.clickOnElement("Проектные ставки");
+        webSteps.setPage("DjangoEmployeeProjectSalaryRatePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Проектная ставка для изменения");
+    }
+
+    @Test(priority = 19)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Проектные ставки\" под ролью 'hr'")
+    public void checkEmployeeProjectSalaryRateChangeButton() {
+        initialize();
+        webSteps.clickOnElement("Проектные ставки_Изменить");
+        webSteps.setPage("DjangoEmployeeProjectSalaryRatePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Проектная ставка для изменения");
+    }
+
 }
