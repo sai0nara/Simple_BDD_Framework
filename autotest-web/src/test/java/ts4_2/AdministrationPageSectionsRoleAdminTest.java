@@ -40,11 +40,6 @@ public class AdministrationPageSectionsRoleAdminTest extends WebHooks {
     }
 
     @Test(dataProvider = "data")
-//    @Description("4.1-4.12 Проверка работоспособности ссылки 'Сотрудники с административным доступом', кнопок 'Добавить' и 'Изменить'" +
-//            "4.4-4.6 Проверка работоспособности ссылки 'Группы', кнопок 'Добавить' и 'Изменить'" +
-//            "4.7-4.9 Проверка работоспособности ссылки 'Пользователи', кнопок 'Добавить' и 'Изменить'" +
-//            "4.10-4.12 Проверка работоспособности ссылки 'OTP_TOTP', кнопок 'Добавить' и 'Изменить'" +
-//            "под ролью 'admin'")
     @Description("4.1-4.12 Проверка работоспособности элемента {button}. под ролью 'admin'")
     public void administrationAccessUserGroupTotpTest(String button, String page, String infotext) {
         initialize();
