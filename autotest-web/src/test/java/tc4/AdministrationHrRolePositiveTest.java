@@ -204,4 +204,31 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webCheckSteps.checkElementIsExistsOnPage("Выберите Проектная ставка для изменения");
     }
 
+    @Test(priority = 20)
+    @Description("Проверка работоспособности ссылки 'Аккаунты' под ролью 'hr'")
+    public void checkAccountLink() {
+        initialize();
+        webSteps.clickOnElement("Аккаунты");
+        webSteps.setPage("DjangoAccountPage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Аккаунт для изменения");
+    }
+
+    @Test(priority = 21)
+    @Description("Проверка работоспособности кнопки \"Добавить\" подраздела \"Аккаунты\" под ролью 'hr'")
+    public void checkAccountAddButton() {
+        initialize();
+        webSteps.clickOnElement("Аккаунты_Добавить");
+        webSteps.setPage("DjangoAccountAddPage");
+        webCheckSteps.checkElementIsExistsOnPage("Добавить Аккаунт");
+    }
+
+    @Test(priority = 22)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Аккаунты\" под ролью 'hr'")
+    public void checkAccountChangeButton() {
+        initialize();
+        webSteps.clickOnElement("Аккаунты_Изменить");
+        webSteps.setPage("DjangoAccountChangePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Аккаунт для изменения");
+    }
+
 }

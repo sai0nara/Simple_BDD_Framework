@@ -72,9 +72,18 @@ public class DjangoAdministrationPage extends WebPage {
 
     //ACCOUNTS
     @Name("Аккаунты")
-    private SelenideElement account = $x("//a[text()='Аккаунты']");
+    private SelenideElement account = $x("//tr[@class='model-account']//a[text()='Аккаунты']");
+    @Name("Аккаунты_Добавить")
+    private SelenideElement accountAdd = $x("//tr[@class='model-account']//a[@class='addlink']");
+    @Name("Аккаунты_Изменить")
+    private SelenideElement accountChange = $x("//tr[@class='model-account']//a[@class='changelink']");
+
     @Name("Проекты")
     private SelenideElement project = $x("//a[text()='Проекты']");
+    @Name("Проекты_Добавить")
+    private SelenideElement projectAdd = $x("//a[text()='Проекты']");
+    @Name("Проекты_Изменить")
+    private SelenideElement projectChange = $x("//a[text()='Проекты']");
 
     //STRUCTURE
     @Name("Департаменты")
