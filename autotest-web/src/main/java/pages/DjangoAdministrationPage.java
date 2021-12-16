@@ -28,14 +28,41 @@ public class DjangoAdministrationPage extends WebPage {
     @Name("Изменить поле Сотрудники")
     private SelenideElement changeEmployee = $x("//a[@href='/admin/core/employee/' and @class='changelink']");
 
+    @Name("Администраторы аккаунта")
+    private SelenideElement accountadmin = $x("//tr[@class='model-accountadmin']//a[text()='Администраторы аккаунта']");
+    @Name("Администраторы аккаунта_Добавить")
+    private SelenideElement accountadminAdd = $x("//tr[@class='model-accountadmin']//a[@class='addlink']");
+    @Name("Администраторы аккаунта_Изменить")
+    private SelenideElement accountadminChange = $x("//tr[@class='model-accountadmin']//a[@class='changelink']");
+
     @Name("Запросы на отпуск")
     private SelenideElement employeeVacationRequest = $x("//a[text()='Запросы на отпуск']");
+    @Name("Запросы на отпуск_Добавить")
+    private SelenideElement employeeVacationRequestAdd = $x("//a[text()='Запросы на отпуск']//a[@class='addlink']");
+    @Name("Запросы на отпуск_Изменить")
+    private SelenideElement employeeVacationRequestChange = $x("//a[text()='Запросы на отпуск']//a[@class='changelink']");
+
     @Name("Фактические отпуска")
     private SelenideElement employeeActualVacation= $x("//a[text()='Фактические отпуска']");
+    @Name("Фактические отпуска_Добавить")
+    private SelenideElement employeeActualVacationAdd= $x("//a[text()='Фактические отпуска']//a[@class='addlink']");
+    @Name("Фактические отпуска_Изменить")
+    private SelenideElement employeeActualVacationChange= $x("//a[text()='Фактические отпуска']//a[@class='changelink']");
+
     @Name("Больничные")
     private SelenideElement employeeSickLeaveOfficial = $x("//a[text()='Больничные']");
+    @Name("Больничные_Добавить")
+    private SelenideElement employeeSickLeaveOfficialAdd = $x("//a[text()='Больничные']//a[@class='addlink']");
+    @Name("Больничные_Изменить")
+    private SelenideElement employeeSickLeaveOfficialChange = $x("//a[text()='Больничные']//a[@class='changelink']");
+
     @Name("Бюллютени без больничного листа")
     private SelenideElement employeeSickLeaveUnofficial = $x("//a[text()='Бюллютени без больничного листа']");
+    @Name("Бюллютени без больничного листа_Добавить")
+    private SelenideElement employeeSickLeaveUnofficialAdd = $x("//a[text()='Бюллютени без больничного листа']//a[@class='addlink']");
+    @Name("Бюллютени без больничного листа_Изменить")
+    private SelenideElement employeeSickLeaveUnofficialChange = $x("//a[text()='Бюллютени без больничного листа']//a[@class='changelink']");
+
     @Name("Проектные ставки")
     private SelenideElement employeeProjectSalaryRate = $x("//a[text()='Проектные ставки']");
     @Name("Проектные ставки_Добавить")
