@@ -2,11 +2,24 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import ru.lanit.at.web.annotations.Name;
+import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
 @Name(value = "DjangoAdministration")
-public class DjangoAdministrationPage extends DjangoPagesHeader {
+public class DjangoAdministrationPage extends WebPage {
+
+    //HEADER
+    @Name("Изменить пароль")
+    SelenideElement changePassword = $x("//a[@href='/admin/password_change/']");
+    @Name("Выйти")
+    SelenideElement logout = $x("//a[@href='/admin/logout/']");
+
+    @Name("Администрирование Django")
+    private SelenideElement headerPage = $x("//a[@href='/admin/']");
+
+    @Name("Инфоблок")
+    private SelenideElement tableHeader = $x("//div[@id='content']/h1");
 
     //MAIN
     @Name("Сотрудники")
@@ -226,9 +239,9 @@ public class DjangoAdministrationPage extends DjangoPagesHeader {
     //USERS AND GROUP
     @Name("Группы")
     private SelenideElement group = $x("//tr[@class='model-group']/th/a");
-    @Name("Добавить поле Проекты")
+    @Name("Добавить поле Группы")
     private SelenideElement addGroup = $x("//tr[@class='model-group']//a[@class='addlink']");
-    @Name("Изменить поле Проекты")
+    @Name("Изменить поле Группы")
     private SelenideElement changeGroup = $x("//tr[@class='model-group']//a[@class='changelink']");
 
     @Name("Пользователи")

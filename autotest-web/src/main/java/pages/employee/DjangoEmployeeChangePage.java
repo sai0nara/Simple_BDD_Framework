@@ -3,19 +3,28 @@ package pages.employee;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import pages.DjangoPagesHeader;
 import ru.lanit.at.web.annotations.Name;
+import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
 @Name(value = "DjangoEmployeeChange")
-public class DjangoEmployeeChangePage extends DjangoPagesHeader {
+public class DjangoEmployeeChangePage extends WebPage {
 
     //HEADER
     @Name("История")
-    private SelenideElement history = $x("//a[@class='historylink' and text()='История']");
+    private SelenideElement history = $x("//a[@href='/admin/core/employee/805/history/']");
     @Name("Summary")
-    private SelenideElement summary = $x("//a[@class='historylink' and text()='Summary']");
+    private SelenideElement summary = $x("//a[@href='/summary_doc/805']");
+
+    @Name("Инфоблок")
+    private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+// ДАННЫЙ РО БУДЕТ УДАЛЕН -> БУДЕТ ИСПОЛЬЗОВАТЬСЯ: Инфоблок
+    @Name("Заголовок таблицы")
+    private SelenideElement header = $x("//div[@id='content']/h1");
+
+    @Name("Сообщение об ошибке в заголовке")
+    private SelenideElement headerError = $x("//p[@class='errornote']");
 
     //ОБЩАЯ ИНФОРМАЦИЯ
     @Name("Фамилия")
@@ -74,7 +83,7 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Email")
     private SelenideElement email = $x("//input[@id='id_internal_email']");
 
-    @Name("Название организации")
+    @Name("Название организации основное")
     private SelenideElement orgName = $x("//div[contains(@class, 'field-organisation_names')]/div/div");
 
     //РАЗДЕЛЫ
@@ -205,10 +214,10 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     private SelenideElement projectRole = lastProject.find(By.xpath("./td[@class = 'field-project_role']/div/select"));
     @Name("Обратная связь")
     private SelenideElement feedBack = lastProject.find(By.xpath("./td[@class = 'field-feedback']/textarea"));
-// ДАННЫЙ РО БУДЕТ УДАЛЕН -> БУДЕТ ИСПОЛЬЗОВАТЬСЯ: Дата начала
-    @Name("Дата начала проекты")
+// ДАННЫЙ РО БУДЕТ УДАЛЕН -> БУДЕТ ИСПОЛЬЗОВАТЬСЯ: Дата начала проекты
+    @Name("Дата начала2")
     private SelenideElement dateOfStartProject = $x("//input[@name='employeeproject_set-0-start_date']");
-    @Name("Дата начала")
+    @Name("Дата начала проекты")
     private SelenideElement startDate = lastProject.find(By.xpath("./td[@class = 'field-start_date']/input"));
     @Name("Дата окончания проекты")
     private SelenideElement dateOfFinishProject = $x("//input[@name='employeeproject_set-0-end_date']");
@@ -236,7 +245,7 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Проектные ставки")
     private SelenideElement projectBids = $x("//a[@id='fieldsetcollapser8']");
     @Name("Добавить еще один Проектная ставка")
-    private SelenideElement addProjectBid = $x("//a[text()='Добавить еще один Проектная ставка']");
+    private SelenideElement addProjectBid = $x("//tr[@id='employeeprojectsalaryrate_set-empty']/following-sibling::tr//a");
     @Name("Проект Проектные ставки")
     private SelenideElement fieldProjectP = $x("//select[@name='employeeprojectsalaryrate_set-0-employee_project']");
     @Name("Скрыть")
@@ -245,14 +254,14 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Договоры")
     private SelenideElement contracts = $x("//a[@id='fieldsetcollapser9']");
     @Name("Добавить еще один Договор")
-    private SelenideElement addAnotherContract = $x("//a[text()='Добавить еще один Договор']");
+    private SelenideElement addAnotherContract = $x("//tr[@id='contract-empty']/following-sibling::tr//a");
     @Name("Договоры Должность")
     private SelenideElement fieldPost = $x("//select[@name='contract-0-position']");
 
     @Name("Договоры ГПХ")
     private SelenideElement contractsGpx = $x("//a[@id='fieldsetcollapser10']");
     @Name("Добавить еще один Договор ГПХ")
-    private SelenideElement addAnotherContractGpx = $x("//a[text()='Добавить еще один Договор ГПХ']");
+    private SelenideElement addAnotherContractGpx = $x("//tr[@id='employeecivilcontract_set-empty']/following-sibling::tr//a");
     @Name("Номер договора")
     private SelenideElement numberOfContract = $x("//input[@name='employeecivilcontract_set-0-number']");
 
@@ -321,7 +330,7 @@ public class DjangoEmployeeChangePage extends DjangoPagesHeader {
     @Name("Бюллетени без больничного листа")
     private SelenideElement bulletinWithoutLeaveShow = $x("//a[@id='fieldsetcollapser18']");
     @Name("Добавить бюллетень")
-    private SelenideElement addBulletinWithoutLeave = $("//tr[@id='employeesickleaveunofficial_set-empty']/following-sibling::tr//a");
+    private SelenideElement addBulletinWithoutLeave = $x("//tr[@id='employeesickleaveunofficial_set-empty']/following-sibling::tr//a");
     @Name("Дата бюллетеня")
     private SelenideElement dateBulletinWithoutLeave = $x("//input[@id='id_employeesickleaveunofficial_set-0-date']");
     @Name("Скрыть бюллетень")

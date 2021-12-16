@@ -114,7 +114,7 @@ public class EmployeePageTest extends WebHooks {
     @Description("5.9 страница Сотрудники, проверка работоспособности экспорта списка сотрудников через кнопку интерфейса. Роль Hr")
     public void employeeHrExportTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Экспорт");
         webSteps.clickOnElement("Экспорт");
         webSteps.setPage("DjangoExportEmployee");
@@ -128,7 +128,7 @@ public class EmployeePageTest extends WebHooks {
     @Description("5.10 страница Сотрудники, проверка работоспособности кнопки добавления нового сотрудника. Роль Hr")
     public void employeeHrAddNewEmployeeTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Добавить сотрудник");
         webSteps.clickOnElement("Добавить сотрудник");
         webSteps.setPage("DjangoExportEmployee");
@@ -139,7 +139,7 @@ public class EmployeePageTest extends WebHooks {
     @Description("5.11 страница Сотрудники, проверка работоспособности фильтров. Роль Hr")
     public void employeeHrFiltersTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webSteps.clickOnElementWithText("Категории фильтров", "Офис");
         webSteps.clickOnElementWithText("Фильтр", "Пенза");
         webCheckSteps.checkCurrentNumberCity("Текущий город", "Пенза");
