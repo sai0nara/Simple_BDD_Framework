@@ -6,15 +6,15 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-//URL страницы ./admin/core/employeeactualvacation/change
+//URL страницы ./admin/core/employeesickleaveofficial/change
 //Предлагаю добавлять URL как однозначный идентификатор ко всем создаваемым PageObject
 
-@Name(value = "DjangoEmployeeActualVacationChangePage")
+@Name(value = "DjangoEmployeeSickLeaveOfficialChangePage")
 public class DjangoEmployeeSickLeaveOfficialChangePage extends WebPage {
 
     //Подзаголовок страницы
-    @Name("Выберите Фактический отпуск для изменения")
-    private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Фактический отпуск для изменения']");
+    @Name("Выберите Больничный для изменения")
+    private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Больничный для изменения']");
 
     }
 

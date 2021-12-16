@@ -132,4 +132,31 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webCheckSteps.checkElementIsExistsOnPage("Выберите Фактический отпуск для изменения");
     }
 
+    @Test(priority = 12)
+    @Description("Проверка работоспособности ссылки 'Больничные' под ролью 'hr'")
+    public void checkEmployeeSickLeaveOfficialLink() {
+        initialize();
+        webSteps.clickOnElement("Больничные");
+        webSteps.setPage("DjangoEmployeeSickLeaveOfficialPage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Больничный для изменения");
+    }
+
+    @Test(priority = 13)
+    @Description("Проверка работоспособности кнопки \"Добавить\" подраздела \"Больничные\" под ролью 'hr'")
+    public void checkEmployeeSickLeaveOfficialAddButton() {
+        initialize();
+        webSteps.clickOnElement("Больничные_Добавить");
+        webSteps.setPage("DjangoEmployeeSickLeaveOfficialAddPage");
+        webCheckSteps.checkElementIsExistsOnPage("Добавить Больничный");
+    }
+
+    @Test(priority = 14)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Больничные\" под ролью 'hr'")
+    public void checkEmployeeSickLeaveOfficialChangeButton() {
+        initialize();
+        webSteps.clickOnElement("Больничные_Изменить");
+        webSteps.setPage("DjangoEmployeeSickLeaveOfficialChangePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Больничный для изменения");
+    }
+
 }

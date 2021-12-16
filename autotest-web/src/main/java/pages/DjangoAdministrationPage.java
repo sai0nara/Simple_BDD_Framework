@@ -50,11 +50,11 @@ public class DjangoAdministrationPage extends WebPage {
     private SelenideElement employeeActualVacationChange= $x("//tr[@class='model-employeeactualvacation']//a[@class='changelink']");
 
     @Name("Больничные")
-    private SelenideElement employeeSickLeaveOfficial = $x("//tr[@class='model-model-employeesickleaveofficial']//a[text()='Больничные']");
+    private SelenideElement employeeSickLeaveOfficial = $x("//tr[@class='model-employeesickleaveofficial']//a[text()='Больничные']");
     @Name("Больничные_Добавить")
-    private SelenideElement employeeSickLeaveOfficialAdd = $x("//tr[@class='model-model-employeesickleaveofficial']//a[@class='addlink']");
+    private SelenideElement employeeSickLeaveOfficialAdd = $x("//tr[@class='model-employeesickleaveofficial']//a[@class='addlink']");
     @Name("Больничные_Изменить")
-    private SelenideElement employeeSickLeaveOfficialChange = $x("//tr[@class='model-model-employeesickleaveofficial']//a[@class='changelink']");
+    private SelenideElement employeeSickLeaveOfficialChange = $x("//tr[@class='model-employeesickleaveofficial']//a[@class='changelink']");
 
     @Name("Бюллютени без больничного листа")
     private SelenideElement employeeSickLeaveUnofficial = $x("//a[text()='Бюллютени без больничного листа']");
