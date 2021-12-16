@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 //URL страницы ./admin/core/employeevacationrequest/change
 //Предлагаю добавлять URL как однозначный идентификатор ко всем создаваемым PageObject
 
-@Name(value = "DjangoAccountAdminChangePage")
+@Name(value = "DjangoEmployeeVacationRequestChangePage")
 public class DjangoEmployeeVacationRequestChangePage extends WebPage {
 
     //Подзаголовок страницы

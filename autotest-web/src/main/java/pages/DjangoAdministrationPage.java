@@ -36,25 +36,25 @@ public class DjangoAdministrationPage extends WebPage {
     private SelenideElement accountadminChange = $x("//tr[@class='model-accountadmin']//a[@class='changelink']");
 
     @Name("Запросы на отпуск")
-    private SelenideElement employeeVacationRequest = $x("//a[text()='Запросы на отпуск']");
+    private SelenideElement employeeVacationRequest = $x("//tr[@class='model-employeevacationrequest']//a[text()='Запросы на отпуск']");
     @Name("Запросы на отпуск_Добавить")
-    private SelenideElement employeeVacationRequestAdd = $x("//a[text()='Запросы на отпуск']//a[@class='addlink']");
+    private SelenideElement employeeVacationRequestAdd = $x("//tr[@class='model-employeevacationrequest']//a[@class='addlink']");
     @Name("Запросы на отпуск_Изменить")
-    private SelenideElement employeeVacationRequestChange = $x("//a[text()='Запросы на отпуск']//a[@class='changelink']");
+    private SelenideElement employeeVacationRequestChange = $x("//tr[@class='model-employeevacationrequest']//a[@class='changelink']");
 
     @Name("Фактические отпуска")
-    private SelenideElement employeeActualVacation= $x("//a[text()='Фактические отпуска']");
+    private SelenideElement employeeActualVacation= $x("//tr[@class='model-employeeactualvacation']//a[text()='Фактические отпуска']");
     @Name("Фактические отпуска_Добавить")
-    private SelenideElement employeeActualVacationAdd= $x("//a[text()='Фактические отпуска']//a[@class='addlink']");
+    private SelenideElement employeeActualVacationAdd= $x("//tr[@class='model-employeeactualvacation']//a[@class='addlink']");
     @Name("Фактические отпуска_Изменить")
-    private SelenideElement employeeActualVacationChange= $x("//a[text()='Фактические отпуска']//a[@class='changelink']");
+    private SelenideElement employeeActualVacationChange= $x("//tr[@class='model-employeeactualvacation']//a[@class='changelink']");
 
     @Name("Больничные")
-    private SelenideElement employeeSickLeaveOfficial = $x("//a[text()='Больничные']");
+    private SelenideElement employeeSickLeaveOfficial = $x("//tr[@class='model-model-employeesickleaveofficial']//a[text()='Больничные']");
     @Name("Больничные_Добавить")
-    private SelenideElement employeeSickLeaveOfficialAdd = $x("//a[text()='Больничные']//a[@class='addlink']");
+    private SelenideElement employeeSickLeaveOfficialAdd = $x("//tr[@class='model-model-employeesickleaveofficial']//a[@class='addlink']");
     @Name("Больничные_Изменить")
-    private SelenideElement employeeSickLeaveOfficialChange = $x("//a[text()='Больничные']//a[@class='changelink']");
+    private SelenideElement employeeSickLeaveOfficialChange = $x("//tr[@class='model-model-employeesickleaveofficial']//a[@class='changelink']");
 
     @Name("Бюллютени без больничного листа")
     private SelenideElement employeeSickLeaveUnofficial = $x("//a[text()='Бюллютени без больничного листа']");

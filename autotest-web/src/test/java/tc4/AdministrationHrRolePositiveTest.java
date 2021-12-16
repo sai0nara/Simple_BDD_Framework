@@ -23,7 +23,6 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webSteps.setPage("DjangoAuthorization");
         webSteps.authWithLogin("hr");
         webSteps.setPage("DjangoAdministration");
-
     }
 
     @Test(priority = 1)
@@ -59,7 +58,6 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webSteps.clickOnElement("Администраторы аккаунта");
         webSteps.setPage("DjangoAccountAdminPage");
         webCheckSteps.checkElementIsExistsOnPage("Выберите Администратор аккаунта для изменения");
-
     }
 
     @Test(priority = 4)
@@ -69,7 +67,6 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webSteps.clickOnElement("Администраторы аккаунта_Добавить");
         webSteps.setPage("DjangoAccountAdminAddPage");
         webCheckSteps.checkElementIsExistsOnPage("Добавить Администратор аккаунта");
-
     }
 
     @Test(priority = 5)
@@ -79,37 +76,60 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webSteps.clickOnElement("Администраторы аккаунта_Изменить");
         webSteps.setPage("DjangoAccountAdminChangePage");
         webCheckSteps.checkElementIsExistsOnPage("Выберите Администратор аккаунта для изменения");
-
     }
 
     @Test(priority = 6)
     @Description("Проверка работоспособности ссылки 'Запросы на отпуск' под ролью 'hr'")
     public void checkEmployeeVacationRequestLink() {
         initialize();
-        webSteps.clickOnElement("Администраторы аккаунта");
-        webSteps.setPage("DjangoAccountAdminPage");
-        webCheckSteps.checkElementIsExistsOnPage("Выберите Администратор аккаунта для изменения");
-
+        webSteps.clickOnElement("Запросы на отпуск");
+        webSteps.setPage("DjangoEmployeeVacationRequestPage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Запрос на отпуск для изменения");
     }
 
     @Test(priority = 7)
     @Description("Проверка работоспособности кнопки \"Добавить\" подраздела \"Запросы на отпуск\" под ролью 'hr'")
     public void checkEmployeeVacationRequestAddButton() {
         initialize();
-        webSteps.clickOnElement("Администраторы аккаунта_Добавить");
-        webSteps.setPage("DjangoAccountAdminAddPage");
-        webCheckSteps.checkElementIsExistsOnPage("Добавить Администратор аккаунта");
-
+        webSteps.clickOnElement("Запросы на отпуск_Добавить");
+        webSteps.setPage("DjangoEmployeeVacationRequestAddPage");
+        webCheckSteps.checkElementIsExistsOnPage("Добавить Запрос на отпуск");
     }
 
     @Test(priority = 8)
     @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Запросы на отпуск\" под ролью 'hr'")
     public void checkEmployeeVacationRequestChangeButton() {
         initialize();
-        webSteps.clickOnElement("Администраторы аккаунта_Изменить");
-        webSteps.setPage("DjangoAccountAdminChangePage");
-        webCheckSteps.checkElementIsExistsOnPage("Выберите Администратор аккаунта для изменения");
+        webSteps.clickOnElement("Запросы на отпуск_Изменить");
+        webSteps.setPage("DjangoEmployeeVacationRequestChangePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Запрос на отпуск для изменения");
+    }
 
+    @Test(priority = 9)
+    @Description("Проверка работоспособности ссылки 'Фактические отпуска' под ролью 'hr'")
+    public void checkEmployeeActualVacationLink() {
+        initialize();
+        webSteps.clickOnElement("Фактические отпуска");
+        webSteps.setPage("DjangoEmployeeActualVacationPage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Фактический отпуск для изменения");
+    }
+
+    @Test(priority = 10)
+    @Description("Проверка работоспособности кнопки \"Добавить\" подраздела \"Фактические отпуска\" под ролью 'hr'")
+    public void checkEmployeeActualVacationAddButton() {
+        initialize();
+        webSteps.clickOnElement("Фактические отпуска_Добавить");
+        webSteps.setPage("DjangoEmployeeActualVacationAddPage");
+        webCheckSteps.checkElementIsExistsOnPage("Добавить Фактический отпуск");
+    }
+
+    @Test(priority = 11)
+    @Description("Проверка работоспособности кнопки \"Изменить\" подраздела \"Фактические отпуска\" под ролью 'hr'")
+    public void checkEmployeeActualVacationChangeButton() {
+        initialize();
+        webSteps.clickOnElement("Фактические отпуска_Изменить");
+        webSteps.setPage("DjangoEmployeeActualVacationChangePage");
+        webCheckSteps.checkElementIsExistsOnPage("Выберите Фактический отпуск для изменения");
     }
 
 }
