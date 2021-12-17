@@ -40,7 +40,7 @@ public class AdministrationPageSectionsRoleAdminTest extends WebHooks {
     }
 
     @Test(dataProvider = "data")
-    @Description("4.1-4.12 Проверка работоспособности элемента {button}. под ролью 'admin'")
+    @Description("4.2.1-4.2.12 Проверка работоспособности элемента {button}. под ролью 'admin'")
     public void administrationAccessUserGroupTotpTest(String button, String page, String infotext) {
         initialize();
         webCheckSteps.checkAppearElement(button);
