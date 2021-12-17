@@ -18,17 +18,17 @@ public class AdministrationPageSectionsRoleAdminTest extends WebHooks {
     public Object[][] data() {
         return new Object[][]{
                 {"Сотрудники с административным доступом", "DjangoAdminAccess", "Выберите Сотрудник с административным доступом для изменения"},
-                {"Добавить поле Сотрудники", "DjangoAdminAccessAddEmployee", "Добавить Сотрудник с административным доступом"},
-                {"Изменить поле Сотрудники", "DjangoAdminAccessChangeEmployee", "Выберите Сотрудник с административным доступом для изменения"},
+                {"Добавить поле Сотрудники с административным доступом", "DjangoAdminAccessAddEmployee", "Добавить Сотрудник с административным доступом"},
+                {"Изменить поле Сотрудники с административным доступом", "DjangoAdminAccessChangeEmployee", "Выберите Сотрудник с административным доступом для изменения"},
                 {"Группы", "DjangoGroup", "Выберите группа для изменения"},
                 {"Добавить поле Группы", "DjangoAddGroup", "Добавить группа"},
                 {"Изменить поле Группы", "DjangoChangeGroup", "Выберите группа для изменения"},
                 {"Пользователи", "DjangoUser", "Выберите пользователь для изменения"},
                 {"Добавить поле Пользователи", "DjangoAddUser", "Добавить пользователь"},
                 {"Изменить поле Пользователи", "DjangoChangeUser", "Выберите пользователь для изменения"},
-                {"OTP_TOTP", "DjangoTotp", "Выберите TOTP device для изменения"},
-                {"Добавить поле OTP_TOTP", "DjangoAddTotp", "Добавить TOTP device"},
-                {"Изменить поле OTP_TOTP", "DjangoChangeTotp", "Выберите TOTP device для изменения"}
+                {"TOTP devices", "DjangoTotp", "Выберите TOTP device для изменения"},
+                {"Добавить поле TOTP devices", "DjangoAddTotp", "Добавить TOTP device"},
+                {"Изменить поле TOTP devices", "DjangoChangeTotp", "Выберите TOTP device для изменения"}
         };
     }
 
