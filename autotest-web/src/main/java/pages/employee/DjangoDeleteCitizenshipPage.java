@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Name(value = "DjangoDeleteCitizenship")
 public class DjangoDeleteCitizenshipPage extends WebPage {
+
     @Name("Вы уверены?")
     private SelenideElement header1 = $x("//div[@id='content']/child::h1");
     @Name("Yes, I’m sure")

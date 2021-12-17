@@ -17,5 +17,4 @@ public class DjangoDeleteEmployee extends WebPage {
 
     @Name("Успешно удалены 1 Сотрудник.")
     private SelenideElement message = $x("//ul[@class='messagelist']/li");
-
 }
