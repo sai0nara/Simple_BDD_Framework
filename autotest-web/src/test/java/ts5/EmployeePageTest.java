@@ -8,22 +8,14 @@ import steps.*;
 
 public class EmployeePageTest extends WebHooks {
 
-    private PageManager pageManager = new PageManager();
+    private final PageManager pageManager = new PageManager();
     private final WebSteps webSteps = new WebSteps(pageManager);
     private final WebCheckSteps webCheckSteps = new WebCheckSteps(pageManager);
 
-    private void authorization(String login, String password) {
+    private void authorization(String login) {
         webSteps.openUrl();
         webSteps.setPage("DjangoAuthorization");
-        webCheckSteps.checkNoSelectedCheckbox("Я желаю войти с админскими правами");
-        webSteps.clickOnElement("Я желаю войти с админскими правами");
-        webCheckSteps.checkNoSelectedCheckbox("Я здесь впервые");
-        webSteps.fillField("логин", login);
-        webSteps.fillField("пароль", password);
-        webCheckSteps.checkAppearElement("токен");
-        webSteps.fillTokenField("токен", login, password);
-        webCheckSteps.checkAppearElement("войти");
-        webSteps.clickOnElement("войти");
+        webSteps.authWithLogin(login);
         webCheckSteps.currentTextIsNotExist("Сообщение об ошибке");
         webSteps.setPage("DjangoAdministration");
         webCheckSteps.checkAppearElement("Сотрудники");
@@ -43,14 +35,14 @@ public class EmployeePageTest extends WebHooks {
     @Description("5.1. Проверка отображения недоступного функционала на странице 'Сотрудники' " +
             "под ролью 'public'")
     public void checkingDisplayUnavailableFunctionality() {
-        authorization("public", "hrmhrm123456");
+        authorization("public");
         webCheckSteps.elementAbsentOnPage("Добавить сотрудник");
     }
 
     @Test
     @Description("5.2. Проверка отсутствия активности элемента на странице 'Сотрудники' под ролью 'public'")
     public void checkingElementIsInactive() {
-        authorization("public", "hrmhrm123456");
+        authorization("public");
         webSteps.clickRandom("ФИО");
         webSteps.setPage("DjangoEmployeeChange");
         webCheckSteps.checkElementIsReadOnly("Фамилия Public");
@@ -60,7 +52,7 @@ public class EmployeePageTest extends WebHooks {
     @Test
     @Description("5.3. Проверка работоспособности поискового блока под ролью 'hr'")
     public void checkingHealthSearchBlock() {
-        authorization("hr", "hrmhrm12345");
+        authorization("hr");
         webSteps.fillField("Поиск", "Бородкин");
         webCheckSteps.checkAppearElement("Найти");
         webSteps.clickOnElement("Найти");
@@ -71,7 +63,7 @@ public class EmployeePageTest extends WebHooks {
     @Test
     @Description("5.4. Проверка работоспособности удаления сотрудников под ролью 'hr'")
     public void checkingHealthDeleting() {
-        authorization("hr", "hrmhrm12345");
+        authorization("hr");
         webSteps.clickRandom("Таблица чек-бокс");
         webCheckSteps.checkAppearElement("Выбрано 1 из 100");
         webSteps.setAnything("Действие", 1);
@@ -87,7 +79,7 @@ public class EmployeePageTest extends WebHooks {
     @Test
     @Description("5.5. Проверка работоспособности экспорта списка сотрудников под ролью 'hr'")
     public void checkingHealthListExport() {
-        authorization("hr", "hrmhrm12345");
+        authorization("hr");
         webSteps.clickRandom("Таблица чек-бокс");
         webCheckSteps.checkAppearElement("Выбрано 1 из 100");
         webSteps.setAnything("Действие", 2);
