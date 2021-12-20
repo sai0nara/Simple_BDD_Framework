@@ -2,7 +2,6 @@ package ts4_3;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
-import org.junit.Before;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -19,8 +18,8 @@ public class AdministrationPageUnavailableFunctionalTest extends WebHooks {
     @DataProvider
     public Object[][] pageElement() {
         return new Object[][]{
-                {"Добавить"},
-                {"Изменить"},
+                {"Добавить поле Сотрудники"},
+                {"Изменить поле Сотрудники"},
                 {"Сотрудники с административным доступом"},
                 {"Группы"},
                 {"Пользователи"},
@@ -40,6 +39,6 @@ public class AdministrationPageUnavailableFunctionalTest extends WebHooks {
     public void publicAccessButtons (String button)
     {
         initialize();
-        webCheckSteps.currentTextIsNotExist(button);
+        webCheckSteps.elementAbsentOnPage(button);
     }
 }
