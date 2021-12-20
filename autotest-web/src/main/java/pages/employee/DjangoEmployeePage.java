@@ -11,6 +11,10 @@ import static com.codeborne.selenide.Selenide.*;
 @Name(value = "DjangoEmployee")
 public class DjangoEmployeePage extends WebPage {
 
+    // HEADER
+    @Name("Заголовок страницы")
+    private SelenideElement pageHeader = $x("//div[id='content']/h1");
+
     //КНОПКИ В HEADER
     @Name("Восстановить удаленный сотрудники")
     private SelenideElement recoverLink = $x("//a[@class='recoverlink']");

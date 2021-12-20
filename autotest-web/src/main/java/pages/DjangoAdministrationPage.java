@@ -231,10 +231,15 @@ public class DjangoAdministrationPage extends WebPage {
     //ADMINISTRATIVE ACCESS
     @Name("Сотрудники с административным доступом")
     private SelenideElement adminEmployee = $x("//tr[@class='model-administrator']/th/a");
+
     @Name("Добавить поле Сотрудники с административным доступом")
     private SelenideElement addAdminEmployee = $x("//tr[@class='model-administrator']//a[@class='addlink']");
     @Name("Изменить поле Сотрудники с административным доступом")
     private SelenideElement changeAdminEmployee = $x("//tr[@class='model-administrator']//a[@class='changelink']");
+
+    //PUBLIC ACCESS
+    @Name("Посмотреть поле Сотрудники")
+    private SelenideElement viewPublicEmployee = $x("//tr[@class='model-employee']//td/a[@class='viewlink']");
 
     //USERS AND GROUP
     @Name("Группы")
