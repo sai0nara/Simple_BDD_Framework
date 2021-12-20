@@ -7,10 +7,13 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
-//URL /admin/core/employee/
+/**
+ * /admin/core/employee/add
+ */
 
-@Name(value = "DjangoEmployee")
-public class DjangoEmployeePage extends WebPage {
+
+@Name(value = "DjangoEmployeeAddPage")
+public class DjangoEmployeeAddPage extends WebPage {
 
     @Name("Выберите Сотрудник для изменения")
     private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Сотрудник для изменения']");

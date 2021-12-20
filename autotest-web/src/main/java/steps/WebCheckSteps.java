@@ -465,4 +465,30 @@ public class WebCheckSteps {
         Checks.elementNotVisibleOnPage(element, null);
         LOGGER.info("элемент '{}' не отображается на странице", elementName);
     }
+
+    /**
+     * Проверка существования элемента на странице
+     *
+     * @param elementName - название элемента
+     */
+    public void checkElementIsExistsOnPage(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementIsExists(element);
+        LOGGER.info("на странице '{}' есть элемент '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
+
+    /**
+     * Проверка отсутствия элемента на странице
+     *
+     * @param elementName - название элемента
+     */
+    public void checkElementIsNotExistsOnPage(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        Checks.elementIsNotExists(element);
+        LOGGER.info("на странице '{}' нет элемента '{}'", pageManager.getCurrentPage().name(), elementName);
+    }
 }
