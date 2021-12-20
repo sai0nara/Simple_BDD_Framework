@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Name(value = "DjangoAddCitizenship")
 public class DjangoAddCitizenshipPage extends WebPage {
+
     @Name("Гражданство")
     private SelenideElement citizenship = $x("//input[@id='id_name']");
     @Name("Сохранить")
@@ -17,6 +18,4 @@ public class DjangoAddCitizenshipPage extends WebPage {
     private SelenideElement addCitizenship = $("#content-main");
     @Name("Изменить Гражданство")
     private SelenideElement editCitizenship = $x("//div[@id='content']/child::h1");
-
-
 }
