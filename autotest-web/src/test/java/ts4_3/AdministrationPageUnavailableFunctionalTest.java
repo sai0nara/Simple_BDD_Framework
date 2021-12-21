@@ -30,8 +30,7 @@ public class AdministrationPageUnavailableFunctionalTest extends WebHooks {
     @DataProvider
     public Object[][] pageElement2() {
         return new Object[][]{
-                {"Посмотреть поле Сотрудники", "DjangoEmployee", "Select Сотрудник to view"}//,
-//                {" ", " "}
+                {"Посмотреть поле Сотрудники", "DjangoEmployee", "Выберите Сотрудник для просмотра"}
         };
     }
 
@@ -51,7 +50,7 @@ public class AdministrationPageUnavailableFunctionalTest extends WebHooks {
     }
 
     @Test(dataProvider = "pageElement2")
-    @Description("4.3.2 Проверка работоспособности элемента {link} под ролью 'public'")
+    @Description("4.3.2 - 4.3.56 Проверка работоспособности элемента {link} под ролью 'public'")
     public void publicAccessButtons (String pageLink, String pageObject, String headerText)
     {
         initialize();
