@@ -11,6 +11,11 @@ import static com.codeborne.selenide.Selenide.*;
 @Name(value = "DjangoEmployeeChange")
 public class DjangoEmployeeChangePage extends WebPage {
 
+    @Name("Случайное число для выборки календаря - День рождения")
+    private SelenideElement randomBirthdayDate = $x("//*[@id=\"calendarin1\"]//a");
+    @Name("Случайное число для выборки календаря - Дата приема на работу")
+    private SelenideElement randomDate = $x("//td[4]/a");
+
     @Name("Имя")
     private SelenideElement firstName = $x("//input[@id='id_name']");
     @Name("Фамилия")
@@ -172,7 +177,7 @@ public class DjangoEmployeeChangePage extends WebPage {
     @Name("Добавить проект")
     private SelenideElement newProject = $x("//tr[@id=\"employeeproject_set-empty\"]/following-sibling::tr/td/a");
     @Name("Новый проект")
-    private SelenideElement lastProject = $x("//div[@id='employeeproject_set-group']//fieldset/table/tbody/tr[@id = 'employeeproject_set-1']");
+    private SelenideElement lastProject = $x("//div[@id='employeeproject_set-group']//fieldset/table/tbody/tr[@id = 'employeeproject_set-0']");
     @Name("Выбор проекта")
     private SelenideElement projectName = lastProject.find(By.xpath("./td[@class = 'field-project']/div/select"));
     @Name("Вид тестирования")
