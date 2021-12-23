@@ -4,6 +4,7 @@ import hooks.WebHooks;
 import io.qameta.allure.Description;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.lanit.at.api.testcontext.ContextHolder;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.WebCheckSteps;
 import steps.WebSteps;
@@ -142,11 +143,29 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
     @Test()
     @Description("Тест 4.1.87 Проверка отображения недоступного функционала под ролью hr")
     public void checkMyLastActionsDisplayUnderHrRole() {
+        String checkedText="";
+
         initialize();
         webSteps.clickOnElement("Сотрудники");
         webSteps.setPage("DjangoEmployee");
         webSteps.clickOnElement("Добавить сотрудник");
+        webSteps.setPage("DjangoEmployeeAddPage");
+
+        //Заполняем Имя Фамилию и пол, случайными значениями
+        webSteps.fillFieldRandomString("Фамилия");
+        webSteps.fillFieldRandomString("Имя");
+        webSteps.listSelectRandElement("Пол");
+
+        webSteps.clickOnElement("Сохранить");
         webSteps.setPage("DjangoEmployee");
+        webCheckSteps.checkElementIsExistsOnPage("Сообщение об успешном редактировании");
+        webSteps.clickOnElement( "Администрирование Django");
+        webSteps.setPage("DjangoAdministration");
+
+        checkedText=ContextHolder.getValue("Фамилия")+" "+ContextHolder.getValue("Имя");
+
+        webCheckSteps.matchText("Первый элемент блока Мои действия",checkedText);
+
 
 
 

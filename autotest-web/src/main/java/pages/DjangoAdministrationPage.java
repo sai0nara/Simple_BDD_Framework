@@ -1,5 +1,9 @@
 package pages;
 
+/**
+ * /admin/
+ */
+
 import com.codeborne.selenide.SelenideElement;
 import ru.lanit.at.web.annotations.Name;
 import ru.lanit.at.web.pagecontext.WebPage;
@@ -11,6 +15,9 @@ public class DjangoAdministrationPage extends WebPage {
 
     @Name("Заголовок таблицы")
     private SelenideElement tableHeader = $x("//div[@id='content']/h1");
+
+    @Name("Первый элемент блока Мои действия")
+    private SelenideElement blockMyActionsFirstElement = $x("//div[@id='recent-actions-module']//li//a");
 
     @Name("Изменить пароль")
     SelenideElement changePassword = $x("//a[@href='/admin/password_change/']");

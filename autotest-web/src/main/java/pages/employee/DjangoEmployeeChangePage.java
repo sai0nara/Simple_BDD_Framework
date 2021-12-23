@@ -12,8 +12,15 @@ import static com.codeborne.selenide.Selenide.*;
  * /admin/core/employee/
  */
 
+//Страница дублирует DjangoEmployeePage
+
+@Deprecated
 @Name(value = "DjangoEmployeeChange")
 public class DjangoEmployeeChangePage extends WebPage {
+
+    //HEADER
+    @Name("Администрирование Django")
+    private SelenideElement backToMainPage = $x("//div[@id='header']//a[text()='Администрирование Django']");
 
     @Name("Имя")
     private SelenideElement firstName = $x("//input[@id='id_name']");
