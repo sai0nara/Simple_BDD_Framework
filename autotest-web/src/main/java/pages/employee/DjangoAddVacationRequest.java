@@ -57,6 +57,18 @@ public class DjangoAddVacationRequest extends WebPage {
     @Name("Сохранить")
     private SelenideElement saveElem = $x("//input[@value='Сохранить']");
 
+    @Name("Сохранить и добавить другой объект")
+    private SelenideElement saveAndAddButton = $x("//input[@name='_addanother']");
+
+    @Name("Сохранить и продолжить редактирование")
+    private SelenideElement saveContinueButton = $x("//input[@name='_continue']");
+
     @Name("Сообщение об успешном создании запроса")
     private SelenideElement successMessage = $x("//li[@class='success']");
+
+    @Name("Заметки")
+    private SelenideElement notes = $x("//textarea");
+
+    @Name("Оплачиваемый")
+    private SelenideElement payedVacation = $x("//div/input[@id='id_paid']");
 }
