@@ -11,8 +11,7 @@ public class DjangoRestoreEmployeePage extends WebPage {
 
     @Name("Дата и время")
     private ElementsCollection dateAndTime = $$x("//th[@scope='row']/a");
-
     @Name("Сотрудник")
-    private ElementsCollection employee = $$("#change-history tbody tr td");
+    private ElementsCollection employee = $$x("//table[@id='change-history']/tbody/tr/td");
 }
 

@@ -21,5 +21,8 @@ public class DjangoExportEmployeePage extends WebPage {
 
     @Name("Отправить")
     private SelenideElement buttonSend = $x("//input[@type='submit']");
-}
 
+// КТО ИСПОЛЬЗУЕТ ЭТОТ РО, ПЕРЕПИШИТЕ СВОЙ ТЕСТ НА КОЛЛЕКЦИЮ, ЭЛЕМЕНТ: Чекбокс
+    @Name("Договор")
+    private SelenideElement contractCheckbox = $x("//input[@value='contract']");
+}
