@@ -1,0 +1,28 @@
+{
+  "name": "%name%",
+  "surname": "%surname%",
+  "patronymic": "%patronymic%",
+  "gender": "м",
+  "birth": "%birth%",
+  "joining_date": "%join_date%",
+  "phone": "%phone%",
+  "internal_email": "%email%",
+  "employee_cities": [
+    {
+      "city": 13,
+      "change_date": "2021-01-15"
+    }
+  ],
+  "employee_positions": [
+    {
+      "position": 128
+    }
+  ],
+  "employee_projects": [
+    {
+      "project": 185,
+      "testing_type": 5,
+      "start_date": "2021-12-15"
+    }
+  ]
+}
