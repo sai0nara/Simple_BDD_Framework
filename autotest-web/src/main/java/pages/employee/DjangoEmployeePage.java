@@ -7,10 +7,17 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
-//URL /admin/core/employee/
+/**
+ *  /admin/core/employee/
+ */
+//Страница дублирует DjangoEmployeeChangePage
 
 @Name(value = "DjangoEmployee")
 public class DjangoEmployeePage extends WebPage {
+
+    //HEADER
+    @Name("Администрирование Django")
+    private SelenideElement backToMainPage = $x("//div[@id='header']//a[text()='Администрирование Django']");
 
     @Name("Выберите Сотрудник для изменения")
     private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Сотрудник для изменения']");
@@ -48,7 +55,7 @@ public class DjangoEmployeePage extends WebPage {
     @Name("Предупреждение в заголовке")
     private SelenideElement headerWarning = $(".warning");
 
-    @Name("Сообщение об успешном редактирование")
+    @Name("Сообщение об успешном редактировании")
     private SelenideElement headerSuccess = $(".success");
 
     @Name("Таблица чек-бокс")

@@ -15,16 +15,27 @@ import static com.codeborne.selenide.Selenide.*;
 @Name(value = "DjangoEmployeeAddPage")
 public class DjangoEmployeeAddPage extends WebPage {
 
-    @Name("Выберите Сотрудник для изменения")
-    private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Сотрудник для изменения']");
+    //Подзаголовок страницы
+    @Name("Добавить Сотрудник")
+    private SelenideElement pageContent = $x("//div[@class='colM']//h1[text()='Добавить Сотрудник']");
 
-    @Name("ФИО")
-    private ElementsCollection fio = $$x("//th[@class='field-full_name']/a");
+    @Name("Фамилия")
+    private SelenideElement surnameField = $x("//input[@id='id_surname']");
 
-    @Name("Name")
-    private SelenideElement nameOfChange = $x("//li[@class='success']/a");
+    @Name("Имя")
+    private SelenideElement nameField = $x("//input[@id='id_name']");
 
-    @Name("Восстановить удаленный сотрудники")
+    @Name("Пол")
+    private SelenideElement genderList = $x("//select[@id='id_gender']");
+
+    @Name("Сохранить")
+    private SelenideElement saveButtom = $x("//input[@name='_save']");
+
+
+
+    //Локаторы скопированы из DjangoEmployeeChangePage, есть ли они на этой странице неизвестно
+
+    /*@Name("Восстановить удаленный сотрудники")
     private SelenideElement recoverLink = $x("//a[@class='recoverlink']");
     @Name("Импорт")
     private SelenideElement importLink = $x("//a[@class='import_link']");
@@ -80,6 +91,6 @@ public class DjangoEmployeeAddPage extends WebPage {
     @Name("Договор")
     private SelenideElement contractCheckbox = $x("//input[@value='contract']");
     @Name("Формат")
-    private SelenideElement formatField = $x("//select[@name='file_format']");
+    private SelenideElement formatField = $x("//select[@name='file_format']");*/
 }
 
