@@ -1,4 +1,4 @@
-package tc4_1;
+package ts4_1;
 
 import hooks.WebHooks;
 import io.qameta.allure.Description;
