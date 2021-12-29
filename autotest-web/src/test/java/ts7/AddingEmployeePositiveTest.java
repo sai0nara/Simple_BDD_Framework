@@ -138,4 +138,75 @@ public class AddingEmployeePositiveTest extends WebHooks {
         webCheckSteps.checkElementIsRead("Изменить выбранный объект типа Гражданство");
         webCheckSteps.checkElementIsRead("Удалить выбранный объект типа Гражданство");
     }
+
+    @Test
+    @Description("7.16. Блок \"Навыки\", проверка заполняемости")
+    public void checkFillingOfSkills() {
+        initialize();
+
+        webSteps.clickOnElement("Показать Навыки");
+        webSteps.activeCheckbox("Список навыков", "Языки программирования: Golang");
+        webSteps.activeCheckbox("Список навыков", "Языки программирования: PHP");
+        webSteps.activeCheckbox("Список навыков", "Фреймворки АТ: TestNG");
+        webSteps.clickOnElement("Скрыть Навыки");
+        webCheckSteps.elementAbsentOnPage("Языки программирования: C# 5.0");
+    }
+
+    // TODO: 20.12.2021 (7.17) Ожидаем появления кнопки
+    //    Проверка работоспособности кнопки
+    //    "Добавить ещё один объект типа" --- Отложить до появления кнопки
+    /*@Test
+    @Description("EMPTY TEST (expect developer's button) " +
+            "7.17. Блок \"Квалификация\", проверка работоспособности кнопки")
+    public void checkButtonOfQualification() {
+        initialize();
+
+        webSteps.clickOnElement("Показать Навыки");
+        webSteps.clickOnElement(Future xpath of the button(+ Добавить еще один объект типа));
+    }*/
+
+    @Test
+    @Description("7.18. Блок \"Сертификаты\", проверка заполняемости")
+    public void checkFillingOfCertificates() {
+        initialize();
+
+        webSteps.clickOnElement("Показать Сертификаты");
+        webSteps.fillFieldRandomString("Сертификаты:");
+        webSteps.fillFieldRandomString("Курсы");
+        webSteps.clickOnElement("Скрыть Сертификаты");
+        webCheckSteps.elementAbsentOnPage("Сертификаты:");
+    }
+
+    @Test
+    @Description("7.19. блок \"Статус сотрудника\", проверка заполняемости")
+    public void checkFillingOfStatusOfEmployee() {
+        initialize();
+
+        webSteps.clickOnElement("Показать Статус сотрудника");
+        webSteps.activeCheckbox("Список статусов сотрудников", "В декретном отпуске");
+        webSteps.activeCheckbox("Список статусов сотрудников", "Внешний совместитель");
+        webSteps.clickOnElement("Скрыть Статус сотрудника");
+        webCheckSteps.elementAbsentOnPage("Работает");
+    }
+
+    @Test
+    @Description("7.20. Блок \"ОБРАЗОВАНИЯ\", проверка заполняемости")
+    public void checkFillingOfEducation() {
+        initialize();
+
+        webSteps.clickOnElement("Показать ОБРАЗОВАНИЯ");
+        webSteps.clickOnElement("Добавить еще один Образование");
+        webCheckSteps.checkReadOnly("Изменить выбранный объект типа ВУЗ", "<href>");
+        webSteps.listSelectRandElement("ВУЗ");
+        webCheckSteps.checkElementIsNotReadOnly("Изменить выбранный объект типа ВУЗ", "<href>");
+        webSteps.listSelectRandElement("УРОВЕНЬ ОБРАЗОВАНИЯ");
+        webCheckSteps.checkElementIsNotReadOnly("Изменить выбранный объект типа УРОВЕНЬ ОБРАЗОВАНИЯ",
+                "<href>");
+        webSteps.listSelectRandElement("СПЕЦИАЛЬНОСТЬ");
+        webCheckSteps.checkElementIsNotReadOnly("Изменить выбранный объект типа СПЕЦИАЛЬНОСТЬ", "<href>");
+        webSteps.fillField("ДАТА НАЧАЛА", "01.01.2001");
+        webSteps.fillField("ДАТА ОКОНЧАНИЯ", "01.01.2021");
+        webSteps.clickOnElement("Скрыть ОБРАЗОВАНИЯ");
+        webCheckSteps.elementAbsentOnPage("ВУЗ");
+    }
 }
