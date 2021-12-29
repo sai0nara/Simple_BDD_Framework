@@ -15,6 +15,9 @@ public class DjangoAddVacationRequest extends WebPage {
     @Name("Сотрудник")
     private ElementsCollection employee = $$x("//select[@name='employee']/option");
 
+    @Name("Поле Сотрудник")
+    private SelenideElement fieldOfEmployee = $x("//select[@name='employee']");
+
     @Name("Статус запроса")
     private SelenideElement requestStatus = $x("//select[@name='request_status']");
 
