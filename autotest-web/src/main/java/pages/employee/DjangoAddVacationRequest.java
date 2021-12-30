@@ -74,4 +74,31 @@ public class DjangoAddVacationRequest extends WebPage {
 
     @Name("Оплачиваемый")
     private SelenideElement payedVacation = $x("//div/input[@id='id_paid']");
+
+    @Name("Пожалуйста, исправьте ошибки ниже.")
+    private SelenideElement errorMessage = $x("//p[@class='errornote']");
+
+    @Name("Сотрудник: Это поле обязательно")
+    private SelenideElement errorEmployee = $x("//div[@class='form-row errors field-employee']/ul");
+
+    @Name("Статус запроса: Это поле обязательно")
+    private SelenideElement errorRequestStatus = $x("//div[@class='form-row errors field-request_status']/ul");
+
+    @Name("Дата создания: Это поле обязательно")
+    private SelenideElement errorCreateDate = $x("//div[@class='form-row errors field-create_date']/ul");
+
+    @Name("Дата начала: Это поле обязательно")
+    private SelenideElement errorStartDate = $x("//div[@class='form-row errors field-start_date']/ul");
+
+    @Name("Дата окончания: Это поле обязательно")
+    private SelenideElement errorEndDate = $x("//div[@class='form-row errors field-end_date']/ul");
+
+    @Name("Дата создания: Введите правильную дату")
+    private SelenideElement writeCreateDate = $x("//div[@class='form-row errors field-create_date']/ul");
+
+    @Name("Дата начала: Введите правильную дату")
+    private SelenideElement writeStartDate = $x("//div[@class='form-row errors field-start_date']/ul");
+
+    @Name("Дата окончания: Введите правильную дату")
+    private SelenideElement writeEndDate = $x("//div[@class='form-row errors field-end_date']/ul");
 }
