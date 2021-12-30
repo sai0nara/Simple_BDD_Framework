@@ -23,8 +23,8 @@ public class DjangoEmployeePage extends WebPage {
     @Name("Выберите Сотрудник для изменения")
     private SelenideElement pageContent = $x("//div[@class='flex']//h1[text()='Выберите Сотрудник для изменения']");
 
-    @Name("ФИО")
-    private ElementsCollection fio = $$x("//th[@class='field-full_name']/a");
+//    @Name("ФИО")
+//    private ElementsCollection fio = $$x("//th[@class='field-full_name']/a");
 
     //КНОПКИ В HEADER
     @Name("Восстановить удаленный сотрудники")
