@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 //Страница дублирует DjangoEmployeePage
 
-@Deprecated
+
 @Name(value = "DjangoEmployeeChange")
 public class DjangoEmployeeChangePage extends WebPage {
 
@@ -23,6 +23,9 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement history = $x("//a[@href='/admin/core/employee/805/history/']");
     @Name("Summary")
     private SelenideElement summary = $x("//a[@href='/summary_doc/805']");
+    @Name("Сообщение об успешном редактировании")
+    private SelenideElement successMessage = $x("//ul[@class='messagelist']//li[@class='success']/a");
+
 
     @Name("Инфоблок")
     private SelenideElement tableHeader = $x("//div[@id='content']/h1");

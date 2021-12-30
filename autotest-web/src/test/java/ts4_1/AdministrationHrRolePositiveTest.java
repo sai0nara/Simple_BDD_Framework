@@ -132,7 +132,7 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
     }
 
     @Test(dataProvider = "data")
-    @Description("Тесты 4.1.2-4.1.87, роль hr")
+    @Description("Тесты 4.1.2-4.1.86, роль hr")
     public void checkHrRole(String link, String page, String checkedText) {
         initialize();
         webSteps.clickOnElement(link);
@@ -157,7 +157,7 @@ public class AdministrationHrRolePositiveTest extends WebHooks {
         webSteps.listSelectRandElement("Пол");
 
         webSteps.clickOnElement("Сохранить");
-        webSteps.setPage("DjangoEmployee");
+        webSteps.setPage("DjangoEmployeeChange");
         webCheckSteps.checkElementIsExistsOnPage("Сообщение об успешном редактировании");
         webSteps.clickOnElement( "Администрирование Django");
         webSteps.setPage("DjangoAdministration");
