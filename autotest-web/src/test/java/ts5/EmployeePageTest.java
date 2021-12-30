@@ -21,7 +21,7 @@ public class EmployeePageTest extends WebHooks {
     }
 
     @Test
-    @Description("5.6 страница Сотрудники, проверка работотоспособности кнопок пагинации. Роль Hr")
+    @Description("5.6 страница Сотрудники, проверка работоспособности кнопок пагинации. Роль Hr")
     public void employeeHrPaginationTest() {
         initialize();
         webSteps.setPage("DjangoEmployee");
@@ -32,7 +32,7 @@ public class EmployeePageTest extends WebHooks {
     }
 
     @Test
-    @Description("5.7 страница Сотрудники, проверка работотоспособности восстановления удаленных сотрудников. Роль Hr")
+    @Description("5.7 страница Сотрудники, проверка работоспособности восстановления удаленных сотрудников. Роль Hr")
     public void employeeHrRestoreTest() {
         initialize();
         webSteps.setPage("DjangoEmployee");
@@ -43,10 +43,10 @@ public class EmployeePageTest extends WebHooks {
     }
 
     @Test
-    @Description("5.9 страница Сотрудники, проверка работотоспособности экспорта списка сотрудников через кнопку интерфейса. Роль Hr")
+    @Description("5.9 страница Сотрудники, проверка работоспособности экспорта списка сотрудников через кнопку интерфейса. Роль Hr")
     public void employeeHrExportTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Экспорт");
         webSteps.clickOnElement("Экспорт");
         webSteps.setPage("DjangoExportEmployee");
@@ -57,10 +57,10 @@ public class EmployeePageTest extends WebHooks {
     }
 
     @Test
-    @Description("5.10 страница Сотрудники, проверка работотоспособности кнопки добавления нового сотрудника. Роль Hr")
+    @Description("5.10 страница Сотрудники, проверка работоспособности кнопки добавления нового сотрудника. Роль Hr")
     public void employeeHrAddNewEmployeeTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webCheckSteps.checkAppearElement("Добавить сотрудник");
         webSteps.clickOnElement("Добавить сотрудник");
         webSteps.setPage("DjangoExportEmployee");
@@ -68,10 +68,10 @@ public class EmployeePageTest extends WebHooks {
     }
 
     @Test
-    @Description("5.11 страница Сотрудники, проверка работотоспособности фильтров. Роль Hr")
+    @Description("5.11 страница Сотрудники, проверка работоспособности фильтров. Роль Hr")
     public void employeeHrFiltersTest() {
         initialize();
-        webSteps.setPage("DjangoEmployeeChange");
+        webSteps.setPage("DjangoEmployee");
         webSteps.clickOnElementWithText("Категории фильтров", "Офис");
         webSteps.clickOnElementWithText("Фильтр", "Пенза");
         webCheckSteps.checkCurrentNumberCity("Текущий город", "Пенза");
