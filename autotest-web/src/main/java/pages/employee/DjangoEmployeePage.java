@@ -7,7 +7,10 @@ import ru.lanit.at.web.annotations.Name;
 import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.*;
-
+/**
+ * PageObject, описывающий страницу 'Сотрудники'
+ * http://178.154.246.238:58082/admin/core/employee/
+ */
 @Name(value = "DjangoEmployee")
 public class DjangoEmployeePage extends WebPage {
 
