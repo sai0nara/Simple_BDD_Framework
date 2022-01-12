@@ -9,6 +9,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 /**
+ * Страница - Администраторы аккаунта
+ *
  * @link - http://178.154.246.238:58082/admin/core/accountadmin/21/change/
  */
 

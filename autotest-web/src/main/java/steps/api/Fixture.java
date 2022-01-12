@@ -1,4 +1,4 @@
-package steps;
+package steps.api;
 
 import io.qameta.allure.Step;
 import io.restassured.path.json.JsonPath;
@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static io.restassured.RestAssured.given;
 import static steps.ApiSteps.getAuthToken;
 
-public class Fixture {
+public class Fixture implements Fixturable {
 
     /**
      * Вспомогательные методы для создания сотрудника
@@ -74,7 +74,7 @@ public class Fixture {
     public static int getCityIdEmployee() {
 
         int[] idies = new int[]
-        {7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44};
+                {7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44};
 
         return idies[getRandom(0, idies.length-1)];
     }

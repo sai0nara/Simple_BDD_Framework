@@ -8,6 +8,8 @@ import ru.lanit.at.web.pagecontext.WebPage;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
+ * Страница - Администраторы аккаунта
+ *
  * @link - http://178.154.246.238:58082/admin/core/accountadmin/
  */
 
