@@ -25,7 +25,7 @@ public class ChangingAdminOfAccountNegativeTest extends WebHooks {
     }
 
     @Test
-    @Description("1.6.1. Роль HR. Проверка поведения системы при не заполнении ключевых полей.")
+    @Description("16.1. Роль HR. Проверка поведения системы при не заполнении ключевых полей.")
     public void checkSystemNonFillMainFields() {
         initialize();
 
@@ -50,15 +50,16 @@ public class ChangingAdminOfAccountNegativeTest extends WebHooks {
     }
 
     @Test(dataProvider = "dataProviderNegativeTest")
-    @Description("1.6.2 - 1.6.3. Роль HR. Проверка поведения системы при невалидном заполнении поля " +
+    @Description("16.2 - 16.3. Роль HR. Проверка поведения системы при невалидном заполнении поля " +
             "Дата начала/Дата окончания.")
-    public void checkSystemFillInvalidDateOfStartAndEnd(String f, String s,
-                                                        String t, String four, String five) {
+    public void checkSystemFillInvalidDateOfStartAndEnd(String fieldDateStart, String valueDateStart,
+                                                        String saveAndContinue, String messageAboutError,
+                                                        String messagePleaseFixErrors) {
         initialize();
 
-        webSteps.fillField(f, s);
-        webSteps.clickOnElement(t);
-        webCheckSteps.checkAppearElement(four);
-        webCheckSteps.checkAppearElement(five);
+        webSteps.fillField(fieldDateStart, valueDateStart);
+        webSteps.clickOnElement(saveAndContinue);
+        webCheckSteps.checkAppearElement(messageAboutError);
+        webCheckSteps.checkAppearElement(messagePleaseFixErrors);
     }
 }
