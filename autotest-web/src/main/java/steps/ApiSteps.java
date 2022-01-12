@@ -335,6 +335,7 @@ public class ApiSteps {
         JSONObject requestBody = new JSONObject();
         requestBody.put("name", name);
 
+        System.out.println("НАЧАЛО ПОСТА");
         JsonPath createAcc = given()
                 .baseUri("http://178.154.246.238:58082/api")
                 .contentType("application/json")
@@ -346,7 +347,9 @@ public class ApiSteps {
                 .statusCode(201)
                 .extract()
                 .jsonPath();
+        System.out.println("КОНЕЦ ПОСТА");
 
+        System.out.println("НАЧАЛО ДЕЛЕТЕ");
         JsonPath deleteAccount = given()
                 .pathParam("id", createAcc.get("id"))
                 .baseUri("http://178.154.246.238:58082/api")
@@ -358,7 +361,9 @@ public class ApiSteps {
                 .statusCode(204)
                 .extract()
                 .jsonPath();
+        System.out.println("КОНЕЦ ДЕЛЕТЕ");
 
+        System.out.println("НАЧАЛО ГЕТ");
         JsonPath checkAccount = given()
                 .pathParam("id", createAcc.get("id"))
                 .baseUri("http://178.154.246.238:58082/api")
@@ -370,6 +375,7 @@ public class ApiSteps {
                 .statusCode(404)
                 .extract()
                 .jsonPath();
+        System.out.println("КОНЕЦ ГЕТ");
     }
 
     /**

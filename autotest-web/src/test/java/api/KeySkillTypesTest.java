@@ -15,17 +15,17 @@ public class KeySkillTypesTest {
 
     @Test(priority = 2)
     public void testPost() {
-        apiSteps.postWrap("key_skill_types", "qwerqwerqwer06");
+        apiSteps.postWrap("key_skill_types", "qwerqwerqwer500");
     }
 
     @Test(priority = 3)
     public void testPatch() {
-        apiSteps.patchWrap("key_skill_types","qwerqwerqwer", "qwarqwarqwar");
+        apiSteps.patchWrap("key_skill_types","qwerqwerqwer9000", "qwarqwarqwar10000");
     }
 
     @Test(priority = 4)
     public void testDelete() {
-        apiSteps.deleteWrap("key_skill_types", "qwarqwarqwar010");
+        apiSteps.deleteWrap("key_skill_types", "qwarqwarqwar5000");
     }
 
     @Test(priority = 5)
