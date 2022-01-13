@@ -18,10 +18,10 @@ public class ChangingAdminOfAccountNegativeTest extends WebHooks {
         webSteps.setPage("DjangoAuthorization");
         webSteps.authWithLogin("hr");
         webSteps.setPage("DjangoAdministration");
-        webSteps.clickOnElement("Администраторы аккаунта - ссылка");
-        webSteps.setPage("Страница - Администраторы аккаунта");
+        webSteps.clickOnElement("Администраторы аккаунта");
+        webSteps.setPage("AdministratorsOfAccount");
         webSteps.clickRandom("Рандомный сотрудник из списка");
-        webSteps.setPage("Страница - Изменить Администратор аккаунта");
+        webSteps.setPage("ChangeAdministratorOfAccount");
     }
 
     @Test

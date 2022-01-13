@@ -24,8 +24,6 @@ public class DjangoAdministrationPage extends WebPage {
     //MAIN
     @Name("Сотрудники")
     private SelenideElement employee = $x("//tr[@class='model-employee']/th/a");
-    @Name("Администраторы аккаунта - ссылка")
-    private SelenideElement AdminsOfAccount = $x("//div[1]//tr[2]//a");
     @Name("Добавить поле Сотрудники")
     private SelenideElement addEmployee = $x("//tr[@class='model-employee']//a[@class='addlink']");
     @Name("Изменить поле Сотрудники")

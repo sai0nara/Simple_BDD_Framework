@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$x;
  * @link - http://178.154.246.238:58082/admin/core/accountadmin/21/change/
  */
 
-@Name("Страница - Изменить Администратор аккаунта")
+@Name("ChangeAdministratorOfAccount")
 public class ChangeAdministratorOfAccountPage extends WebPage {
 
     @Name("Поле: Сотрудник")
