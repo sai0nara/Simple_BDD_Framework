@@ -1,13 +1,19 @@
 package steps;
 
 import io.qameta.allure.Step;
+import io.restassured.path.json.JsonPath;
 import ru.lanit.at.utils.DataGenerator;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static io.restassured.RestAssured.given;
+import static steps.ApiSteps.getAuthToken;
 
 public class Fixture {
 
@@ -32,6 +38,37 @@ public class Fixture {
                 {"Моисеевич", "Гопнилович", "Иванович", "Юнисович", "Бугулькович", "Пентестович", "Феофилович", "Малахитович", "Валентинович"},
         };
         return names[line][column];
+    }
+
+    public static List<String> newFixture(String endPoint) {
+        JsonPath listOfAccounts = given()
+                .baseUri("http://178.154.246.238:58082/api")
+                .contentType("application/json")
+                .header("Authorization", getAuthToken("admin", "asdf"))
+                .when()
+                .get(endPoint)
+                .then().log().all()
+                .statusCode(200)
+                .extract()
+                .jsonPath();
+        List<String> list = listOfAccounts.getList("id");
+        System.out.println(list);
+        return list;
+    }
+    public static List<String> newFixtureGetIdInWrapArray(String endPoint) {
+        JsonPath listOfAccounts = given()
+                .baseUri("http://178.154.246.238:58082/api")
+                .contentType("application/json")
+                .header("Authorization", getAuthToken("admin", "asdf"))
+                .when()
+                .get(endPoint)
+                .then().log().all()
+                .statusCode(200)
+                .extract()
+                .jsonPath();
+        List<String> list = listOfAccounts.getList("id");
+        System.out.println(list);
+        return list;
     }
 
     public static int getCityIdEmployee() {

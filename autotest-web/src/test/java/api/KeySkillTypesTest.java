@@ -3,6 +3,9 @@ package api;
 import org.testng.annotations.Test;
 import ru.lanit.at.web.pagecontext.PageManager;
 import steps.ApiSteps;
+import steps.Fixture;
+
+import java.util.List;
 
 public class KeySkillTypesTest {
     private static PageManager pageManager = new PageManager();
@@ -31,5 +34,11 @@ public class KeySkillTypesTest {
     @Test(priority = 5)
     public void testGetEnd() {
         apiSteps.get("key_skill_types");
+    }
+
+    @Test(priority = 6)
+    public void test() {
+        List<String> arr = Fixture.newFixture("key_skill_types");
+        System.out.println(arr);
     }
 }
