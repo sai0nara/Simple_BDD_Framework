@@ -6,7 +6,6 @@ import ru.lanit.at.utils.DataGenerator;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +65,8 @@ public class Fixture {
                 .statusCode(200)
                 .extract()
                 .jsonPath();
-        List<String> list = listOfAccounts.getList("id");
+        List<String> list = listOfAccounts.getList("key_skills.id");
+        System.out.println(list.get(1));
         System.out.println(list);
         return list;
     }

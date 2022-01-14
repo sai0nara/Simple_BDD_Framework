@@ -8,8 +8,8 @@ import steps.Fixture;
 import java.util.List;
 
 public class KeySkillTypesTest {
-    private static PageManager pageManager = new PageManager();
-    private static ApiSteps apiSteps = new ApiSteps(pageManager);
+    private static final PageManager pageManager = new PageManager();
+    private static final ApiSteps apiSteps = new ApiSteps(pageManager);
 
     @Test(priority = 1)
     public void testGet() {
@@ -38,7 +38,7 @@ public class KeySkillTypesTest {
 
     @Test(priority = 6)
     public void test() {
-        List<String> arr = Fixture.newFixture("key_skill_types");
+        List<String> arr = Fixture.newFixtureGetIdInWrapArray("key_skill_types");
         System.out.println(arr);
     }
 }
