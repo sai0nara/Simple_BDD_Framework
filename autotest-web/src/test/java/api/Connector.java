@@ -1,6 +1,7 @@
 package api;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Connector {
     private static final String DB_URL = "jdbc:postgresql://178.154.246.238:58083/hrm";
@@ -9,19 +10,36 @@ public class Connector {
     private static final String DRIVER = "org.postgresql.Driver";
 
     public static void main(String[] args) {
-        try (Connection connection = connectToDatabase();
-                Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM core_employee;");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-                System.out.println(resultSet.getString(2));
-                System.out.println(resultSet.getString(3));
-                System.out.println(resultSet.getString(4));
+//        try (Connection connection = connectToDatabase();
+//                Statement statement = connection.createStatement()) {
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM core_employee;");
+//            while (resultSet.next()) {
+//                System.out.println(resultSet.getString(1));
+//                System.out.println(resultSet.getString(2));
+//                System.out.println(resultSet.getString(3));
+//                System.out.println(resultSet.getString(4));
+//
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println(getFixture(Tables.getEmployees()));
+        System.out.println(getFixture(Tables.getProjects()));
+        System.out.println(getFixture(Tables.getPositions()));
+    }
 
+    public static ArrayList<Integer> getFixture(String queryFrom) {
+        ArrayList<Integer> result = new ArrayList<>();
+        try (Connection connection = connectToDatabase();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + queryFrom);
+            while (resultSet.next()) {
+                result.add(Integer.valueOf(resultSet.getString(1)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result;
     }
 
     public static Connection connectToDatabase() {
