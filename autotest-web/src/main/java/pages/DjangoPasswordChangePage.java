@@ -7,7 +7,10 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-
+/**
+ * PageObject, описывающий страницу 'Изменить пароль'
+ * http://178.154.246.238:58082/admin/password_change/
+ */
 @Name(value = "DjangoPasswordChange")
 public class DjangoPasswordChangePage extends WebPage {
 
