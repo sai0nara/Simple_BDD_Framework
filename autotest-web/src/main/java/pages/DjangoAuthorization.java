@@ -8,6 +8,10 @@ import ru.lanit.at.web.pagecontext.WebPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
+/**
+ * PageObject, описывающий страницу 'Авторизация'
+ * http://178.154.246.238:58082/admin/login/
+ */
 @Name(value = "DjangoAuthorization")
 public class DjangoAuthorization extends WebPage {
 

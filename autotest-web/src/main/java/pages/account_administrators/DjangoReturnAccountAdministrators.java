@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
  * http://178.154.246.238:58082/admin/core/accountadmin/recover/{id Администратор Аккаунта}
  * {id Администратор Аккаунта} - id выбранного объекта(Администратор Аккаунта)
  */
-@Name("DjangoReturnAccountAdministrators")
+@Name("DjangoRestoreAccountAdministrators")
 public class DjangoReturnAccountAdministrators extends WebPage {
 
     @Name("Сохранить")
