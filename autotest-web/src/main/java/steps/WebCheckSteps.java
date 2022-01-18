@@ -168,6 +168,25 @@ public class WebCheckSteps {
     }
 
     /**
+     * проверка того, что поле заполнено текстом '<link>'
+     *
+     * @param element1Name название поля
+     * @param element2Name '<link>'
+     */
+    @Step("проверка того, что поле {elementName} заполнено текстом {text} '<link>'")
+    @Если("поле {string} заполнено текстом {string} '<link>'")
+    public void checkFieldTextFromElement(String element1Name, String element2Name) {
+        SelenideElement element1 = pageManager
+                .getCurrentPage()
+                .getElement(element1Name);
+        SelenideElement element2 = pageManager
+                .getCurrentPage()
+                .getElement(element2Name);
+        Checks.selectedElementHaveTextFromElement(element1, element2, 0);
+        LOGGER.info("поле '{}' заполнено значением '{}'", element1Name, element2.getText());
+    }
+
+    /**
      * проверка того, что поле отображается и не заполнено
      *
      * @param elementName название поля
@@ -470,7 +489,7 @@ public class WebCheckSteps {
      * Проверка, что фото загрузилось
      * и мы видим его название "***.jpg"
      * справа от кнопки "Выберите фото".
-     *
+     * <p>
      * В конце сравниваем значения в случае если
      * было загружено 2 разных изображения последовательно.
      * Проверяем, что FileName соответсвует и нет расхождений

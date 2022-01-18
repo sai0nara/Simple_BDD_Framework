@@ -90,6 +90,20 @@ public class Checks {
     }
 
     /**
+     * проверяет что значение выбранного элемента из выпадающего списка
+     * соответствует ожидаемому тексту '<link>'
+     *
+     * @param element1       выбранный элемент
+     * @param element2       '<link>'
+     * @param timeoutSeconds количество секунд
+     */
+    public static void selectedElementHaveTextFromElement(SelenideElement element1, SelenideElement element2, Integer timeoutSeconds) {
+        int timeout = getTimeoutSecondsFirst(timeoutSeconds);
+        SelenideElement selectedElement = element1.$x("./option[@selected]");
+        selectedElement.shouldBe(Condition.text(element2.getText()), Duration.ofSeconds(timeout));
+    }
+
+    /**
      * проверяет что элемент заблокирован
      *
      * @param element        элемент

@@ -7,7 +7,10 @@ import ru.lanit.at.web.pagecontext.WebPage;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-
+/**
+ * PageObject, описывающий страницу 'Сотрудники с административным доступом'
+ * http://178.154.246.238:58082/admin/core/administrator/
+ */
 @Name(value = "DjangoAdminAccess")
 public class DjangoAdminAccessPage extends WebPage {
 
