@@ -1,4 +1,4 @@
-package pages.employee;
+package pages.vacation_requests;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

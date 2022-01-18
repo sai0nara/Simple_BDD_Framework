@@ -1,4 +1,4 @@
-package pages.employee;
+package pages.vacation_requests;
 
 import com.codeborne.selenide.SelenideElement;
 import ru.lanit.at.web.annotations.Name;
