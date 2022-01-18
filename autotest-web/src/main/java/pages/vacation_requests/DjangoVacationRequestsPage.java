@@ -15,9 +15,6 @@ import static com.codeborne.selenide.Selenide.$x;
 @Name(value = "DjangoVacationRequests")
 public class DjangoVacationRequestsPage extends WebPage {
 
-    @Name("Добавить запрос на отпуск")
-    private SelenideElement addVacationRequest = $x("//a[@href=\"/admin/core/employeevacationrequest/add/\"]");
-
     @Name("Выполнить")
     private SelenideElement executeButton = $x("//button[@type='submit']");
     @Name("Действие")
@@ -28,4 +25,6 @@ public class DjangoVacationRequestsPage extends WebPage {
     private ElementsCollection tableCheckboxes = $$x("//input[@class='action-select']");
     @Name("Выбрано 1 из")
     private SelenideElement howMuchSearch = $x("//span[@class='action-counter']");
+    @Name("Добавить запрос на отпуск")
+    private SelenideElement addVacationRequest = $x("//a[@href=\"/admin/core/employeevacationrequest/add/\"]");
 }

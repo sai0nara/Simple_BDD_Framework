@@ -22,7 +22,7 @@ public class VacationRequestsNegativeTest extends WebHooks {
         webSteps.setPage("DjangoAdministration");
         webCheckSteps.checkAppearElement("Запросы на отпуск");
         webSteps.clickOnElement("Запросы на отпуск");
-        webSteps.setPage("DjangoVacationRequestsPage");
+        webSteps.setPage("DjangoVacationRequests");
 
     }
 
