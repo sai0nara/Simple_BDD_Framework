@@ -36,11 +36,12 @@ public class WebSteps {
     private static Properties properties = new Properties();
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSteps.class);
     private static String currentToken = "";
-    private final PageManager pageManager;
+    private PageManager pageManager;
 
     public WebSteps(PageManager pageManager) {
         this.pageManager = pageManager;
     }
+    public WebSteps() { }
 
     /**
      * Открытие сайта
@@ -58,14 +59,15 @@ public class WebSteps {
         LOGGER.info("инициализация webdriver для потока: {}", Thread.currentThread().getId());
     }
 
-    private static void loadProperties() {
-        InputStream inputStream = null;
+    public static Properties loadProperties() {
+        InputStream inputStream;
         try {
             inputStream = new FileInputStream("src/main/resources/application.properties");
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return properties;
     }
 
     /**
@@ -160,7 +162,7 @@ public class WebSteps {
     @Step("заполнение поля {field} случайной строкой")
     @И("заполнить поле {string} случайной строкой")
     public void fillFieldRandomString(String field) {
-        String randomString = "EXAMPLE_" + UUID.randomUUID().toString();
+        String randomString = "EXAMPLE_" + UUID.randomUUID();
         fillField(field, randomString);
         ContextHolder.put(field, randomString);
     }
