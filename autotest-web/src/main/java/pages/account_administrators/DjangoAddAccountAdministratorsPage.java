@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
  * http://178.154.246.238:58082/admin/core/accountadmin/add/
  */
 @Name(value = "DjangoAddAccountAdministrators")
-public class DjangoAddAccountAdministrators extends WebPage {
+public class DjangoAddAccountAdministratorsPage extends WebPage {
 
     @Name("Добавить Администратор аккаунта")
     private SelenideElement title = $x("//div[@id = 'content']/h1");

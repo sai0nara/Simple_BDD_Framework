@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
  * {id Администратор Аккаунта} - id выбранного объекта(Администратор Аккаунта)
  */
 @Name("DjangoRestoreAccountAdministrators")
-public class DjangoReturnAccountAdministrators extends WebPage {
+public class DjangoReturnAccountAdministratorsPage extends WebPage {
 
     @Name("Сохранить")
     private SelenideElement save = $x("//input[@name='_save']");

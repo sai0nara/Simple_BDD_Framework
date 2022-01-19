@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.$x;
  * http://178.154.246.238:58082/admin/login/
  */
 @Name(value = "DjangoAuthorization")
-public class DjangoAuthorization extends WebPage {
+public class DjangoAuthorizationPage extends WebPage {
 
     @Name("логин")
     private SelenideElement usernameField = $(By.id("id_username"));

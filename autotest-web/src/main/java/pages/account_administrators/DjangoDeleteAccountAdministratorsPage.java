@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$x;
  * {id Администратор Аккаунта} - id выбранного объекта(Администратор Аккаунта)
  */
 @Name(value = "DjangoDeleteAccountAdministrators")
-public class DjangoDeleteAccountAdministrators extends WebPage {
+public class DjangoDeleteAccountAdministratorsPage extends WebPage {
 
     @Name("Вы уверены?")
     private SelenideElement areYouSure = $x("//h1[text()='Вы уверены?']");
