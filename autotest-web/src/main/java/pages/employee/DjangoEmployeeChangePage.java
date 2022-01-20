@@ -53,6 +53,10 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement calendarLink = $x("//a[@id='calendarlink0']");
     @Name("Календарь")
     private SelenideElement calendar = $x("//div[@id='calendarbox0']");
+    @Name("Случайное число для выборки календаря - Дата приема на работу")
+    private SelenideElement randomDate = $x("//td[4]/a");
+    @Name("Случайное число для выборки календаря - День рождения")
+    private SelenideElement randomBirthdayDate = $x("//*[@id=\"calendarin1\"]//a");
     @Name("Сегодня в виджете 'Календарь'")
     private SelenideElement todayInCalendarWidget = $x("//div[@id='calendarin0']/following-sibling::div/a[text()='Сегодня']");
 
@@ -217,11 +221,8 @@ public class DjangoEmployeeChangePage extends WebPage {
     private SelenideElement projectRole = lastProject.find(By.xpath("./td[@class = 'field-project_role']/div/select"));
     @Name("Обратная связь")
     private SelenideElement feedBack = lastProject.find(By.xpath("./td[@class = 'field-feedback']/textarea"));
-// ДАННЫЙ РО БУДЕТ УДАЛЕН -> БУДЕТ ИСПОЛЬЗОВАТЬСЯ: Дата начала проекты
-    @Name("Дата начала2")
-    private SelenideElement dateOfStartProject = $x("//input[@name='employeeproject_set-0-start_date']");
     @Name("Дата начала проекты")
-    private SelenideElement startDate = lastProject.find(By.xpath("./td[@class = 'field-start_date']/input"));
+    private SelenideElement dateOfStartProject = $x("//input[@name='employeeproject_set-0-start_date']");
     @Name("Дата окончания проекты")
     private SelenideElement dateOfFinishProject = $x("//input[@name='employeeproject_set-0-end_date']");
     @Name("Дата окончания: Сегодня")

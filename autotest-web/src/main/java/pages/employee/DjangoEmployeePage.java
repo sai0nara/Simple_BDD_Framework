@@ -25,6 +25,8 @@ public class DjangoEmployeePage extends WebPage {
     private SelenideElement addEmployeeLink = $x("//a[@class='addlink']");
     @Name("Предупреждение в заголовке")
     private SelenideElement headerWarning = $(By.className("warning"));
+    @Name("Сообщение об успешном редактирование")
+    private SelenideElement headerSuccess = $(By.className("success"));
 
     //ПОИСК
     @Name("Поиск")
