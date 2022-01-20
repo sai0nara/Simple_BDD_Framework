@@ -96,8 +96,7 @@ public class ApiSteps {
                 .when()
                 .get(endpoint)
                 .then()
-                .log()
-                .all()
+                .log().all()
                 .statusCode(statusCode);
     }
 
@@ -131,8 +130,7 @@ public class ApiSteps {
                 .when()
                 .post(endpoint)
                 .then()
-                .log()
-                .all()
+                .log().all()
                 .statusCode(statusCode)
                 .extract()
                 .jsonPath();
