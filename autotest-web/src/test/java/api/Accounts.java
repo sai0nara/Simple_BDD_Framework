@@ -1,25 +1,25 @@
 package api;
 
-import hooks.WebHooks;
 import io.qameta.allure.Description;
 import net.minidev.json.JSONObject;
 import org.testng.annotations.Test;
 import ru.lanit.at.api.testcontext.ContextHolder;
-import ru.lanit.at.web.pagecontext.PageManager;
 import steps.ApiSteps;
 
-import java.net.ContentHandler;
+public class Accounts extends BaseApiTest {
+    @Test
+    @Description(value = "проверка корректности получения списка аккаунтов")
+    public static void getListOfAccounts1() {
 
-public class Accounts {
+        ApiSteps.simpleApiGet("api/accounts/",200);
 
-    private static final PageManager pageManager = new PageManager();
-    private static final ApiSteps apiSteps = new ApiSteps(pageManager);
+    }
 
     @Test
     @Description(value = "проверка корректности получения списка аккаунтов")
     public static void getListOfAccounts() {
 
-        ApiSteps.simpleApiGet("api/accounts/","",200);
+        ApiSteps.simpleApiGetById("api/accounts/","",200);
 
     }
 
@@ -28,12 +28,12 @@ public class Accounts {
     public static void createSomeAccount() {
 
         JSONObject newAccount = new JSONObject();
-        newAccount.put("name", "Крупный новый банк");
+        newAccount.put("name", "Крупный новый банк1234");
 
         ApiSteps.simpleApiPost("api/accounts/",201,newAccount);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),200);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),200);
         ApiSteps.simpleApiDelete("api/accounts/", ContextHolder.getValue("posted_data"),204);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),404);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),404);
 
     }
 
@@ -42,16 +42,16 @@ public class Accounts {
     public static void changeCreatedAccount() {
 
         JSONObject newAccount = new JSONObject();
-        newAccount.put("name", "Крупный новый банк");
+        newAccount.put("name", "Крупный новый банк2123");
 
         JSONObject patchedAccount = new JSONObject();
         patchedAccount.put("name", "Надежный и солидный банк");
 
         ApiSteps.simpleApiPost("api/accounts/",201,newAccount);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),200);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),200);
         ApiSteps.simpleApiPatch("api/accounts/",ContextHolder.getValue("posted_data"),200,patchedAccount);
         ApiSteps.simpleApiDelete("api/accounts/", ContextHolder.getValue("posted_data"),204);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),404);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),404);
 
     }
 
@@ -60,12 +60,12 @@ public class Accounts {
     public static void deleteCreatedAccount() {
 
         JSONObject newAccount = new JSONObject();
-        newAccount.put("name", "Крупный новый банк");
+        newAccount.put("name", "Крупный новый банк2123");
 
         ApiSteps.simpleApiPost("api/accounts/",201,newAccount);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),200);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),200);
         ApiSteps.simpleApiDelete("api/accounts/", ContextHolder.getValue("posted_data"),204);
-        ApiSteps.simpleApiGet("api/accounts/", ContextHolder.getValue("posted_data"),404);
+        ApiSteps.simpleApiGetById("api/accounts/", ContextHolder.getValue("posted_data"),404);
 
     }
 
