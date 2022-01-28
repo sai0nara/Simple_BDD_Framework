@@ -508,8 +508,7 @@ public class WebCheckSteps {
     /**
      * проверка, что поле заполнено текстом и не является пустым
      */
-    @Если("поле {string} заполнено текстом {string}")
-    public void checkFieldTextIsNotEmpty(String elementName) {
+     public void checkFieldTextIsNotEmpty(String elementName) {
         String element = pageManager
                 .getCurrentPage()
                 .getElement(elementName)
@@ -535,7 +534,7 @@ public class WebCheckSteps {
      * в данном случае метод создан для точечной проверки,
      * что значение совпадает с сегодняшней датой при клике на кнопку сегодня
      */
-    @Если("поле {string} заполнено текстом {string}")
+    @Если("поле {string} заполнено текстом даты {string}")
     public void checkFieldTextByDateToday(String elementName, String currentTodayDate) {
         String element = pageManager
                 .getCurrentPage()
