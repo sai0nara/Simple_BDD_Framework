@@ -2,6 +2,7 @@ package steps.will_be_removed;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.ru.И;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.lanit.at.web.pagecontext.PageManager;
@@ -16,7 +17,7 @@ public class WebActionSteps {
         this.pageManager = manager;
     }
 
- //   @Если("в выпадющем списке {string} выбрать элемент со значением {string}")
+    @И("в выпадющем списке {string} выбрать элемент со значением {string}")
     public void listSelectElement(String elementName, String text){
         SelenideElement element = pageManager
                 .getCurrentPage()
@@ -25,9 +26,9 @@ public class WebActionSteps {
         LOGGER.info("в выпадющем списке {} выбран элемент со значением {}", elementName, text);
     }
 
-//    @Тогда("нажать на {string}")
-//    @Если("кликнуть на элемент {string}")
- //   @Тогда("нажать на кнопку {string}")
+    @И("нажать на {string}")
+    @И("кликнуть на элемент {string}")
+    @И("нажать на кнопку {string}")
     public void clickOnButton(String elementName) {
         pageManager
                 .getCurrentPage()
@@ -37,7 +38,7 @@ public class WebActionSteps {
         LOGGER.info("клик на элемент '{}'", elementName);
     }
 
-//    @Когда("ввести в поле {string} значение {string}")
+    @И("ввести в поле {string} значение {string}")
     public void fillTheField(String field, String value) {
         SelenideElement fieldElement = pageManager
                 .getCurrentPage()

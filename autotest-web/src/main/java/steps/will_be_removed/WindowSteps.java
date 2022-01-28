@@ -4,6 +4,7 @@ import actions.will_be_removed.WebActions;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -79,7 +80,7 @@ public class WindowSteps {
     /**
      * закрывает страницу
      */
-//    @Если("закрыть страницу")
+    @И("закрыть страницу")
     public void closeDriver() {
         WebDriverRunner.getWebDriver().close();
     }

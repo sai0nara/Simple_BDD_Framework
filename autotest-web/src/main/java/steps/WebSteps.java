@@ -75,6 +75,7 @@ public class WebSteps {
      */
     @Step("инициализация страницы {string}")
     @И("переход на страницу {string}")
+    @И("инициализация страницы {string}")
     public void setPage(String pageName) {
         WebPage page = Environment.getPage(pageName);
         pageManager.setCurrentPage(page);
