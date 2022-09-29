@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$x;
  * http://178.154.246.238:58082/admin/core/accountadmin/2/change/
  */
 @Name(value = "DjangoChangeAccountAdministrators")
-public class DjangoChangeAccountAdministrators extends WebPage {
+public class DjangoChangeAccountAdministratorsPage extends WebPage {
     @Name("Удалено")
     private final SelenideElement deleted = $x("//a[@class = 'deletelink']");
 

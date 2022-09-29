@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
  * http://178.154.246.238:58082/admin/core/accountadmin/recover/
  */
 @Name(value = "DjangoRestoreAccountAdministrators")
-public class DjangoRestoreAccountAdministrators extends WebPage {
+public class DjangoRestoreAccountAdministratorsPage extends WebPage {
 
     @Name("Дата и время")
     private ElementsCollection dateAndTime = $$x("//th[@scope='row']/a");

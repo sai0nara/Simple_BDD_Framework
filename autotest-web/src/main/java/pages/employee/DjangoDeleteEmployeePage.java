@@ -7,7 +7,7 @@ import ru.lanit.at.web.pagecontext.WebPage;
 import static com.codeborne.selenide.Selenide.$x;
 
 @Name(value = "DjangoDeleteEmployee")
-public class DjangoDeleteEmployee extends WebPage {
+public class DjangoDeleteEmployeePage extends WebPage {
 
     @Name("Вы уверены?")
     private SelenideElement areYouSure = $x("//h1[text()='Вы уверены?']");
